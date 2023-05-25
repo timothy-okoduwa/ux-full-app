@@ -1,0 +1,407 @@
+.golden {
+  background-color: black;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.join {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 31px;
+  color: #ffffff;
+}
+.keys {
+  border-bottom: 4px solid #ff4703;
+  width: 60% !important;
+}
+.create {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #ffffff;
+}
+.fun{
+    width: 80%;
+}
+.ingame {
+  background: #191919;
+  border-radius: 5px;
+  height: 60px;
+  outline: none;
+  border: none;
+  width: 80%;
+  padding-left: 20px;
+  color: white;
+}
+.full {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 16px;
+
+  color: #ffffff;
+}
+.signg {
+  color: #6297c6;
+}
+.already {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+}
+.bysign {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  margin-top: 14px;
+}
+.ssif {
+  width: 120px;
+  height: 45px;
+  background: #ff4703;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-top: 50px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #ffffff;
+}
+.cpry {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 105px;
+}
+@media screen and (max-width: 991px) {
+  .no-plie {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: #ffffff;
+    width: 100% !important;
+    height: 62px;
+    outline: none;
+    border: none;
+    background: #00ab4f;
+    border-radius: 10px;
+  }
+  .all-refresh {
+    margin-top: 30px;
+    width: 100% !important;
+    height: 136px;
+    background: #191919;
+    border-radius: 10px;
+  }
+  .learn-more {
+    width: 100% !important;
+
+    background: #191919;
+    border-radius: 4px;
+  }
+  .fluffy {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .moc-to {
+    display: none !important;
+  }
+
+  .financre {
+    display: none;
+  }
+  .ingame {
+    background: #191919;
+    border-radius: 5px;
+    height: 60px;
+    outline: none;
+    border: none;
+    width: 100%;
+    padding-left: 20px;
+    color: white;
+  }
+  .fun{
+    width: 100%;
+}
+  .whishh {
+    width: 100% !important;
+    height: 474px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 20px;
+    padding-top: 30px !important;
+    padding-left: 20px !important;
+  }
+  .huntimg {
+    background: #f1f2f5;
+    border-radius: 5px;
+    outline: none;
+    height: 60px;
+    width: 100% !important;
+    border: none;
+    padding-left: 14px;
+  }
+}
+.forgert {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 30px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.dripp {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.whishh {
+  width: 600px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 50px;
+
+  border-radius: 20px;
+}
+.fpp {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+}
+.invalid-link{
+    font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 17px;
+   text-align: center;
+}
+.to {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  opacity: 0.5;
+  margin-top: 17px;
+}
+.email {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 11px;
+}
+.huntimg {
+  background: #f1f2f5;
+  border-radius: 5px;
+  outline: none;
+  height: 60px;
+  width: 350px;
+  border: none;
+  padding-left: 14px;
+}
+.estate {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 20px;
+  color: #ffffff;
+
+  opacity: 0.5;
+}
+.resednd {
+  color: #046ac9;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.purr {
+  background-color: black;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+.commp {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  color: #ffffff;
+}
+.moc-to {
+  display: flex;
+  justify-content: center;
+}
+.yawa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.one {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff4703;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+}
+.one2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00b518;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+}
+.purc {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #f1f2f5;
+  margin-left: 20px;
+}
+.shror {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.takee {
+  width: 153px;
+  height: 0px;
+  border: 0.5px dashed #ffffff;
+}
+.learn-more {
+  width: 539px;
+
+  background: #191919;
+  border-radius: 4px;
+}
+.dey-for {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  flex-direction: column;
+}
+.gat-u {
+  background-color: #6b4039;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+}
+.anita {
+  font-family: 'Paytone One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  text-align: center;
+  color: #fdefde;
+}
+.felo {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+}
+.price {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-top: 30px;
+  color: #ffffff;
+}
+.all-refresh {
+  margin-top: 30px;
+  width: 541px;
+  height: 136px;
+  background: #191919;
+  border-radius: 10px;
+}
+.tp {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+  opacity: 0.5;
+  margin-top: 25px;
+}
+.hot {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  margin-top: 18px;
+  color: #ffffff;
+}
+.no-plie {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  color: #ffffff;
+  width: 541px;
+  height: 62px;
+  outline: none;
+  border: none;
+  background: #00ab4f;
+  border-radius: 10px;
+    margin-top: 20px;
+}
+.reset-message{
+  color: white;
+  margin-top: 20px;
+    font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+}

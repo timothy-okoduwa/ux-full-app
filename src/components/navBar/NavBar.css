@@ -1,0 +1,36 @@
+.hello {
+  width: 80%;
+
+}
+.emb {
+  margin-left: 40px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
+}
+@media screen and (max-width: 991px) {
+  .emb {
+    margin-left: 0px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 13px;
+    margin-top: 13px;
+    cursor: pointer;
+  }
+}
+.red {
+  color: #ff4703;
+}
+.circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgb(209, 207, 207);
+  object-fit: cover;
+}

@@ -1,0 +1,378 @@
+.shy {
+  background-color: black;
+  padding-top: 109px;
+  padding-bottom: 30px;
+}
+.round {
+  display: flex;
+  align-items: center;
+}
+.fav {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+.welcom {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #ffffff;
+}
+.edit {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.d-shoes {
+  height: 60px;
+  width: 500px;
+  background: #191919;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+}
+@media (max-width: 991px) {
+  .ayh {
+    position: fixed;
+    top: 77px;
+    left: -330px;
+    /* width: 200px; */
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    padding-bottom: 20px;
+    transition: left 0.3s ease-in-out;
+  }
+  
+  .ayh.show {
+    left: 0;
+  }
+}
+@media screen and (max-width: 991px) {
+
+  .civil {
+    width: 100% !important;
+    height: 150px;
+    background: #191919;
+    border-radius: 10px;
+  }
+  .d-shoes {
+    height: 60px;
+    width: 100% !important;
+    background: #191919;
+    border-radius: 5px;
+    color: white;
+    outline: none;
+    border: none;
+  }
+}
+.literally {
+  display: flex;
+  align-items: center;
+}
+.nows {
+  background-color: #191919;
+  height: 45px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  margin-left: -40px;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+}
+.menn {
+  margin-top: 70px;
+}
+.badgess {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  color: #ffffff;
+  margin-bottom: 35px;
+}
+
+.civil {
+  width: 450px;
+  height: 150px;
+  background: #191919;
+  border-radius: 10px;
+  margin-bottom: 35px !important;
+  padding: 30px;
+}
+.despirate {
+  display: flex;
+  justify-content: space-between;
+}
+.coursesd {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+}
+.numbers {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  margin-top: 4px;
+  color: #ffffff;
+}
+.awards {
+  font-size: 80px;
+  color: #8c8c8c;
+}
+.go-back {
+  margin-top: 45px;
+}
+.my-course {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+
+  color: #ffffff;
+}
+
+.faksepp {
+  background-image: url('../images/dearr.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12px 12px 0 0;
+  height: 360px;
+}
+
+.dem78 {
+  background: linear-gradient(
+    180deg,
+    rgba(55, 55, 55, 0) 46.43%,
+    #2f2f2f 98.33%
+  );
+  height: 360px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.call-me-out {
+  padding-bottom: 40px;
+}
+
+.anita-gift {
+  font-family: 'Paytone One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  text-align: center;
+  color: #fdefde;
+}
+.ux-oo {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14.4px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #fdefde;
+}
+.durat {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.6px;
+  text-align: center;
+  color: #ffffff;
+}
+.continue {
+  background: #191919;
+  border-radius: 0 0 12px 12px;
+  height: 50px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.CoursesCourses {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+margin-left: 10px;
+  color: #ffffff;
+}
+.produces-result {
+  background-color: black !important;
+  color: white !important;
+}
+.barrien {
+  padding-top: 30px !important;
+  background-color: #191919 !important;
+  /* border-radius: 9px !important; */
+}
+.influence {
+  margin-right: 13px;
+  font-size: 22px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+.crty {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+.intto {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+}
+.desde {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 28px;
+  color: #ffffff;
+}
+.vincentur {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fdefde;
+}
+.for-vidd {
+  margin-top: 20px;
+  object-fit: cover;
+  width: 100%;
+}
+.loinuhy {
+  margin-top: 49px;
+padding-top: 40px;
+padding-bottom: 20px;
+  background: #191919;
+}
+.cdcd{
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+color: #FFFFFF;
+
+}
+.ayh{
+  width: 280px ;
+z-index: 1;
+  padding-bottom: 20px;
+}
+.njuyh{
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+color: #FFFFFF;
+opacity: 0.5;
+margin-top: 20px;
+}
+.about{
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+margin-top: 22px;
+color: #FFFFFF;
+}
+.rgnfd{
+  display: flex;
+  /* background-color:red ; */
+  justify-content: center;
+}
+.bubuf{
+  background: #ffffff;
+ margin-left: 215px;
+ outline: none;
+ border: none;
+ height: 40px;
+ width: 40px;
+ border-radius: 50%;
+ font-size: 25px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.nity{
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (min-width:992px){
+.bubuf{
+
+ display: none;
+}
+}
+
+.whatsde{
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+color: #FFFFFF;
+
+/* display: flex;
+justify-content: center;
+align-items: center; */
+}
+.flott{
+border-bottom: 2.5px solid #FF4703 !important;
+height: 40px;
+cursor: pointer;
+width: fit-content;
+text-align: center;
+}
+.flottee{
+  /* border-bottom: 2.5px solid #FF4703 !important; */
+height: 40px;
+cursor: pointer;
+width: fit-content;
+text-align: center;
+}
+.my-own{
+  margin-top: 40px;
+
+}
+.wiuy{
+  font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+margin-bottom: 20px;
+color: #FFFFFF;
+
+opacity: 0.5;
+}
+.hiderr {
+  display: none;
+}
+.hiderr2 {
+  display: none;
+}
+.yhyhyh{
+  margin-top: 90px;
+}
