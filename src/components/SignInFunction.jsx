@@ -1,16 +1,15 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
-import Alert from '@mui/material/Alert';
+import { IoIosWarning } from 'react-icons/io';
 import CircularProgress from '@mui/material/CircularProgress';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { collection, doc, updateDoc } from 'firebase/firestore';
 const SignInFunction = () => {
   const navigate = useNavigate();
-
-  const move = () => {
-    navigate('/forget');
-  };
+  const [showError, setShowError] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -29,14 +28,24 @@ const SignInFunction = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
-      const currentUser = auth.currentUser
-      if(currentUser){
+      const currentUser = auth.currentUser;
+      if (currentUser) {
         const studentCollection = collection(db, 'student');
-        const studentDocumentReference = doc (studentCollection,currentUser.uid)
-        await updateDoc (studentDocumentReference,{isOnLine:true})
-    
+        const studentDocumentReference = doc(
+          studentCollection,
+          currentUser.uid
+        );
+        await updateDoc(studentDocumentReference, {
+          isOnLine: true,
+          password: password,
+          confirmPassword: password,
+        });
       }
-        navigate('/dashboard');
+       setShowSuccessMessage(true);
+
+       setTimeout(() => {
+         navigate('/dashboard');
+       }, 2000);
       setData({
         email: '',
         password: '',
@@ -48,7 +57,7 @@ const SignInFunction = () => {
         case 'auth/invalid-email':
           setData({
             ...data,
-            error: 'all fields are required',
+            error: 'all fields are required.',
             loading: false,
           });
           break;
@@ -56,14 +65,14 @@ const SignInFunction = () => {
           setData({
             ...data,
             error:
-              'Your account has been disabled,contact the super Admin for help',
+              'Your account has been disabled,contact the super Admin for help.',
             loading: false,
           });
           break;
         case 'auth/user-not-found':
           setData({
             ...data,
-            error: 'You dont have an account yet,please sign up',
+            error: 'You dont have an account yet,please sign up.',
             loading: false,
           });
           break;
@@ -71,7 +80,7 @@ const SignInFunction = () => {
           setData({
             ...data,
             error:
-              'you have exhusted the maxium trial limit, come back 1hr later ',
+              'you have exhusted the maxium trial limit, come back 10 min later. ',
             loading: false,
           });
           break;
@@ -79,7 +88,7 @@ const SignInFunction = () => {
         case 'auth/wrong-password':
           setData({
             ...data,
-            error: 'Invalid password.',
+            error: 'You have entered a wrong password. ',
             loading: false,
           });
           break;
@@ -90,17 +99,46 @@ const SignInFunction = () => {
       }
     }
   };
- 
+  useEffect(() => {
+    // Show the error message
+    setShowError(true);
+
+    // Set a timer to hide the error message after 5 seconds
+    const timer = setTimeout(() => {
+      setShowError(false);
+    }, 5000);
+
+    // Clean up the timer when the component is unmounted or when the error changes
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [error]);
+  const move = () => {
+    navigate('/forget');
+  };
+
   return (
     <div>
       <div>
         <div className="create">Welcome Back</div>
         <div className="mt-4">
           {error ? (
-            <Alert severity="error" className="fun">
+            <div className={`fun ${showError ? 'show' : 'hide'}`}>
+              <span className="ivon">
+                <IoIosWarning />
+              </span>{' '}
               {error}
-            </Alert>
+            </div>
           ) : null}
+
+          {showSuccessMessage && (
+            <div className="fun2">
+              <span className="ivon">
+                <BsFillCheckCircleFill />
+              </span>{' '}
+              You have successfully signed in.
+            </div>
+          )}
           <div className="mt-5">
             <div className="full">Email</div>
             <input

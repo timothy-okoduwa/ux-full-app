@@ -37,7 +37,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 24px;
 color: #FFFFFF;
-margin-top: 43px;
+margin-top: 83px;
 }
 .ph{
     font-family: 'Manrope';
@@ -84,4 +84,19 @@ border: none;
 padding-left: 20px;
 color: white;
 }
+}
+.upim{
+    outline: none;
+    border: none;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 4px;
+    width: 140px;
+    font-family: 'Manrope';
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color:#FF4703 ;
 }

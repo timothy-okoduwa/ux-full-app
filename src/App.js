@@ -10,10 +10,10 @@ import SignUp from './pages/SignPage/SignUp';
 import ScrollToTop from './ScrollToTop';
 import SignIn from './pages/SignPage/SignIn';
 import ForgetPassword from './components/ForgetPassword';
-import Verify from './components/Verify';
+
 import Confirm from './components/Confirm';
 import PurchaseCourse from './components/PurchaseCourse';
-import DashNav from './components/navBar/DashNav';
+// import DashNav from './components/navBar/DashNav';
 import DashBoard from './pages/DashBoard/DashBoard';
 import StartWatching from './pages/DashBoard/StartWatching';
 import { UserAuthContextProvider } from './components/context/UserAuthContext';
@@ -24,7 +24,7 @@ function App() {
     <UserAuthContextProvider>
       <BrowserRouter>
         <NavBar />
-        <DashNav />
+        {/* <DashNav /> */}
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/course" element={<CoursePage />} />
@@ -33,7 +33,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/forget" element={<ForgetPassword />} />
-          <Route path="/verify" element={<Verify />} />
+       
           <Route path="/confirm" element={<Confirm />} />
           <Route path="/purchase-course" element={<PurchaseCourse />} />
           <Route

@@ -4,12 +4,12 @@ import { CiSearch } from 'react-icons/ci';
 import { RiAwardFill } from 'react-icons/ri';
 import { CgNotes } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
-const UserLibrary = ({user}) => {
+const UserLibrary = ({ user, handleLogOut }) => {
   const navigate = useNavigate();
   const moce = () => {
     navigate('/setting');
   };
-  return user?(
+  return user ? (
     <div>
       <div className="container">
         <div className="row">
@@ -17,13 +17,18 @@ const UserLibrary = ({user}) => {
             <div className="round">
               <div>
                 <div className="fav">
-                  <img src={f} alt="" className="fav" />
+                  <img src={user?.avatarURL || f} alt="" className="fav" />
                 </div>
               </div>
               <div>
                 <div className="welcom">Welcome, {user?.fullName}</div>
-                <div className="edit" onClick={moce}>
-                  Edit Profile
+                <div className="celeb">
+                  <div className="edit" onClick={moce}>
+                    Edit Profile
+                  </div>
+                  <div className="azul" onClick={handleLogOut}>
+                    Log Out
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,7 +87,7 @@ const UserLibrary = ({user}) => {
         </div>
       </div>
     </div>
-  ):null;
+  ) : null;
 };
 
 export default UserLibrary;

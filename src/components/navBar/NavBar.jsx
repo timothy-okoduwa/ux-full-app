@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './NavBar.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import t from '../images/TEXT.png';
+import g from '../images/gyg.png';
 import { Link, useLocation } from 'react-router-dom';
+import { onSnapshot, doc } from 'firebase/firestore';
+import { db, auth } from '../../firebase';
+
 const NavBar = () => {
   const location = useLocation();
+  const [user, setUser] = useState(null);
+  const isAuthenticated = auth.currentUser;
+
+  useEffect(() => {
+    let unsubscribe;
+
+    if (isAuthenticated) {
+      const studentDocRef = doc(db, 'student', auth.currentUser.uid);
+      unsubscribe = onSnapshot(studentDocRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setUser(docSnap.data());
+        } else {
+          setUser(null);
+        }
+      });
+    }
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [isAuthenticated]);
+
   const hideAllHeader =
     location.pathname === '/signup' ||
     location.pathname === '/signin' ||
     location.pathname === '/verify' ||
     location.pathname === '/confirm' ||
-    location.pathname === '/purchase-course' ||
-    location.pathname === '/dashboard' ||
-    location.pathname === '/start-watching' ||
-    location.pathname === '/setting' ||
     location.pathname === '/forget';
   return (
     <>
@@ -46,9 +70,24 @@ const NavBar = () => {
 
                     <div className="emb">About</div>
                     <div className="emb">Contact</div>
-                    <Link to="/signup" style={{ textDecoration: 'none' }}>
-                      <div className="emb red">Login</div>
-                    </Link>
+                    {!isAuthenticated && (
+                      <Link to="/signin" style={{ textDecoration: 'none' }}>
+                        <div className="emb red">Login</div>
+                      </Link>
+                    )}
+                    {isAuthenticated && (
+                      <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                        <div className="emb circle">
+                          {user && (
+                            <img
+                              src={user.avatarURL || g}
+                              alt=""
+                              className="circle"
+                            />
+                          )}
+                        </div>
+                      </Link>
+                    )}
                   </Nav>
                 </div>
               </Navbar.Collapse>

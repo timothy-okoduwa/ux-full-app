@@ -21,8 +21,76 @@
   font-size: 24px;
   color: #ffffff;
 }
-.fun{
+.fun {
+  width: 80%;
+  height: 50px;
+  /* justify-content: center; */
+  color: #ff4703;
+padding-left: 40px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center !important;
+  background: #682929;
+  border: 1px solid #ff4703;
+  border-radius: 5px;
+   animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+
+.show {
+  display: block;
+  animation-name: fadeIn;
+  display: flex;
+  align-items: center !important;
+}
+
+.hide {
+  animation-name: fadeOut;
+  display: flex;
+  align-items: center !important;
+  height: 0px !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fun2{
     width: 80%;
+  height: 50px;
+  /* justify-content: center; */
+color: #00AB4F;
+padding-left: 40px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+background: #234F37;
+border: 1px solid #00AB4F;
+border-radius: 5px;
+}
+.ivon{
+  margin-right: 6px;
 }
 .ingame {
   background: #191919;
@@ -136,9 +204,12 @@
     padding-left: 20px;
     color: white;
   }
-  .fun{
+  .fun {
     width: 100%;
-}
+  }
+  .fun2 {
+    width: 100%;
+  }
   .whishh {
     width: 100% !important;
     height: 474px;
@@ -187,18 +258,18 @@
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 34px;
   color: #ffffff;
   text-align: center;
 }
-.invalid-link{
-    font-family: 'Manrope';
+.invalid-link {
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   color: #ffffff;
   margin-top: 17px;
-   text-align: center;
+  text-align: center;
 }
 .to {
   font-family: 'Manrope';
@@ -395,12 +466,12 @@
   border: none;
   background: #00ab4f;
   border-radius: 10px;
-    margin-top: 20px;
+  margin-top: 20px;
 }
-.reset-message{
+.reset-message {
   color: white;
   margin-top: 20px;
-    font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

@@ -8,12 +8,15 @@ import {
 } from 'firebase/auth';
 import '../pages/SignPage/Sign.css';
 import l from './images/TEXT.png';
-import man from '../pages/images/man-pouting.png'
-import thumb from '../pages/images/thumbs-up.png'
+import man from '../pages/images/man-pouting.png';
+import thumb from '../pages/images/party-popper.png';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 const Confirm = () => {
   const location = useLocation();
   const [resetCodeValid, setResetCodeValid] = useState(false);
   const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [resetCompleted, setResetCompleted] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -31,15 +34,30 @@ const Confirm = () => {
 
 const handlePasswordReset = () => {
   const auth = getAuth();
- setLoading(true);
+  setLoading(true);
   const searchParams = new URLSearchParams(location.search);
   const resetCode = searchParams.get('oobCode');
 
   // Reset the user's password using Firebase Auth SDK
   confirmPasswordReset(auth, resetCode, newPassword)
-    .then(() => setResetCompleted(true))
-    .catch((error) => setError(error.message));
+    .then(() => {
+      // Update the password and confirmPassword fields in the document
+      if (auth.currentUser) {
+        const studentDocRef = doc(db, 'student', auth.currentUser.uid);
+        updateDoc(studentDocRef, {
+          password: newPassword,
+          confirmPassword: confirmNewPassword,
+        });
+      }
+
+      setResetCompleted(true);
+    })
+    .catch((error) => {
+      setError(error.message);
+      console.log('Password reset error:', error);
+    });
 };
+
 
 
   if (resetCompleted) {
@@ -50,9 +68,9 @@ const handlePasswordReset = () => {
             <div className="dripp">
               <div className=" whishh">
                 <div className="container">
-                  <div className="fpp">Congratulations 🎊</div>
+                  <div className="fpp">Congratulations </div>
                   <div className="d-flex justify-content-center align-item-center mt-4">
-                    <img src={thumb} alt="phohh" style={{ width: '50%' }} />
+                    <img src={thumb} alt="phohh" style={{ width: '25%' }} />
                   </div>
                   <div>
                     <p className="invalid-link">
@@ -104,8 +122,8 @@ const handlePasswordReset = () => {
                       <input
                         className="huntimg"
                         type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        value={confirmNewPassword}
+                        onChange={(e) => setConfirmNewPassword(e.target.value)}
                       />
                     </div>
                     <div>
@@ -139,12 +157,12 @@ const handlePasswordReset = () => {
             <div className="dripp">
               <div className=" whishh">
                 <div className="container">
-                  <div className="fpp">opps</div>
+                  <div className="fpp">oops </div>
                   <div className="d-flex justify-content-center align-item-center mt-4">
-                    <img src={man} alt="phohh" style={{ width: '50%' }} />
+                    <img src={man} alt="phohh" style={{ width: '25%' }} />
                   </div>
                   <div>
-                    <p className="invalid-link">Invalid password reset code.</p>
+                    <p className="invalid-link">Invalid or expeired password reset link.</p>
                   </div>
                 </div>
               </div>
