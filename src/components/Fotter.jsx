@@ -9,6 +9,9 @@ const Fotter = () => {
     location.pathname === '/signin' ||
     location.pathname === '/verify' ||
     location.pathname === '/confirm' ||
+    location.pathname === '/admin-dash' ||
+    location.pathname === '/purchase-History' ||
+    location.pathname === '/uploads' ||
     location.pathname === '/forget';
   return (
     <>

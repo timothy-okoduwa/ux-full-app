@@ -19,6 +19,10 @@ import StartWatching from './pages/DashBoard/StartWatching';
 import { UserAuthContextProvider } from './components/context/UserAuthContext';
 import ProtectedRoute from './components/wow/ProtectedRoute';
 import Settings from './pages/Settings/Settings';
+import Dashboard2 from './Admin/Dashboard2/Dashboard2';
+import PurHist from './Admin/PurchasedHistory/PurHist';
+import UpAll from './Admin/Upload/Upload';
+
 function App() {
   return (
     <UserAuthContextProvider>
@@ -33,9 +37,11 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/forget" element={<ForgetPassword />} />
-       
           <Route path="/confirm" element={<Confirm />} />
+          <Route path="/admin-dash" element={<Dashboard2 />} />
           <Route path="/purchase-course" element={<PurchaseCourse />} />
+          <Route path="/purchase-History" element={<PurHist />} />
+          <Route path="/uploads" element={<UpAll />} />
           <Route
             path="/dashboard"
             element={
