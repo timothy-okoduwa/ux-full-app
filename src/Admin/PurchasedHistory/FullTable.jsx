@@ -1,152 +1,152 @@
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
-const tableData = [
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
+// const tableData = [
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
+//   {
+//     email: 'veronicajade@gmailcom',
+//     courseName: 'UX Design 101 by Anita Gift',
+//     dateOfPurchase: '1/10/2023',
+//     price: '₦12,000',
+//   },
 
-];
+// ];
 
-const FullTable = () => {
- const [currentPage, setCurrentPage] = useState(0);
-    const handlePageChange = ({ selected }) => {
-      setCurrentPage(selected);
-    };
-    const itemsPerPage = 6;
-    const pageCount = Math.ceil(tableData?.length / itemsPerPage);
+const FullTable = ({ data, pageCount, onPageChange }) => {
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const handlePageChange = ({ selected }) => {
+  //   setCurrentPage(selected);
+  // };
+  // const itemsPerPage = 6;
+  // const pageCount = Math.ceil(tableData?.length / itemsPerPage);
 
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentData = tableData?.slice(startIndex, endIndex);
+  // const startIndex = currentPage * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const currentData = tableData?.slice(startIndex, endIndex);
   return (
     <div className="mt-5">
       <div>
@@ -174,7 +174,7 @@ const FullTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {currentData.map((item, index) => (
+                {data.map((item, index) => (
                   <tr className="mt-3" key={index}>
                     <td className="trtr user-name">{item.email}</td>
                     <td className="trtr user-name">{item.courseName}</td>
@@ -189,7 +189,7 @@ const FullTable = () => {
           <div className="brobernard">
             <ReactPaginate
               pageCount={pageCount}
-              onPageChange={handlePageChange}
+              onPageChange={onPageChange}
               containerClassName="pagination"
               pageClassName="page-item"
               pageLinkClassName="page-link"
