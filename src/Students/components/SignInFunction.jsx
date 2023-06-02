@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, db } from '../firebase';
+import { auth, db } from '../../firebase';
 import { IoIosWarning } from 'react-icons/io';
 import CircularProgress from '@mui/material/CircularProgress';
 import { BsFillCheckCircleFill } from 'react-icons/bs';

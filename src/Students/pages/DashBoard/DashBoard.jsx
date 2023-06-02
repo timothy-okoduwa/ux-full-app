@@ -3,7 +3,7 @@ import './DashBoard.css';
 import UserLibrary from '../../components/UserLibrary';
 import MyPurchasedCourse from '../../components/MyPurchasedCourse';
 import { getDoc,doc,updateDoc } from 'firebase/firestore';
-import { db,auth } from '../../firebase';
+import { db,auth } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 const DashBoard = () => {
   const navigate = useNavigate()

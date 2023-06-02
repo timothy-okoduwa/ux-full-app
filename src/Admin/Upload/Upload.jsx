@@ -9,6 +9,7 @@ const Upload = () => {
       <HeadAndNav />
       <MobileNav />
       <UpAll/>
+      
     </div>
   );
 }

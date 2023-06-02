@@ -11,7 +11,7 @@ import l from './images/TEXT.png';
 import man from '../pages/images/man-pouting.png';
 import thumb from '../pages/images/party-popper.png';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 const Confirm = () => {
   const location = useLocation();
   const [resetCodeValid, setResetCodeValid] = useState(false);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../firebase';
+import { auth, db } from '../../firebase';
 import {  collection, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 const SignUpFunction = () => {

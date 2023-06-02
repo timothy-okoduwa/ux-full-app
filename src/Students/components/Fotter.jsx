@@ -12,6 +12,7 @@ const Fotter = () => {
     location.pathname === '/admin-dash' ||
     location.pathname === '/purchase-History' ||
     location.pathname === '/uploads' ||
+    location.pathname === '/chh' ||
     location.pathname === '/forget';
   return (
     <>

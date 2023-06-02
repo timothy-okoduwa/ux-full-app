@@ -7,7 +7,7 @@ import t from '../images/TEXT.png';
 import g from '../images/gyg.png';
 import { Link, useLocation } from 'react-router-dom';
 import { onSnapshot, doc } from 'firebase/firestore';
-import { db, auth } from '../../firebase';
+import { db, auth } from '../../../firebase';
 
 const NavBar = () => {
   const location = useLocation();
@@ -43,6 +43,7 @@ const NavBar = () => {
     location.pathname === '/admin-dash' ||
     location.pathname === '/purchase-History' ||
     location.pathname === '/uploads' ||
+    location.pathname === '/chh' ||
     location.pathname === '/forget';
   return (
     <>

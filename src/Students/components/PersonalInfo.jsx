@@ -10,7 +10,7 @@ import {
   deleteObject,
 } from 'firebase/storage';
 import CircularProgress from '@mui/material/CircularProgress';
-import { db, auth, storage } from '../firebase';
+import { db, auth, storage } from '../../firebase';
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,

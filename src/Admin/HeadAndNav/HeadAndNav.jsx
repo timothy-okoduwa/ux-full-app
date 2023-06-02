@@ -51,7 +51,7 @@ const HeadAndNav = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit">
-                <NavLink to="/uploads" className="Link">
+                <NavLink className="Link" to="/uploads">
                   <div className=" height">
                     <div className=" wko">
                       <RiUploadCloudFill className="color" />

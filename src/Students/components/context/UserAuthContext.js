@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import CircularProgress from '@mui/material/CircularProgress';
-import { auth } from '../../firebase';
+import { auth } from '../../../firebase';
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
