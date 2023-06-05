@@ -1,15 +1,39 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './HeadAndNav.css';
 import b from '../image/ux.svg';
 import { MdDashboard } from 'react-icons/md';
 import { BsCreditCardFill } from 'react-icons/bs';
+
 import {
   RiSettings4Fill,
   RiLogoutBoxLine,
   RiUploadCloudFill,
 } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
+import { onSnapshot,doc } from 'firebase/firestore';
+import { db,auth } from '../../firebase';
 const HeadAndNav = () => {
+  const [user, setUser]=useState(null)
+  const isAuth = auth.currentUser
+  useEffect(() => {
+    let unsubscribe;
+    if (isAuth) {
+      const studentDocRef = doc(db, 'Admin', auth.currentUser.uid);
+      unsubscribe = onSnapshot(studentDocRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setUser(docSnap.data());
+        } else {
+          setUser(null);
+        }
+      });
+    }
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [isAuth]);
   return (
     <div>
       <div className="static">
@@ -18,8 +42,8 @@ const HeadAndNav = () => {
             <div className="flex-up-header">
               <div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <div className="initials">T.O</div>{' '}
-                  <div className="name-itself">Admin-Vestarplus</div>
+                  <div className="initials">{user?.fullName?.charAt(0)}</div>{' '}
+                  <div className="name-itself">{user?.fullName}</div>
                 </div>
               </div>
 

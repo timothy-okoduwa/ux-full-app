@@ -34,16 +34,16 @@ const style2 = {
 
 const Two = () => {
   const [open, setOpen] = useState(false);
-     const [sectionIndexToDelete, setSectionIndexToDelete] = useState(null);
+  const [sectionIndexToDelete, setSectionIndexToDelete] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [open2, setOpen2] = useState(false);
-const handleOpen2 = (index) => {
-  setOpen2(true);
-};
+  const handleOpen2 = (index) => {
+    setOpen2(true);
+  };
 
-const handleClose2 = () => setOpen2(false);
+  const handleClose2 = () => setOpen2(false);
   const [inputValue, setInputValue] = useState('');
   const [sections, setSections] = useState([]);
   const handleSave = () => {
@@ -75,13 +75,12 @@ const handleClose2 = () => setOpen2(false);
     updatedSections[sectionIndex].sectionContent.splice(contentIndex, 1);
     setSections(updatedSections);
   };
-const click = (index) => {
-  const updatedSections = [...sections];
-  updatedSections.splice(index, 1);
-  setSections(updatedSections);
-  setOpen2(false);
-};
-
+  const click = (index) => {
+    const updatedSections = [...sections];
+    updatedSections.splice(index, 1);
+    setSections(updatedSections);
+    setOpen2(false);
+  };
 
   return (
     <div>
@@ -168,7 +167,7 @@ const click = (index) => {
               className="willo"
             >
               <Typography className="accordian-name w-100">
-                {section.heading}
+                {section.heading} ({section.sectionContent.length} Segment)
               </Typography>
               <MdDelete
                 className="expand"

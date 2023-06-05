@@ -13,6 +13,8 @@ const Fotter = () => {
     location.pathname === '/purchase-History' ||
     location.pathname === '/uploads' ||
     location.pathname === '/chh' ||
+    location.pathname === '/admin-signup' ||
+    location.pathname === '/admin-signin' ||
     location.pathname === '/forget';
   return (
     <>

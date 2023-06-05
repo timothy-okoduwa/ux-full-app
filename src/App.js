@@ -10,7 +10,8 @@ import SignUp from './Students/pages/SignPage/SignUp';
 import ScrollToTop from './ScrollToTop';
 import SignIn from './Students/pages/SignPage/SignIn';
 import ForgetPassword from './Students/components/ForgetPassword';
-
+import AdminSignUp from './Admin/Logs/SignUp';
+import AdminSignIn from './Admin/Logs/SignIn';
 import Confirm from './Students/components/Confirm';
 import PurchaseCourse from './Students/components/PurchaseCourse';
 // import DashNav from './components/navBar/DashNav';
@@ -24,6 +25,7 @@ import PurHist from './Admin/PurchasedHistory/PurHist';
 import UpAll from './Admin/Upload/Upload';
 import CourseHolder from './Admin/Upload/CourseHolder';
 import { CourseProvider } from './Admin/Upload/CourseContext';
+import ProtectedRoute2 from './Admin/Pro/ProtectedRoute2';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -39,9 +41,32 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/forget" element={<ForgetPassword />} />
           <Route path="/confirm" element={<Confirm />} />
-          <Route path="/admin-dash" element={<Dashboard2 />} />
-          <Route path="/purchase-course" element={<PurchaseCourse />} />
-          <Route path="/purchase-History" element={<PurHist />} />
+          <Route
+            path="/admin-dash"
+            element={
+              <ProtectedRoute2>
+                <Dashboard2 />
+              </ProtectedRoute2>
+            }
+          />
+          <Route
+            path="/purchase-course"
+            element={
+              <ProtectedRoute2>
+                <PurchaseCourse />
+              </ProtectedRoute2>
+            }
+          />
+          <Route
+            path="/purchase-History"
+            element={
+              <ProtectedRoute2>
+                <PurHist />
+              </ProtectedRoute2>
+            }
+          />
+          <Route path="/admin-signup" element={<AdminSignUp />} />
+          <Route path="/admin-signin" element={<AdminSignIn />} />
           <Route
             path="/uploads"
             element={

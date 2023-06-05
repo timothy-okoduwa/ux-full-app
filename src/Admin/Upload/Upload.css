@@ -274,53 +274,95 @@
   padding-left: 20px;
 }
 
-.lulu{
+.lulu {
   background: #000000;
-border-radius: 5px;
-height: 250px;
-display: flex;
-flex-direction: column;
-align-items: center;
+  border-radius: 5px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.nsv{
-
+.nsv {
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
-.Delete{
+.Delete {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-outline: none;
-border: none;
-width: 135px;
-height: 45px;
-background: #464852;
-border-radius: 5px;
-color: #FFFFFF;
-margin-top: 30px;
-margin-bottom: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  width: 135px;
+  height: 45px;
+  background: #464852;
+  border-radius: 5px;
+  color: #ffffff;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
-.d-mark{
+.d-mark {
   display: flex;
   justify-content: space-between;
   /* background-color: red; */
 }
-.yes{
+.yes {
   width: 140px;
-height: 40px;
-outline: none;
-border: none;
-background: #FF4703;
-border-radius: 8px;
-color: #FFFFFF;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: #ff4703;
+  border-radius: 8px;
+  color: #ffffff;
 }
-.No{
+.No {
   width: 140px;
-height: 40px;
-outline: none;
-border: none;
-background: #464852;
-border-radius: 8px;
-color: #FFFFFF;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: #464852;
+  border-radius: 8px;
+  color: #ffffff;
+}
+.over-to-center {
+  display: flex;
+  justify-content: center;
+  font-size: 55px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+.success_message {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+.continue {
+  width: 100%;
+  height: 50px;
+  background: #ff4703;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-top: 30px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+}
+.cancle {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 0, 0, 0);
+  outline: none;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
 }
