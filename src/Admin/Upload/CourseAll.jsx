@@ -59,7 +59,7 @@ const CourseAll = ({ courseName, category }) => {
         </div>
 
         <div className="mt-5">
-          <SwitchHolder step={step} setStep={handleStepChange} />
+          <SwitchHolder step={step} setStep={handleStepChange} category ={category}/>
         </div>
       </div>
     </div>

@@ -1,19 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { RiUploadCloudFill } from 'react-icons/ri';
-const One = ({
-  step,
-  setStep,
-  courseName,
-  setCourseName,
-  courseDescription,
-  setCourseDescription,
-  price,
-  setPrice,
-  courseDuration,
-  setCourseDuration,
-}) => {
-  const move = () => {
-    setStep(step + 1);
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { db, auth } from '../../firebase';
+const One = ({ step, setStep, category }) => {
+  const [courseName, setCourseName] = useState('');
+  const [courseDescription, setCourseDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [courseDuration, setCourseDuration] = useState('');
+
+
+  const move = async () => {
+    try {
+      const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
+const courseInfo = {
+  nameOfCourse: courseName,
+  Duration: courseDuration,
+  price: price,
+  courseDescription: courseDescription,
+};
+      // Update the category document in Firebase with the updated courseInfo object
+      await updateDoc(categoryRef, {
+        [category]: arrayUnion(courseInfo),
+      });
+
+      setStep(step + 1); // Move to the next step
+    } catch (error) {
+      // Handle any errors
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -118,4 +132,4 @@ const One = ({
   );
 };
 
-export default One
+export default One;

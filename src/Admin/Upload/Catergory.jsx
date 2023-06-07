@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { CourseContext } from './CourseContext';
 const Catergory = () => {
   const uploads = [
-    { courseName: 'UI Design', category: 'ui_design' },
+    { courseName: 'UI Design', category: 'UI Design' },
     { courseName: 'UX Design', category: 'UX Design' },
     { courseName: 'Wireframe', category: 'Wireframe' },
     { courseName: 'Typography', category: 'Typography' },

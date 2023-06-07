@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Modal from '@mui/material/Modal';
 import { RiUploadCloudFill } from 'react-icons/ri';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { db, auth } from '../../firebase';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -32,20 +34,18 @@ const style2 = {
   p: 4,
 };
 
-const Two = () => {
+const Two = ({ category, step, setStep, sections, setSections }) => {
   const [open, setOpen] = useState(false);
-  const [sectionIndexToDelete, setSectionIndexToDelete] = useState(null);
+  const [open2, setOpen2] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  // const [sections, setSections] = useState([]);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const [open2, setOpen2] = useState(false);
-  const handleOpen2 = (index) => {
-    setOpen2(true);
-  };
-
+  const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
-  const [inputValue, setInputValue] = useState('');
-  const [sections, setSections] = useState([]);
+  const handleInputChange = (e) => setInputValue(e.target.value);
+
   const handleSave = () => {
     const newSection = {
       heading: inputValue,
@@ -56,17 +56,15 @@ const Two = () => {
     handleClose();
   };
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-  const handleSegmentClick = (sectionIndex, contentIndex) => {
-    const newSectionContent = {}; // Create the new section content object based on your requirements
+  const handleSegmentClick = (sectionIndex) => {
+    const newSegment = {
+      subHeading: '',
+      subDuration: '',
+      // Add other properties as needed
+    };
+
     const updatedSections = [...sections];
-    updatedSections[sectionIndex].sectionContent.splice(
-      contentIndex + 1,
-      0,
-      newSectionContent
-    );
+    updatedSections[sectionIndex].sectionContent.push(newSegment);
     setSections(updatedSections);
   };
 
@@ -80,6 +78,134 @@ const Two = () => {
     updatedSections.splice(index, 1);
     setSections(updatedSections);
     setOpen2(false);
+  };
+
+  const uploadAllLocicToFirebase = async () => {
+    try {
+      const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
+      const existingCourse = await getDoc(categoryRef);
+      const existingCourseData = existingCourse.data();
+
+      const lastCourseIndex = existingCourseData[category]?.length - 1;
+
+      if (lastCourseIndex !== undefined && lastCourseIndex >= 0) {
+        const updatedSections = sections.map((section) => {
+          const updatedSectionContent = section.sectionContent.map(
+            (content) => {
+              return {
+                subHeading: content.subHeading,
+                subDuration: content.subDuration,
+                // Add other properties as needed
+              };
+            }
+          );
+
+          return {
+            heading: section.heading,
+            segment: updatedSectionContent,
+          };
+        });
+
+        existingCourseData[category][lastCourseIndex].sections =
+          updatedSections;
+
+        await updateDoc(categoryRef, existingCourseData);
+      }
+
+      setStep(step + 1);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // Render the subHeading and subDuration inputs for each segment
+  const renderSegments = (sectionIndex) => {
+    const section = sections[sectionIndex];
+
+    return section.sectionContent.map((content, contentIndex) => (
+      <AccordionDetails key={contentIndex}>
+        <div className="mt-5 nsv">
+          <div className="row">
+            <div className="col-12 col-lg-6 mb-4">
+              <div>
+                <div className="subbz">Sub-Heading</div>
+                <div className="mt-3">
+                  <input
+                    type="text"
+                    className="testxc"
+                    value={content.subHeading}
+                    onChange={(e) =>
+                      handleSubHeadingChange(
+                        sectionIndex,
+                        contentIndex,
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-lg-6 mb-4">
+              <div>
+                <div className="subbz">Duration</div>
+                <div className="mt-3">
+                  <input
+                    type="text"
+                    className="testxc"
+                    value={content.subDuration}
+                    onChange={(e) =>
+                      handleSubDurationChange(
+                        sectionIndex,
+                        contentIndex,
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="col-12 mb-4">
+              <div>
+                <div className="subbz">video url</div>
+                <div className="mt-3">
+                  <div className="lulu">
+                    <div className="cloudesx mt-5">
+                      <RiUploadCloudFill />
+                    </div>
+                    <div className="click">
+                      Click “Upload” to upload video thumbnail
+                    </div>
+                    <button className="upload-Button">Upload</button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button
+                  className="Delete"
+                  onClick={() => handleDelete(sectionIndex, contentIndex)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </AccordionDetails>
+    ));
+  };
+
+  const handleSubHeadingChange = (sectionIndex, contentIndex, value) => {
+    const updatedSections = [...sections];
+    updatedSections[sectionIndex].sectionContent[contentIndex].subHeading =
+      value;
+    setSections(updatedSections);
+  };
+
+  const handleSubDurationChange = (sectionIndex, contentIndex, value) => {
+    const updatedSections = [...sections];
+    updatedSections[sectionIndex].sectionContent[contentIndex].subDuration =
+      value;
+    setSections(updatedSections);
   };
 
   return (
@@ -151,9 +277,9 @@ const Two = () => {
       )}
 
       <div className="mt-4">
-        {sections.map((section, index) => (
+        {sections.map((section, sectionIndex) => (
           <Accordion
-            key={index}
+            key={sectionIndex}
             style={{
               backgroundColor: '#0E0E0E',
               borderRadius: '20px',
@@ -162,8 +288,8 @@ const Two = () => {
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon className="expand" />}
-              aria-controls={`panel${index}-content`}
-              id={`panel${index}-header`}
+              aria-controls={`panel${sectionIndex}-content`}
+              id={`panel${sectionIndex}-header`}
               className="willo"
             >
               <Typography className="accordian-name w-100">
@@ -187,7 +313,7 @@ const Two = () => {
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   <div className="d-mark">
-                    <button className="yes" onClick={() => click(index)}>
+                    <button className="yes" onClick={() => click(sectionIndex)}>
                       Yes
                     </button>
                     <button className="No" onClick={handleClose2}>
@@ -197,59 +323,13 @@ const Two = () => {
                 </Typography>
               </Box>
             </Modal>
-            {section.sectionContent.map((content, contentIndex) => (
-              <AccordionDetails key={contentIndex}>
-                <div className="mt-5 nsv">
-                  <div className="row">
-                    <div className="col-12 col-lg-6 mb-4">
-                      <div>
-                        <div className="subbz">Sub-Heading</div>
-                        <div className="mt-3">
-                          <input type="text" className="testxc" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-12 col-lg-6 mb-4">
-                      <div>
-                        <div className="subbz">Sub-Heading</div>
-                        <div className="mt-3">
-                          <input type="text" className="testxc" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-12 mb-4">
-                      <div>
-                        <div className="subbz">Sub-Heading</div>
-                        <div className="mt-3">
-                          <div className="lulu">
-                            <div className="cloudesx mt-5">
-                              <RiUploadCloudFill />
-                            </div>
-                            <div className="click">
-                              Click “Upload” to upload video thumbnail
-                            </div>
-                            <button className="upload-Button">Upload</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <button
-                          className="Delete"
-                          onClick={() => handleDelete(index, contentIndex)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </AccordionDetails>
-            ))}
+            {renderSegments(sectionIndex)}
+
             <div className="container">
               <div className="d-flex justify-content-start mt-4 mb-4">
                 <button
                   className="next-button"
-                  onClick={() => handleSegmentClick(index)}
+                  onClick={() => handleSegmentClick(sectionIndex)}
                 >
                   {' '}
                   <AiOutlinePlusCircle className="mx-2" />
@@ -260,6 +340,9 @@ const Two = () => {
           </Accordion>
         ))}
       </div>
+      <button className="next-button" onClick={uploadAllLocicToFirebase}>
+        Next
+      </button>
     </div>
   );
 };
