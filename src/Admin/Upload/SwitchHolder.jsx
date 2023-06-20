@@ -3,10 +3,13 @@ import One from './One';
 import Two from './Two';
 import Three from './Three';
 import ScrollToTop from '../../ScrollToTop';
+// import { v4 as uuidv4 } from 'uuid';
 const SwitchHolder = ({ step, setStep, category }) => {
   const [sections, setSections] = useState([]);
 
   const renderUploadsScreens = () => {
+
+    
     switch (step) {
       case 1:
         return (
@@ -15,6 +18,7 @@ const SwitchHolder = ({ step, setStep, category }) => {
             setStep={setStep}
             category={category}
             sections={sections}
+           
           />
         );
       case 2:
@@ -28,7 +32,14 @@ const SwitchHolder = ({ step, setStep, category }) => {
           />
         );
       case 3:
-        return <Three step={step} setStep={setStep} />;
+        return (
+          <Three
+            step={step}
+            setStep={setStep}
+            category={category}
+           
+          />
+        );
       default:
         return null;
     }

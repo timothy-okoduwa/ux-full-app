@@ -10,9 +10,12 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Modal from '@mui/material/Modal';
-import { RiUploadCloudFill } from 'react-icons/ri';
+// import { RiUploadCloudFill } from 'react-icons/ri';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
+// import { Player, ControlBar, PlaybackRateMenuButton } from 'video-react';
+import 'video-react/dist/video-react.css';
+// import a from '../image/ux.svg';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -38,8 +41,6 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  // const [sections, setSections] = useState([]);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleOpen2 = () => setOpen2(true);
@@ -60,6 +61,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
     const newSegment = {
       subHeading: '',
       subDuration: '',
+      subVideo: '',
       // Add other properties as needed
     };
 
@@ -79,7 +81,6 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
     setSections(updatedSections);
     setOpen2(false);
   };
-
   const uploadAllLocicToFirebase = async () => {
     try {
       const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
@@ -95,6 +96,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
               return {
                 subHeading: content.subHeading,
                 subDuration: content.subDuration,
+                subVideo: content.subVideo,
                 // Add other properties as needed
               };
             }
@@ -164,19 +166,45 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 mb-4">
+            <div className="col-12   mb-4">
               <div>
                 <div className="subbz">video url</div>
                 <div className="mt-3">
-                  <div className="lulu">
-                    <div className="cloudesx mt-5">
-                      <RiUploadCloudFill />
+                  <div className="row mb-3">
+                    <div className="col-12 col-lg-6">
+                      <input
+                        type="text"
+                        className="testxc"
+                        value={content.subVideo}
+                        onChange={(e) =>
+                          handleSubVideoChange(
+                            sectionIndex,
+                            contentIndex,
+                            e.target.value
+                          )
+                        }
+                      />
                     </div>
-                    <div className="click">
-                      Click “Upload” to upload video thumbnail
-                    </div>
-                    <button className="upload-Button">Upload</button>
+                    <div className="col-12 col-lg-6"></div>
                   </div>
+                  {content.subVideo && (
+                    <div className="video_tag">
+                      <div className="video-player-wrapper">
+                        <div >
+                          <video
+                            src={content.subVideo}
+                            controls
+                            autoPlay
+                            preload="auto"
+                            controlsList="nodownload"
+                            // onContextMenu="return false"
+                            onContextMenu={(e) => e.preventDefault()}
+                            className="video_tag"
+                          ></video>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div>
@@ -205,6 +233,11 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
     const updatedSections = [...sections];
     updatedSections[sectionIndex].sectionContent[contentIndex].subDuration =
       value;
+    setSections(updatedSections);
+  };
+  const handleSubVideoChange = (sectionIndex, contentIndex, value) => {
+    const updatedSections = [...sections];
+    updatedSections[sectionIndex].sectionContent[contentIndex].subVideo = value;
     setSections(updatedSections);
   };
 

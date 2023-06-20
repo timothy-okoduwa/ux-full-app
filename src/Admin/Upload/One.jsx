@@ -1,34 +1,68 @@
 import React, { useState } from 'react';
 import { RiUploadCloudFill } from 'react-icons/ri';
+import { TiTimes } from 'react-icons/ti';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { db, auth } from '../../firebase';
+import { db, auth, storage } from '../../firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
+export let courseInfo = [];
+export let courseId = uuidv4();
 const One = ({ step, setStep, category }) => {
   const [courseName, setCourseName] = useState('');
   const [courseDescription, setCourseDescription] = useState('');
   const [price, setPrice] = useState('');
   const [courseDuration, setCourseDuration] = useState('');
-
+  const [previewVideoLink, setPreviewVideoLink] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const move = async () => {
     try {
       const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
-const courseInfo = {
-  nameOfCourse: courseName,
-  Duration: courseDuration,
-  price: price,
-  courseDescription: courseDescription,
-};
-      // Update the category document in Firebase with the updated courseInfo object
+
+      // Upload the image to Firebase Storage if a selected image exists
+      let thumbnailURL = '';
+      if (selectedImage) {
+        const storageRef = ref(
+          storage,
+          `thumbnails/${auth.currentUser.uid}/${Date.now()}`
+        );
+        const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
+        const downloadURL = await getDownloadURL(uploadSnapshot.ref);
+        thumbnailURL = downloadURL;
+      }
+
+      const newCourseInfo = {
+        courseId: courseId,
+        nameOfCourse: courseName,
+        Duration: courseDuration,
+        price: price,
+        courseDescription: courseDescription,
+        previewVideo: previewVideoLink,
+        thumbnailURL: thumbnailURL,
+      };
+
+      // Update the category document in Firestore with the updated courseInfo object
       await updateDoc(categoryRef, {
-        [category]: arrayUnion(courseInfo),
+        [category]: arrayUnion(newCourseInfo),
       });
 
+      courseInfo.push(newCourseInfo); // Add the new courseInfo object to the array
+      // console.log(courseInfo);
       setStep(step + 1); // Move to the next step
+    
     } catch (error) {
       // Handle any errors
       console.log(error);
     }
   };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
+  };
+
   return (
     <div>
       <div>
@@ -85,21 +119,16 @@ const courseInfo = {
               </div>
             </div>
           </div>
-          <div className="col-12 mb-4">
+          <div className="col-12 col-lg-6 mb-4">
             <div>
               <div className="cacus">Preview Video</div>
               <div>
-                <div className="forImahe ">
-                  <div className="broken-line">
-                    <div className="cloudesx mt-5">
-                      <RiUploadCloudFill />
-                    </div>
-                    <div className="click">
-                      Click “Upload” to upload course preview video
-                    </div>
-                    <button className="upload-Button">Upload</button>
-                  </div>
-                </div>
+                <input
+                  type="text"
+                  className="feeelz"
+                  value={previewVideoLink}
+                  onChange={(e) => setPreviewVideoLink(e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -109,13 +138,44 @@ const courseInfo = {
               <div>
                 <div className="forImahe ">
                   <div className="broken-line">
-                    <div className="cloudesx mt-5">
-                      <RiUploadCloudFill />
-                    </div>
-                    <div className="click">
-                      Click “Upload” to upload video thumbnail
-                    </div>
-                    <button className="upload-Button">Upload</button>
+                    {selectedImage ? (
+                      <div className="uploaded-image-container">
+                        <div
+                          className="close-button"
+                          onClick={() => setSelectedImage(null)}
+                        >
+                          <TiTimes />
+                        </div>
+                        <img
+                          src={URL.createObjectURL(selectedImage)}
+                          alt="Thumbnail"
+                          className="uploaded-image"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flips">
+                        {' '}
+                        <div className="cloudesx mt-5">
+                          <RiUploadCloudFill />
+                        </div>
+                        <div className="click">
+                          Click “Upload” to upload video thumbnail
+                        </div>
+                        <label
+                          className="upload-Button"
+                          htmlFor="thumbNailUpload"
+                        >
+                          Upload
+                        </label>
+                        <input
+                          type="file"
+                          id="thumbNailUpload"
+                          accept="image/*"
+                          style={{ display: 'none' }}
+                          onChange={handleImageUpload}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

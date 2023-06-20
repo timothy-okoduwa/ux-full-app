@@ -42,7 +42,7 @@ const SignIn = () => {
       setShowSuccessMessage(true);
 
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/admin-dash');
       }, 2000);
       setData({
         email: '',
