@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './PurHist.css';
 import { RiSearchLine } from 'react-icons/ri';
 import FullTable from './FullTable';
-import ReactPaginate from 'react-paginate';
+// import ReactPaginate from 'react-paginate';
 const tableData = [
   {
     email: 'aeronicajade@gmailcom',

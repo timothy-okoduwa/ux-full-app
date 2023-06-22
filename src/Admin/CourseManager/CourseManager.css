@@ -1,0 +1,85 @@
+.add_course_tab {
+  background-color: #191919;
+  height: 120px;
+  border-radius: 10px;
+}
+.toba {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  height: 100%;
+  color: white;
+}
+.corses_added {
+  font-family: 'Manrope';
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.create_new_course {
+  background-color: #ff4702;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px;
+  font-family: 'Manrope';
+  font-size: 18px;
+  font-weight: 400;
+}
+.course_list_tab {
+  background-color: #191919;
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+}
+.select_and_button_holder {
+  margin-top: 55px;
+  /* width: 80%; */
+}
+.filter_button_holder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+.filter_button {
+  background-color: #ff4702 !important;
+  width: 160px;
+  height: 45px;
+}
+.searchBar_holder {
+  display: flex;
+  margin-top: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.search_input {
+  background-color: white;
+}
+.search_and_name_holder {
+  /* background-color: red; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.search_label {
+  margin-right: 20px;
+  font-family: 'Manrope';
+  font-size: 18px;
+  font-weight: 500;
+}
+@media screen and (max-width: 991px) {
+  .search_label {
+    margin-right: 20px;
+    font-family: 'Manrope';
+    font-size: 18px;
+    font-weight: 500;
+    display: none;
+  }
+}

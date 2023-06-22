@@ -85,6 +85,26 @@
   color: white;
   padding-left: 20px;
 }
+.feeelz3 {
+  background: #000000;
+  border-radius: 5px;
+  outline: none;
+  width: 320px;
+  height: 60px;
+  border: none;
+  color: white !important;
+  padding-left: 20px;
+}
+.feeelz2 {
+  background: #191919;
+  border-radius: 5px;
+  outline: none;
+  width: 95%;
+  height: 210px;
+  border: none;
+  color: white;
+  padding: 30px;
+}
 .cacus {
   font-family: 'Manrope';
   font-style: normal;

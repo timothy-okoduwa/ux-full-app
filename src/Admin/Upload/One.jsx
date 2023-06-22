@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { RiUploadCloudFill } from 'react-icons/ri';
 import { TiTimes } from 'react-icons/ti';
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore';
+import { CourseContext } from './CourseContext';
 import { db, auth, storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,6 +15,25 @@ const One = ({ step, setStep, category }) => {
   const [courseDuration, setCourseDuration] = useState('');
   const [previewVideoLink, setPreviewVideoLink] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
+  const uploads = [
+    { courseName: 'choose a category', category: 'choose a category' },
+    { courseName: 'UI Design', category: 'UI Design' },
+    { courseName: 'UX Design', category: 'UX Design' },
+    { courseName: 'Wireframe', category: 'Wireframe' },
+    { courseName: 'Typography', category: 'Typography' },
+    { courseName: 'Prototyping', category: 'Prototyping' },
+    { courseName: 'UX Writing', category: 'UX Writing' },
+    { courseName: 'High Fidelity', category: 'High Fidelity' },
+    { courseName: 'UX Research', category: 'UX Research' },
+    { courseName: 'Colour Theory', category: 'Colour Theory' },
+  ];
+
+  const { setCourseName1, setCategory } = useContext(CourseContext);
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCourseName1(courseName);
+    setCategory(selectedCategory);
+  };
 
   const move = async () => {
     try {
@@ -39,17 +59,30 @@ const One = ({ step, setStep, category }) => {
         courseDescription: courseDescription,
         previewVideo: previewVideoLink,
         thumbnailURL: thumbnailURL,
+        category: category,
+        dateAdded: Timestamp.fromDate(new Date()),
       };
 
-      // Update the category document in Firestore with the updated courseInfo object
-      await updateDoc(categoryRef, {
-        [category]: arrayUnion(newCourseInfo),
-      });
+      // Retrieve the existing category data from Firestore
+      const categoryDoc = await getDoc(categoryRef);
+      if (categoryDoc.exists()) {
+        const categoryData = categoryDoc.data();
+        const existingCourses = categoryData.Allcourses?.[category] || [];
+        const updatedCourses = [...existingCourses, newCourseInfo];
+
+        // Update the category document in Firestore with the updated courses array
+        await updateDoc(categoryRef, {
+          Allcourses: {
+            ...categoryData.Allcourses,
+            [category]: updatedCourses,
+          },
+        });
+      } else {
+        console.log('Category not found.');
+      }
 
       courseInfo.push(newCourseInfo); // Add the new courseInfo object to the array
-      // console.log(courseInfo);
       setStep(step + 1); // Move to the next step
-    
     } catch (error) {
       // Handle any errors
       console.log(error);
@@ -80,19 +113,7 @@ const One = ({ step, setStep, category }) => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-6">
-            <div>
-              <div className="cacus">Course Description</div>
-              <div>
-                <input
-                  type="text"
-                  className="feeelz"
-                  value={courseDescription}
-                  onChange={(e) => setCourseDescription(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
+
           <div className="col-12 col-lg-6">
             <div>
               <div className="cacus">Price</div>
@@ -128,6 +149,33 @@ const One = ({ step, setStep, category }) => {
                   className="feeelz"
                   value={previewVideoLink}
                   onChange={(e) => setPreviewVideoLink(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-lg-6 mb-4">
+            <div>
+              <div className="cacus">Category</div>
+              <div>
+                <select className="feeelz" onChange={handleCategoryChange}>
+                  {uploads.map((upload, index) => (
+                    <option key={index} value={upload.category}>
+                      {upload.courseName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 mb-4">
+            <div>
+              <div className="cacus">Course Description</div>
+              <div>
+                <textarea
+                  type="text"
+                  className="feeelz2"
+                  value={courseDescription}
+                  onChange={(e) => setCourseDescription(e.target.value)}
                 />
               </div>
             </div>

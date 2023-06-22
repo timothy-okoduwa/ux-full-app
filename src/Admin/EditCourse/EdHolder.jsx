@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import { IoMdArrowDropright } from 'react-icons/io';
-import SwitchHolder from './SwitchHolder';
+import EditSwitch from './EditSwitch';
+const EdHolder = () => {
+      const [step, setStep] = useState(1);
+      const [previousStep, setPreviousStep] = useState(0);
 
-const CourseAll = ({ courseName1, category }) => {
-  const [step, setStep] = useState(1);
-  const [previousStep, setPreviousStep] = useState(0);
+      const handleStepChange = (newStep) => {
+        setPreviousStep(step);
+        setStep(newStep);
+      };
 
-  const handleStepChange = (newStep) => {
-    setPreviousStep(step);
-    setStep(newStep);
-  };
-
-  const navigateToStep = (newStep) => {
-    if (newStep !== step) {
-      handleStepChange(newStep);
-    }
-  };
+      const navigateToStep = (newStep) => {
+        if (newStep !== step) {
+          handleStepChange(newStep);
+        }
+      };
 
   return (
     <div className="bgi">
       <div className="container">
-        <div className="rec">Upload {category} Course</div>
-
         <div className="mt-4">
           <div className="row">
             <div className="col-12 col-md-4">
@@ -58,16 +55,12 @@ const CourseAll = ({ courseName1, category }) => {
           </div>
         </div>
 
-        <div className="mt-5">
-          <SwitchHolder
-            step={step}
-            setStep={handleStepChange}
-            category={category}
-          />
+        <div>
+            <EditSwitch/>
         </div>
       </div>
     </div>
   );
 };
 
-export default CourseAll;
+export default EdHolder;

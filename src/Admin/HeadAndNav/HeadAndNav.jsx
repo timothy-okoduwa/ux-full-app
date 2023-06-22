@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import './HeadAndNav.css';
 import b from '../image/ux.svg';
 import { MdDashboard } from 'react-icons/md';
-import { BsCreditCardFill } from 'react-icons/bs';
+import { BsCreditCardFill, BsFillFolderFill } from 'react-icons/bs';
 
 import {
   RiSettings4Fill,
@@ -75,6 +75,16 @@ const HeadAndNav = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit">
+                <NavLink className="Link" to="/courses">
+                  <div className=" height">
+                    <div className=" wko">
+                      <BsFillFolderFill className="color" />
+                      <span className="link-name"> Course Manager</span>
+                    </div>
+                  </div>
+                </NavLink>
+              </div>
+              {/* <div className="push-down-a-bit">
                 <NavLink className="Link" to="/uploads">
                   <div className=" height">
                     <div className=" wko">
@@ -83,7 +93,7 @@ const HeadAndNav = () => {
                     </div>
                   </div>
                 </NavLink>
-              </div>
+              </div> */}
               <div className="push-down-a-bit">
                 <NavLink to="/purchase-History" className="Link">
                   <div className=" height">

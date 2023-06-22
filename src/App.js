@@ -26,6 +26,8 @@ import UpAll from './Admin/Upload/Upload';
 import CourseHolder from './Admin/Upload/CourseHolder';
 import { CourseProvider } from './Admin/Upload/CourseContext';
 import ProtectedRoute2 from './Admin/Pro/ProtectedRoute2';
+import CourseAll from './Admin/CourseManager/CourseAll';
+import EditCourse from './Admin/EditCourse/EditCourse';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -65,6 +67,14 @@ function App() {
               </ProtectedRoute2>
             }
           />
+          <Route
+            path="/courses"
+            element={
+              <ProtectedRoute2>
+                <CourseAll />
+              </ProtectedRoute2>
+            }
+          />
           <Route path="/admin-signup" element={<AdminSignUp />} />
           <Route path="/admin-signin" element={<AdminSignIn />} />
           <Route
@@ -90,6 +100,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <DashBoard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/edit"
+            element={
+              <ProtectedRoute>
+                <EditCourse />
               </ProtectedRoute>
             }
           />

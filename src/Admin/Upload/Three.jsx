@@ -35,8 +35,8 @@ const Three = ({ category }) => {
   const [requirement, setRequirement] = useState(['']);
   const [tutorDescription, setTutorDescription] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
-const [tutorName, setTutorName]=useState('')
-const [tutorJob,setTutorJob]=useState('')
+  const [tutorName, setTutorName] = useState('');
+  const [tutorJob, setTutorJob] = useState('');
   const handleAddUrl = (e) => {
     e.preventDefault();
     setLearn([...learn, '']);
@@ -76,65 +76,127 @@ const [tutorJob,setTutorJob]=useState('')
     handleOpen();
   };
   const clickable = () => {
-    navigate('/uploads');
+    navigate('/courses');
     window.location.reload();
   };
-  const move = async () => {
-    try {
-      const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
+  // const finish = async () => {
+  //   try {
+  //     const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
 
-      // Upload the image to Firebase Storage if a selected image exists
-      let thumbnailURL = '';
-      if (selectedImage) {
-        const storageRef = ref(
-          storage,
-          `tutorImage/${auth.currentUser.uid}/${Date.now()}`
-        );
-        const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
-        const downloadURL = await getDownloadURL(uploadSnapshot.ref);
-        thumbnailURL = downloadURL;
-      }
+  //     // Upload the image to Firebase Storage if a selected image exists
+  //     let thumbnailURL = '';
+  //     if (selectedImage) {
+  //       const storageRef = ref(
+  //         storage,
+  //         `tutorImage/${auth.currentUser.uid}/${Date.now()}`
+  //       );
+  //       const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
+  //       const downloadURL = await getDownloadURL(uploadSnapshot.ref);
+  //       thumbnailURL = downloadURL;
+  //     }
 
-      // Get the existing course info from the category document
-      const categoryDoc = await getDoc(categoryRef);
-      if (categoryDoc.exists()) {
-        const categoryData = categoryDoc.data();
-        const existingCourses = categoryData[category] || []; // Get the existing courses array
-        const updatedCourses = existingCourses.map((course) => {
-          // Find the course to update by comparing some unique identifier (e.g., course ID)
-          if (course.courseId === courseIdToUpdate) {
-            // Update the specific course with the additional fields
-            return {
-              ...course,
-              learn: learn,
-              requirement: requirement,
-              tutorDescription: tutorDescription,
-              tutorName:tutorName,
-              tutorJob:tutorJob,
-              InstructorImage: thumbnailURL,
-            };
-          }
-          return course;
-        });
+  //     // Get the existing course info from the category document
+  //     const categoryDoc = await getDoc(categoryRef);
+  //     if (categoryDoc.exists()) {
+  //       const categoryData = categoryDoc.data();
+  //       const existingCourses = categoryData[category] || []; // Get the existing courses array
+  //       const updatedCourses = existingCourses.map((course) => {
+  //         // Find the course to update by comparing some unique identifier (e.g., course ID)
+  //         if (course.courseId === courseIdToUpdate) {
+  //           // Update the specific course with the additional fields
+  //           return {
+  //             ...course,
+  //             learn: learn,
+  //             requirement: requirement,
+  //             tutorDescription: tutorDescription,
+  //             tutorName:tutorName,
+  //             tutorJob:tutorJob,
+  //             InstructorImage: thumbnailURL,
+  //           };
+  //         }
+  //         return course;
+  //       });
 
-        // Update the category document in Firestore with the updated courses array
-        await updateDoc(categoryRef, {
-          [category]: updatedCourses,
-        });
-      } else {
-        console.log('Category not found.');
-      }
-      // console.log(courseIdToUpdate);
-      resetStateAndStorage();
+  //       // Update the category document in Firestore with the updated courses array
+  //       await updateDoc(categoryRef, {
+  //         [category]: updatedCourses,
+  //       });
+  //     } else {
+  //       console.log('Category not found.');
+  //     }
+  //     // console.log(courseIdToUpdate);
+  //     resetStateAndStorage();
 
-      // Move to the next step
-      courseIdToUpdate = null;
-    } catch (error) {
-      // Handle any errors
-      console.log(error);
+  //     // Move to the next step
+  //     courseIdToUpdate = null;
+  //   } catch (error) {
+  //     // Handle any errors
+  //     console.log(error);
+  //   }
+  // };
+  
+const finish = async () => {
+  try {
+    const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
+
+    // Upload the image to Firebase Storage if a selected image exists
+    let thumbnailURL = '';
+    if (selectedImage) {
+      const storageRef = ref(
+        storage,
+        `tutorImage/${auth.currentUser.uid}/${Date.now()}`
+      );
+      const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
+      const downloadURL = await getDownloadURL(uploadSnapshot.ref);
+      thumbnailURL = downloadURL;
     }
-  };
-  //
+
+    // Get the existing course info from the category document
+    const categoryDoc = await getDoc(categoryRef);
+    if (categoryDoc.exists()) {
+      const categoryData = categoryDoc.data();
+      const existingCourses = categoryData.Allcourses?.[category] || []; // Get the existing courses array within Allcourses
+
+      // Update the specific course within the existing courses array
+      const updatedCourses = existingCourses.map((course) => {
+        // Find the course to update by comparing some unique identifier (e.g., course ID)
+        if (course.courseId === courseIdToUpdate) {
+          // Update the specific course with the additional fields
+          return {
+            ...course,
+            learn: learn,
+            requirement: requirement,
+            tutorDescription: tutorDescription,
+            tutorName: tutorName,
+            tutorJob: tutorJob,
+            InstructorImage: thumbnailURL,
+          };
+        }
+        return course;
+      });
+
+      // Update the category document in Firestore with the updated courses array
+      await updateDoc(categoryRef, {
+        Allcourses: {
+          ...categoryData.Allcourses,
+          [category]: updatedCourses,
+        },
+      });
+    } else {
+      console.log('Category not found.');
+    }
+    // console.log(courseIdToUpdate);
+    resetStateAndStorage();
+
+    // Move to the next step
+    courseIdToUpdate = null;
+  } catch (error) {
+    // Handle any errors
+    console.log(error);
+  }
+};
+
+
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -237,7 +299,7 @@ const [tutorJob,setTutorJob]=useState('')
                         <div className="delete_part">
                           <MdOutlineCancel
                             className="expand"
-                            onClick={()=>handleRemovRequirement(index)}
+                            onClick={() => handleRemovRequirement(index)}
                           />
                         </div>
                       </div>
@@ -375,7 +437,7 @@ const [tutorJob,setTutorJob]=useState('')
           </div>
 
           <div className="mt-4">
-            <button className="next-button" onClick={move}>
+            <button className="next-button" onClick={finish}>
               Save
             </button>
           </div>
