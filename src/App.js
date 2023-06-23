@@ -105,7 +105,7 @@ function App() {
           />
 
           <Route
-            path="/edit"
+            path="/edit/:courseId"
             element={
               <ProtectedRoute>
                 <EditCourse />

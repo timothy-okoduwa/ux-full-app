@@ -7,7 +7,7 @@ import { db } from '../../firebase';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import { FiEdit3 } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const CourseList = () => {
   const top100Films = [
     { label: 'UI Design' },
@@ -24,10 +24,6 @@ const CourseList = () => {
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-const navigate=useNavigate()
-  const move =()=>{
-navigate('/edit');
-  }
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -185,15 +181,16 @@ navigate('/edit');
                                   ₦ {parseFloat(course.price).toLocaleString()}
                                 </td>
                                 <td className="trtr prices">
-                                  <Tooltip
-                                    disableHoverListener
-                                    style={{ color: 'white' }}
-                                    onClick={move}
-                                  >
-                                    <IconButton>
-                                      <FiEdit3 />
-                                    </IconButton>
-                                  </Tooltip>
+                                  <Link to={`/edit/${course.courseId}`}>
+                                    <Tooltip
+                                      disableHoverListener
+                                      style={{ color: 'white' }}
+                                    >
+                                      <IconButton>
+                                        <FiEdit3 />
+                                      </IconButton>
+                                    </Tooltip>
+                                  </Link>
                                 </td>
                               </tr>
                             ))

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { IoMdArrowDropright } from 'react-icons/io';
 import EditSwitch from './EditSwitch';
+import { useParams } from 'react-router-dom';
 const EdHolder = () => {
+    const { courseId } = useParams();
       const [step, setStep] = useState(1);
       const [previousStep, setPreviousStep] = useState(0);
 
@@ -19,6 +21,9 @@ const EdHolder = () => {
   return (
     <div className="bgi">
       <div className="container">
+        <div className="rec">
+          Edit  Course  <span style={{ color: '#FF4702',paddingLeft:'9px' }}>{courseId}</span>
+        </div>
         <div className="mt-4">
           <div className="row">
             <div className="col-12 col-md-4">
@@ -56,7 +61,7 @@ const EdHolder = () => {
         </div>
 
         <div>
-            <EditSwitch/>
+          <EditSwitch step={step} setStep={setStep} courseId={courseId} />
         </div>
       </div>
     </div>

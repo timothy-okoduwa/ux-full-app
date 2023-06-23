@@ -81,46 +81,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
     setSections(updatedSections);
     setOpen2(false);
   };
-  // const uploadAllLocicToFirebase = async () => {
-  //   try {
-  //     const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
-  //     const existingCourse = await getDoc(categoryRef);
-  //     const existingCourseData = existingCourse.data();
 
-  //     const lastCourseIndex = existingCourseData[category]?.length - 1;
-
-  //     if (lastCourseIndex !== undefined && lastCourseIndex >= 0) {
-  //       const updatedSections = sections.map((section) => {
-  //         const updatedSectionContent = section.sectionContent.map(
-  //           (content) => {
-  //             return {
-  //               subHeading: content.subHeading,
-  //               subDuration: content.subDuration,
-  //               subVideo: content.subVideo,
-  //               // Add other properties as needed
-  //             };
-  //           }
-  //         );
-
-  //         return {
-  //           heading: section.heading,
-  //           segment: updatedSectionContent,
-  //         };
-  //       });
-
-  //       existingCourseData[category][lastCourseIndex].sections =
-  //         updatedSections;
-
-  //       await updateDoc(categoryRef, existingCourseData);
-  //     }
-
-  //     setStep(step + 1);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
-  // Render the subHeading and subDuration inputs for each segment
   
   const uploadAllLocicToFirebase = async () => {
     try {
