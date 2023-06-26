@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
-import { db ,auth} from '../../firebase';
+import { db, auth } from '../../firebase';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const EOne = ({ step, setStep, courseId }) => {
   const uploads = [
@@ -15,103 +16,105 @@ const EOne = ({ step, setStep, courseId }) => {
     { courseName: 'UX Research', category: 'UX Research' },
     { courseName: 'Colour Theory', category: 'Colour Theory' },
   ];
-const [course, setCourse] = useState({});
-const [loading, setLoading] = useState(false);
-    useEffect(() => {
+  const [course, setCourse] = useState({});
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
+        const docSnap = await getDoc(docRef);
+        console.log('docSnap:', docSnap);
+        const adminData = docSnap.data();
+        console.log('adminData:', adminData);
+        const allCourses = adminData.Allcourses || {};
+        console.log('allcourses :', allCourses);
+        let selectedCourse = null;
 
-const fetchCourse = async () => {
-  try {
-    const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
-    const docSnap = await getDoc(docRef);
-     console.log('docSnap:', docSnap);
-    const adminData = docSnap.data();
-    console.log('adminData:', adminData);
-    const allCourses = adminData.Allcourses || {};
-console.log('allcourses :', allCourses);
-    let selectedCourse = null;
+        // Iterate over each array in allCourses
+        for (const courseArrayKey in allCourses) {
+          const courseArray = allCourses[courseArrayKey];
+          // Search for the object with matching courseId
+          selectedCourse = courseArray.find(
+            (course) => course.courseId === courseId
+          );
+          if (selectedCourse) {
+            // Break the loop if the object is found
+            break;
+          }
+        }
 
-    // Iterate over each array in allCourses
-    for (const courseArrayKey in allCourses) {
-      const courseArray = allCourses[courseArrayKey];
-      // Search for the object with matching courseId
-      selectedCourse = courseArray.find(
-        (course) => course.courseId === courseId
-      );
-      if (selectedCourse) {
-        // Break the loop if the object is found
-        break;
+        setCourse(selectedCourse || {});
+      } catch (error) {
+        console.error(error);
       }
-    }
+    };
 
-    setCourse(selectedCourse || {});
-  } catch (error) {
-    console.error(error);
-  }
-};
+    fetchCourse();
+  }, [db, auth, courseId]);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCourse((prevCourse) => ({
+      ...prevCourse,
+      [name]: value,
+    }));
+  };
 
-      fetchCourse();
-    }, [db, auth, courseId]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-const handleChange = (event) => {
-  const { name, value } = event.target;
-  setCourse((prevCourse) => ({
-    ...prevCourse,
-    [name]: value,
-  }));
-};
+    try {
+      setLoading(true);
+      const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
+      const docSnap = await getDoc(docRef);
+      const adminData = docSnap.data();
+      const allCourses = { ...adminData.Allcourses }; // Clone the Allcourses object
+      let updated = false;
 
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  try {
-    setLoading(true);
-    const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
-    const docSnap = await getDoc(docRef);
-    const adminData = docSnap.data();
-    const allCourses = { ...adminData.Allcourses }; // Clone the Allcourses object
-    let updated = false;
-
-    // Iterate over each array in allCourses
-    for (const courseArrayKey in allCourses) {
-      const courseArray = allCourses[courseArrayKey];
-      // Search for the object with matching courseId
-      const courseIndex = courseArray.findIndex(
-        (course) => course.courseId === courseId
-      );
-      if (courseIndex !== -1) {
-        // Update the specific course object
-        courseArray[courseIndex] = { ...course };
-        updated = true;
-        break;
+      // Iterate over each array in allCourses
+      for (const courseArrayKey in allCourses) {
+        const courseArray = allCourses[courseArrayKey];
+        // Search for the object with matching courseId
+        const courseIndex = courseArray.findIndex(
+          (course) => course.courseId === courseId
+        );
+        if (courseIndex !== -1) {
+          // Update the specific course object
+          courseArray[courseIndex] = { ...course };
+          updated = true;
+          break;
+        }
       }
-    }
 
-    if (!updated) {
-      throw new Error(`Course with ID ${courseId} not found.`);
-    }
+      if (!updated) {
+        throw new Error(`Course with ID ${courseId} not found.`);
+      }
 
-    await updateDoc(docRef, { Allcourses: allCourses });
-    // show success message
-    // navigate('/dashboard');
-  } catch (error) {
-    console.error(error);
-    // show error message
-  } finally {
-    setLoading(false);
+      await updateDoc(docRef, { Allcourses: allCourses });
+      // show success message
+      // navigate('/dashboard');
+    } catch (error) {
+      console.error(error);
+      // show error message
+    } finally {
+      setLoading(false);
+    }
+    setStep(step + 1);
+  };
+
+  if (!course) {
+    return null;
   }
-};
-
-
-
-    if (!course) {
-      return null;
-    }
-console.log('course:',course);
+  console.log('course:', course);
 
   return (
     <div>
+      <div>
+        <div className="design mb-4">
+          {course.nameOfCourse} (
+          <span style={{ fontSize: '16px' }}>{course.category}</span>)
+        </div>
+      </div>
       <div className="row">
         <div className="col-12 col-lg-6">
           <div>
@@ -210,7 +213,13 @@ console.log('course:',course);
 
         <div className="mt-4">
           <button className="next-button" onClick={handleSubmit}>
-            Next
+            {loading ? (
+              <CircularProgress
+                style={{ height: '30px', width: '30px', color: 'white' }}
+              />
+            ) : (
+              'Next'
+            )}
           </button>
         </div>
       </div>

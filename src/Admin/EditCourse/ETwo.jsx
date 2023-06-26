@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
-import { MdDelete } from 'react-icons/md';
+// import { MdDelete } from 'react-icons/md';
 import { FaTimes } from 'react-icons/fa';
 import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
@@ -12,6 +12,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Modal from '@mui/material/Modal';
 import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
+import { v4 as generateUniqueId } from 'uuid';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const style = {
   position: 'absolute',
@@ -34,17 +36,20 @@ const style2 = {
   p: 4,
 };
 
-const ETwo = ({ courseId }) => {
+const ETwo = ({ courseId, step, setStep }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [sections, setSections] = useState([]);
-  const handleOpen = () => setOpen(true);
+  const [newSectionHeading, setNewSectionHeading] = useState('');
+  const handleOpen = () => {
+    setOpen(true);
+    setNewSectionHeading('');
+  };
   const handleClose = () => setOpen(false);
   const [course, setCourse] = useState({});
-  // const [editedSubDuration, setEditedSubDuration] = useState('');
-  // const [editedSubHeading, setEditedSubHeading] = useState('');
-  // const [editedSubVideo, setEditedSubVideo] = useState('');
   const [loading, setLoading] = useState(false);
+  const [activeSectionIndex, setActiveSectionIndex] = useState(null);
+  const [newlyCreatedSegments, setNewlyCreatedSegments] = useState([]);
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -81,207 +86,309 @@ const ETwo = ({ courseId }) => {
 
   // console.log('ETwo code:', course);
 
+  const handleChange = (event, sectionIndex, contentIndex) => {
+    const { name, value } = event.target;
+    setCourse((prevCourse) => {
+      const updatedSections = prevCourse.sections.map((section, sIndex) => {
+        if (sIndex === sectionIndex) {
+          const updatedSegment = section.segment.map((content, cIndex) => {
+            if (cIndex === contentIndex) {
+              return {
+                ...content,
+                [name]: value,
+              };
+            }
+            return content;
+          });
+          return {
+            ...section,
+            segment: updatedSegment,
+          };
+        }
+        return section;
+      });
 
-
-const handleChange = (event, sectionIndex, contentIndex) => {
-  const { name, value } = event.target;
-  setCourse((prevCourse) => {
-    const updatedSections = prevCourse.sections.map((section, sIndex) => {
-      if (sIndex === sectionIndex) {
-        const updatedSegment = section.segment.map((content, cIndex) => {
-          if (cIndex === contentIndex) {
-            return {
-              ...content,
-              [name]: value,
-            };
-          }
-          return content;
-        });
-        return {
-          ...section,
-          segment: updatedSegment,
-        };
-      }
-      return section;
+      return {
+        ...prevCourse,
+        sections: updatedSections,
+      };
     });
-
-    return {
-      ...prevCourse,
-      sections: updatedSections,
-    };
-  });
-};
-
-
-
-
-
-
-
-
-
-  const renderSegments = (sectionIndex) => {
-    const section = course.sections[sectionIndex];
-
-    return section.segment.map((content, contentIndex) => (
-      <AccordionDetails key={contentIndex}>
-        <div className="mt-5 nsv">
-          <div className="row">
-            <div className="col-12 col-lg-6 mb-4">
-              <div>
-                <div className="subbz">Sub-Heading</div>
-                <div className="mt-3">
-                  <input
-                    type="text"
-                    className="testxc"
-                    name="subHeading"
-                    value={content.subHeading}
-                    onChange={(event) =>
-                      handleChange(event, sectionIndex, contentIndex)
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-12 col-lg-6 mb-4">
-              <div>
-                <div className="subbz">Duration</div>
-                <div className="mt-3">
-                  <input
-                    type="text"
-                    className="testxc"
-                    name="subDuration"
-                    value={content.subDuration}
-                    onChange={(event) =>
-                      handleChange(event, sectionIndex, contentIndex)
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-12   mb-4">
-              <div>
-                <div className="subbz">Video URL</div>
-                <div className="mt-3">
-                  <div className="row mb-3">
-                    <div className="col-12 col-lg-6">
-                      <input
-                        type="text"
-                        className="testxc"
-                        name="subVideo"
-                        value={content.subVideo}
-                        onChange={(event) =>
-                      handleChange(event, sectionIndex, contentIndex)
-                    }
-                      />
-                    </div>
-                    <div className="col-12 col-lg-6"></div>
-                  </div>
-                  {content.subVideo && (
-                    <div className="video_tag">
-                      <div className="video-player-wrapper">
-                        <div>
-                          <video
-                            src={ content.subVideo}
-                            controls
-                            autoPlay
-                            preload="auto"
-                            controlsList="nodownload"
-                            onContextMenu={(e) => e.preventDefault()}
-                            className="video_tag"
-                          ></video>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </AccordionDetails>
-    ));
   };
 
+  const renderSegments = (sectionIndex) => {
+    const section = course?.sections[sectionIndex];
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
+    return (
+      <div className="mt-5 nsv">
+        <div className="row">
+          {section?.segment?.map((content, contentIndex) => (
+            <React.Fragment key={contentIndex}>
+              {/* Render the segments based on the course state */}
+              <div className="col-12 col-lg-6 mb-4">
+                <div>
+                  <div className="subbz">Sub-Heading</div>
+                  <div className="mt-3">
+                    <input
+                      type="text"
+                      className="testxc"
+                      name="subHeading"
+                      value={content.subHeading}
+                      onChange={(event) =>
+                        handleChange(event, sectionIndex, contentIndex)
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-12 col-lg-6 mb-4">
+                <div>
+                  <div className="subbz">Duration</div>
+                  <div className="mt-3">
+                    <input
+                      type="text"
+                      className="testxc"
+                      name="subDuration"
+                      value={content.subDuration}
+                      onChange={(event) =>
+                        handleChange(event, sectionIndex, contentIndex)
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-12   mb-4">
+                <div>
+                  <div className="subbz">Video URL</div>
+                  <div className="mt-3">
+                    <div className="row mb-3">
+                      <div className="col-12 col-lg-6">
+                        <input
+                          type="text"
+                          className="testxc"
+                          name="subVideo"
+                          value={content.subVideo}
+                          onChange={(event) =>
+                            handleChange(event, sectionIndex, contentIndex)
+                          }
+                        />
+                      </div>
+                      <div className="col-12 col-lg-6"></div>
+                    </div>
+                    {content.subVideo && (
+                      <div className="video_tag">
+                        <div className="video-player-wrapper">
+                          <div>
+                            <video
+                              src={content.subVideo}
+                              controls
+                              autoPlay
+                              preload="auto"
+                              controlsList="nodownload"
+                              onContextMenu={(e) => e.preventDefault()}
+                              className="video_tag"
+                            ></video>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <button
+                  className="Delete"
+                  onClick={() => handleDelete(sectionIndex, contentIndex)}
+                  disabled={!newlyCreatedSegments.includes(content)}
+                >
+                  Delete
+                </button>
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
-  // Access the updated values from the course state
-  const subVideo = course.sections.flatMap((section) =>
-    section.segment.map((content) => content.subVideo)
-  );
-  const subDuration = course.sections.flatMap((section) =>
-    section.segment.map((content) => content.subDuration)
-  );
-  const subHeading = course.sections.flatMap((section) =>
-    section.segment.map((content) => content.subHeading)
-  );
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  console.log('subVideo:', subVideo);
-  console.log('subDuration:', subDuration);
-  console.log('subHeading:', subHeading);
+    try {
+      setLoading(true);
+      const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
+      const docSnap = await getDoc(docRef);
+      const adminData = docSnap.data();
+      const allCourses = { ...adminData.Allcourses }; // Clone the Allcourses object
 
-  try {
-    setLoading(true);
-    const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
-    const docSnap = await getDoc(docRef);
-    const adminData = docSnap.data();
-    const allCourses = { ...adminData.Allcourses }; // Clone the Allcourses object
-    let updated = false;
+      let courseArrayKey;
+      let courseIndex;
 
-    // Iterate over each array in allCourses
-    for (const courseArrayKey in allCourses) {
-      const courseArray = allCourses[courseArrayKey];
-      // Search for the object with matching courseId
-      const courseIndex = courseArray.findIndex(
-        (course) => course.courseId === courseId
-      );
+      // Find the course array and course index for the current courseId
+      for (const key in allCourses) {
+        const array = allCourses[key];
+        const index = array.findIndex((course) => course.courseId === courseId);
+        if (index !== -1) {
+          courseArrayKey = key;
+          courseIndex = index;
+          break;
+        }
+      }
 
-      if (courseIndex !== -1) {
-        // Get the specific course object
-        const course = courseArray[courseIndex];
-
-        // Iterate over each section in the course
-        for (const section of course.sections) {
-          // Update all segments within the section
-          section.segment = section.segment.map((segment, segmentIndex) => {
-            const updatedSegment = {
-              ...segment,
-              subDuration: subDuration[segmentIndex],
-              subHeading: subHeading[segmentIndex],
-              subVideo: subVideo[segmentIndex],
+      if (courseArrayKey && courseIndex !== -1) {
+        const updatedSections = course.sections.map((section) => {
+          const updatedSegment = section.segment.map((segment) => {
+            const { subHeading, subDuration, subVideo } = segment;
+            return {
+              subHeading,
+              subDuration,
+              subVideo,
             };
-            return updatedSegment;
+          });
+
+          return {
+            heading: section.heading,
+            segment: updatedSegment,
+          };
+        });
+
+        const updatedCourse = {
+          ...course,
+          sections: updatedSections,
+        };
+
+        // Check if there are any newly created sections or segments
+        const hasNewSections =
+          updatedCourse.sections.length > course.sections.length;
+        const hasNewSegments =
+          updatedCourse.sections.flatMap((section) => section.segment).length >
+          course.sections.flatMap((section) => section.segment).length;
+
+        // If there are newly created sections or segments, add them to the updated course
+        if (hasNewSections || hasNewSegments) {
+          updatedCourse.sections = updatedCourse.sections.map((section) => {
+            // Check if the section is newly created
+            const isNewSection = !course.sections.some(
+              (s) => s.heading === section.heading
+            );
+
+            if (isNewSection) {
+              const sectionId = generateUniqueId(); // Generate a unique ID for the new section
+              return {
+                ...section,
+                sectionId,
+              };
+            } else {
+              // Check if there are any newly created segments within the existing sections
+              const hasNewSegments =
+                section.segment.length >
+                course.sections.find((s) => s.heading === section.heading)
+                  .segment.length;
+
+              // If there are newly created segments, add them to the updated section
+              if (hasNewSegments) {
+                const updatedSegment = section.segment.map((segment) => {
+                  const isNewSegment = !course.sections
+                    .find((s) => s.heading === section.heading)
+                    .segment.some((s) => s.subHeading === segment.subHeading);
+                  if (isNewSegment) {
+                    const segmentId = generateUniqueId(); // Generate a unique ID for the new segment
+                    return {
+                      ...segment,
+                      segmentId,
+                    };
+                  } else {
+                    return segment;
+                  }
+                });
+
+                return {
+                  ...section,
+                  segment: updatedSegment,
+                };
+              } else {
+                return section;
+              }
+            }
           });
         }
 
-        // Update the course object in the array
-        courseArray[courseIndex] = course;
+        allCourses[courseArrayKey][courseIndex] = updatedCourse;
 
-        updated = true;
-        break;
+        await updateDoc(docRef, { Allcourses: allCourses });
+        // show success message
+        // navigate('/')
+      } else {
+        throw new Error('Course not found.');
       }
+    } catch (error) {
+      console.error(error);
+      // show error message
+    } finally {
+      setLoading(false);
+    }
+    setStep(step + 1);
+  };
+
+  const handleAddSection = () => {
+    const newSection = {
+      heading: newSectionHeading,
+      segment: [],
+    };
+
+    setCourse((prevCourse) => ({
+      ...prevCourse,
+      sections: [...prevCourse.sections, newSection],
+    }));
+
+    handleClose();
+  };
+
+  const handleAddSegment = (sectionIndex) => {
+    setCourse((prevCourse) => {
+      const updatedSections = [...prevCourse.sections];
+      const newSegment = {
+        subHeading: '',
+        subDuration: '',
+        subVideo: '',
+      };
+      updatedSections[sectionIndex] = {
+        ...updatedSections[sectionIndex],
+        segment: [...updatedSections[sectionIndex].segment, newSegment],
+      };
+      setNewlyCreatedSegments((prevSegments) => [...prevSegments, newSegment]);
+      return {
+        ...prevCourse,
+        sections: updatedSections,
+      };
+    });
+  };
+  const handleDelete = (sectionIndex, contentIndex) => {
+    // Check if the segment is a newly created segment
+    const isSegmentNewlyCreated =
+      contentIndex >= course.sections[sectionIndex].segment.length;
+
+    if (isSegmentNewlyCreated) {
+      // Remove the segment from the newly created segments state
+      setNewlyCreatedSegments((prevSegments) =>
+        prevSegments.filter((_, index) => index !== contentIndex)
+      );
     }
 
-    if (!updated) {
-      throw new Error('Course not found.');
-    }
+    setCourse((prevCourse) => {
+      const updatedSections = [...prevCourse.sections];
+      updatedSections[sectionIndex].segment.splice(contentIndex, 1);
 
-    await updateDoc(docRef, { Allcourses: allCourses });
-    // show success message
-    // navigate('/')
-  } catch (error) {
-    console.error(error);
-    // show error message
-  } finally {
-    setLoading(false);
-  }
-};
+      return {
+        ...prevCourse,
+        sections: updatedSections,
+      };
+    });
+  };
   return (
     <div>
       <div>
-        <div className="design">Design Thinking</div>
+        <div className="design">
+          {course.nameOfCourse} (
+          <span style={{ fontSize: '16px' }}>{course.category}</span>)
+        </div>
       </div>
       <div className="d-flex justify-content-end mt-4">
         <button className="next-button" onClick={handleOpen}>
@@ -316,16 +423,26 @@ const handleSubmit = async (event) => {
           <div className="container">
             <div className="subb">Sub-Heading</div>
             <div>
-              <input type="text" className="goku" value={inputValue} />
+              <input
+                type="text"
+                className="goku"
+                value={newSectionHeading}
+                onChange={(event) => setNewSectionHeading(event.target.value)}
+              />
             </div>
             <div className="mt-4 mb-4">
-              <button className="save" disabled={inputValue.trim() === ''}>
+              <button
+                className="save"
+                disabled={newSectionHeading.trim() === ''}
+                onClick={handleAddSection}
+              >
                 Save
               </button>
             </div>
           </div>
         </Box>
       </Modal>
+
       {course?.sections?.length === 0 && (
         <div className="plus">
           <div className="sects">
@@ -341,6 +458,12 @@ const handleSubmit = async (event) => {
         {course?.sections?.map((section, sectionIndex) => (
           <Accordion
             key={sectionIndex}
+            expanded={activeSectionIndex === sectionIndex}
+            onChange={() =>
+              setActiveSectionIndex(
+                activeSectionIndex === sectionIndex ? null : sectionIndex
+              )
+            }
             style={{
               backgroundColor: '#0E0E0E',
               borderRadius: '20px',
@@ -357,17 +480,17 @@ const handleSubmit = async (event) => {
                 {section.heading} ({section?.segment?.length}{' '}
                 {section?.segment?.length > 1 ? 'segments' : 'segment'})
               </Typography>
-            
             </AccordionSummary>
-        
-            {renderSegments(sectionIndex)}
+            <AccordionDetails>{renderSegments(sectionIndex)}</AccordionDetails>
 
             <div className="container">
               <div className="d-flex justify-content-start mt-4 mb-4">
-                <button className="next-button">
-                  {' '}
+                <button
+                  className="next-button"
+                  onClick={() => handleAddSegment(sectionIndex)}
+                >
                   <AiOutlinePlusCircle className="mx-2" />
-                  Segement
+                  Segment
                 </button>
               </div>
             </div>
@@ -375,7 +498,13 @@ const handleSubmit = async (event) => {
         ))}
       </div>
       <button className="next-button" onClick={handleSubmit}>
-        Next
+        {loading ? (
+          <CircularProgress
+            style={{ height: '30px', width: '30px', color: 'white' }}
+          />
+        ) : (
+          'Next'
+        )}
       </button>
     </div>
   );

@@ -47,9 +47,9 @@ const NavBar = () => {
     location.pathname === '/admin-signup' ||
     location.pathname === '/admin-signin' ||
     location.pathname === '/courses' ||
-    location.pathname === '/edit' ||
+    location.pathname.startsWith('/edit') ||
     location.pathname === '/forget';
-   
+
   return (
     <>
       {hideAllHeader ? null : (
