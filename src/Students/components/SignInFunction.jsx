@@ -41,11 +41,12 @@ const SignInFunction = () => {
           confirmPassword: password,
         });
       }
-       setShowSuccessMessage(true);
+      setShowSuccessMessage(true);
 
-       setTimeout(() => {
-         navigate('/dashboard');
-       }, 2000);
+      setTimeout(() => {
+        navigate('/dashboard');
+        localStorage.setItem('userRole', 'student');
+      }, 2000);
       setData({
         email: '',
         password: '',

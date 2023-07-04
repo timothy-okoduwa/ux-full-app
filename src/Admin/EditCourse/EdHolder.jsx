@@ -3,27 +3,25 @@ import { IoMdArrowDropright } from 'react-icons/io';
 import EditSwitch from './EditSwitch';
 import { useParams } from 'react-router-dom';
 const EdHolder = () => {
-    const { courseId } = useParams();
-      const [step, setStep] = useState(1);
-      const [previousStep, setPreviousStep] = useState(0);
+  const { courseId } = useParams();
+  const [step, setStep] = useState(1);
+  const [previousStep, setPreviousStep] = useState(0);
 
-      const handleStepChange = (newStep) => {
-        setPreviousStep(step);
-        setStep(newStep);
-      };
+  const handleStepChange = (newStep) => {
+    setPreviousStep(step);
+    setStep(newStep);
+  };
 
-      const navigateToStep = (newStep) => {
-        if (newStep !== step) {
-          handleStepChange(newStep);
-        }
-      };
+  const navigateToStep = (newStep) => {
+    if (newStep !== step) {
+      handleStepChange(newStep);
+    }
+  };
 
   return (
     <div className="bgi">
       <div className="container">
-        <div className="rec">
-          Edit  Course  <span style={{ color: '#FF4702',paddingLeft:'9px' }}>{courseId}</span>
-        </div>
+        <div className="rec">Edit Course</div>
         <div className="mt-4">
           <div className="row">
             <div className="col-12 col-md-4">

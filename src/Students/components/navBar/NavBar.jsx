@@ -13,7 +13,7 @@ const NavBar = () => {
   const location = useLocation();
   const [user, setUser] = useState(null);
   const isAuthenticated = auth.currentUser;
-
+  const userRole = localStorage.getItem('userRole');
   useEffect(() => {
     let unsubscribe;
 
@@ -79,12 +79,13 @@ const NavBar = () => {
 
                     <div className="emb">About</div>
                     <div className="emb">Contact</div>
-                    {!isAuthenticated && (
+                    {(!isAuthenticated || userRole === 'admin') && (
                       <Link to="/signin" style={{ textDecoration: 'none' }}>
                         <div className="emb red">Login</div>
                       </Link>
                     )}
-                    {isAuthenticated && (
+
+                    {isAuthenticated && userRole !== 'admin' && (
                       <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                         <div className="emb circle">
                           {user && (

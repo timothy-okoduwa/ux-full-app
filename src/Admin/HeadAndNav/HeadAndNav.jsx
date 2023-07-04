@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './HeadAndNav.css';
 import b from '../image/ux.svg';
 import { MdDashboard } from 'react-icons/md';
@@ -7,14 +7,14 @@ import { BsCreditCardFill, BsFillFolderFill } from 'react-icons/bs';
 import {
   RiSettings4Fill,
   RiLogoutBoxLine,
-  RiUploadCloudFill,
+  // RiUploadCloudFill,
 } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
-import { onSnapshot,doc } from 'firebase/firestore';
-import { db,auth } from '../../firebase';
+import { onSnapshot, doc } from 'firebase/firestore';
+import { db, auth } from '../../firebase';
 const HeadAndNav = () => {
-  const [user, setUser]=useState(null)
-  const isAuth = auth.currentUser
+  const [user, setUser] = useState(null);
+  const isAuth = auth.currentUser;
   useEffect(() => {
     let unsubscribe;
     if (isAuth) {
@@ -52,8 +52,14 @@ const HeadAndNav = () => {
           </div>
           <div>
             <div className="for-admin">
-              <RiLogoutBoxLine />
-              <span> Logout</span>
+              <NavLink
+                to="/"
+                className="Link"
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <RiLogoutBoxLine />
+                <span> Logout</span>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -115,7 +121,7 @@ const HeadAndNav = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit" style={{ marginTop: '120px' }}>
-                <NavLink to="/settings" className="Link">
+                <NavLink to="/" className="Link">
                   <div className=" height">
                     <div className=" wko">
                       <RiLogoutBoxLine className="color" />

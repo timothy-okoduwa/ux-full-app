@@ -10,12 +10,9 @@ const CoursePage = () => {
     <div>
       <CourseHead />
       <UxResearch />
-      <UxResearch />
-      <UxResearch />
-      <UxResearch />
-      <ComingSoon/>
-      <Suggestions/>
-      <Listen/>
+      <ComingSoon />
+      <Suggestions />
+      <Listen />
     </div>
   );
 };

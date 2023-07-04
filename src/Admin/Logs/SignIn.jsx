@@ -43,6 +43,7 @@ const SignIn = () => {
 
       setTimeout(() => {
         navigate('/admin-dash');
+        localStorage.setItem('userRole', 'admin');
       }, 2000);
       setData({
         email: '',

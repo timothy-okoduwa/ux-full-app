@@ -1,8 +1,9 @@
+import React, { useEffect } from 'react';
 import Fotter from './Students/components/Fotter';
 import NavBar from './Students/components/navBar/NavBar';
 import LandingPage from './Students/pages/LandingPage/LandingPage';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import CoursePage from './Students/pages/CoursesPage/CoursePage';
 import CourseCategories from './Students/pages/CoursesPage/CourseCategories';
 import CoursePreview from './Students/pages/CoursesPage/CoursePreview';
@@ -28,111 +29,138 @@ import { CourseProvider } from './Admin/Upload/CourseContext';
 import ProtectedRoute2 from './Admin/Pro/ProtectedRoute2';
 import CourseAll from './Admin/CourseManager/CourseAll';
 import EditCourse from './Admin/EditCourse/EditCourse';
+import Nothing from './Admin/Nothing/Nothing';
 function App() {
   return (
     <UserAuthContextProvider>
       <BrowserRouter>
-        <NavBar />
-        {/* <DashNav /> */}
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/course" element={<CoursePage />} />
-          <Route path="/course-category" element={<CourseCategories />} />
-          <Route path="/course-preview" element={<CoursePreview />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/forget" element={<ForgetPassword />} />
-          <Route path="/confirm" element={<Confirm />} />
-          <Route
-            path="/admin-dash"
-            element={
-              <ProtectedRoute2>
-                <Dashboard2 />
-              </ProtectedRoute2>
-            }
-          />
-          <Route
-            path="/purchase-course"
-            element={
-              <ProtectedRoute2>
-                <PurchaseCourse />
-              </ProtectedRoute2>
-            }
-          />
-          <Route
-            path="/purchase-History"
-            element={
-              <ProtectedRoute2>
-                <PurHist />
-              </ProtectedRoute2>
-            }
-          />
-          <Route
-            path="/courses"
-            element={
-              <ProtectedRoute2>
-                <CourseAll />
-              </ProtectedRoute2>
-            }
-          />
-          <Route path="/admin-signup" element={<AdminSignUp />} />
-          <Route path="/admin-signin" element={<AdminSignIn />} />
-          <Route
-            path="/uploads"
-            element={
-              <CourseProvider>
-                <UpAll />
-              </CourseProvider>
-            }
-          />
-
-          <Route
-            path="/chh"
-            element={
-              <CourseProvider>
-                <CourseHolder />{' '}
-              </CourseProvider>
-            }
-          />
-
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <DashBoard />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/edit/:courseId"
-            element={
-              <ProtectedRoute>
-                <EditCourse />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/start-watching"
-            element={
-              <ProtectedRoute>
-                <StartWatching />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/setting"
-            element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-        <Fotter />
-        <ScrollToTop />
+        <AppContent />
       </BrowserRouter>
     </UserAuthContextProvider>
+  );
+}
+
+function AppContent() {
+  const userRole = localStorage.getItem('userRole');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user's role is admin or student
+    if (
+      userRole === 'admin' &&
+      window.location.pathname.includes('/dashboard')
+    ) {
+      navigate('/admin-dash');
+    } else if (
+      userRole === 'student' &&
+      window.location.pathname.includes('/admin-dash')
+    ) {
+      navigate('/');
+    }
+  }, [userRole, navigate]);
+
+  return (
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/course" element={<CoursePage />} />
+        <Route path="/course-category" element={<CourseCategories />} />
+        <Route path="/course-preview" element={<CoursePreview />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/forget" element={<ForgetPassword />} />
+        <Route path="/confirm" element={<Confirm />} />
+        <Route
+          path="/admin-dash"
+          element={
+            <ProtectedRoute2>
+              <Dashboard2 />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/purchase-course"
+          element={
+            <ProtectedRoute2>
+              <PurchaseCourse />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/purchase-History"
+          element={
+            <ProtectedRoute2>
+              <PurHist />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <ProtectedRoute2>
+              <CourseAll />
+            </ProtectedRoute2>
+          }
+        />
+        <Route path="/admin-signup" element={<AdminSignUp />} />
+        <Route path="/admin-signin" element={<AdminSignIn />} />
+        <Route
+          path="/uploads"
+          element={
+            <CourseProvider>
+              <UpAll />
+            </CourseProvider>
+          }
+        />
+
+        <Route
+          path="/chh"
+          element={
+            <CourseProvider>
+              <CourseHolder />{' '}
+            </CourseProvider>
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashBoard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/edit/:courseId"
+          element={
+            <ProtectedRoute>
+              <EditCourse />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/start-watching"
+          element={
+            <ProtectedRoute>
+              <StartWatching />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/setting"
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Nothing />} />
+      </Routes>
+      <Fotter />
+      <ScrollToTop />
+    </>
   );
 }
 

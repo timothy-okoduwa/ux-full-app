@@ -2,7 +2,7 @@ import React from 'react';
 import './HeadAndNav.css';
 import { MdDashboard } from 'react-icons/md';
 import { RiSettings4Fill, RiUploadCloudFill } from 'react-icons/ri';
-import { BsCreditCardFill } from 'react-icons/bs';
+import { BsCreditCardFill, BsFillFolderFill } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 function MobileNav() {
   return (
@@ -18,12 +18,12 @@ function MobileNav() {
         </div>
         <div className="truss">
           {' '}
-          <NavLink to="/uploads" className="Link">
+          <NavLink to="/courses" className="Link">
             <div>
               {' '}
-              <RiUploadCloudFill className="color22 mb-2" />
+              <BsFillFolderFill className="color22 mb-2" />
             </div>
-            <div className="textd">Upload</div>
+            <div className="textd">Course Manager</div>
           </NavLink>
         </div>
         <div className="truss">

@@ -1,11 +1,37 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
+import { collection, query, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { Link } from 'react-router-dom';
 const AvailableCourses = () => {
   let scrl = useRef(null);
   const [scrollX, setscrollX] = useState(0);
   const [scrolEnd, setscrolEnd] = useState(false);
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      // Query the Admin collection to retrieve all documents
+      const adminQuery = query(collection(db, 'Admin'));
+      const adminSnapshot = await getDocs(adminQuery);
 
+      if (!adminSnapshot.empty) {
+        const allCourses = adminSnapshot.docs.reduce((accumulator, doc) => {
+          const data = doc.data();
+          const categoryCourses = data.Allcourses
+            ? Object.values(data.Allcourses)
+            : [];
+          return [...accumulator, ...categoryCourses];
+        }, []);
+
+        // Set the courses state with the retrieved array
+        setCourses(allCourses);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+  console.log(courses);
   //Slide click
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;
@@ -56,7 +82,7 @@ const AvailableCourses = () => {
                   onClick={() => slide(-300)}
                   onMouseEnter={(e) => anim(e)}
                   // onMouseLeave={(e) => anim2(e)}
-                  onMouseLeave={(e)=>anim2(e)}
+                  onMouseLeave={(e) => anim2(e)}
                 >
                   <MdArrowBackIosNew />
                 </div>
@@ -65,55 +91,24 @@ const AvailableCourses = () => {
           </div>
 
           <div className="flex-up" ref={scrl} onScroll={scrollCheck}>
-            <div className="linear">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
-            <div className="linear2">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
-            <div className="linear">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
-            <div className="linear2">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
-            <div className="linear">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
-            <div className="linear2">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
-            <div className="linear">
-              <div className="change">
-                <div className="anita">Anita Gift</div>
-                <div className="ux">UX Design 101</div>
-                <div className="hour">2hr 30mins</div>
-              </div>
-            </div>
+            <>
+              {courses.slice(0, 4).map((category) =>
+                Object.values(category).map((course) => (
+                  <Link to="/course-preview" style={{ textDecoration: 'none' }}>
+                    <div
+                      className="linear"
+                      style={{ backgroundImage: `url(${course.thumbnailURL})` }}
+                    >
+                      <div className="change">
+                        <div className="anita">{course.tutorName}</div>
+                        <div className="ux">{course.nameOfCourse}</div>
+                        <div className="hour">{course.Duration}</div>
+                      </div>
+                    </div>{' '}
+                  </Link>
+                ))
+              )}
+            </>
           </div>
 
           <div className="man">
@@ -133,7 +128,9 @@ const AvailableCourses = () => {
         </div>
       </div>
       <div className="d-flex justify-content-center mt-5">
-        <button className="view">VIEW MORE</button>
+        <Link to="/course">
+          <button className="view">VIEW MORE</button>
+        </Link>
       </div>
     </div>
   );

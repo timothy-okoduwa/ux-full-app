@@ -52,6 +52,8 @@ const SignUp = () => {
         isOnLine: isOnLine,
       });
       navigate('/admin-dash');
+      localStorage.setItem('userRole', 'admin');
+
       setData({
         fullName: '',
         email: '',

@@ -4,18 +4,18 @@ import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../firebase';
-import {  collection, doc, setDoc } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 const SignUpFunction = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState({
     fullName: '',
     email: '',
     password: '',
-    confirmPassword:'',
+    confirmPassword: '',
     error: null,
     loading: false,
-    isOnLine:true,
+    isOnLine: true,
   });
   const {
     fullName,
@@ -40,17 +40,18 @@ const SignUpFunction = () => {
         email,
         password
       );
-      const studentCollection = collection(db,'student');
-      const studentDocumentReference = doc(studentCollection,user.uid)
-   await setDoc(studentDocumentReference, {
-     fullName: fullName,
-     uid: user.uid,
-     email: email,
-     password: password,
-     confirmPassword: confirmPassword,
-     isOnLine: isOnLine,
-   });
-   navigate('/dashboard');
+      const studentCollection = collection(db, 'student');
+      const studentDocumentReference = doc(studentCollection, user.uid);
+      await setDoc(studentDocumentReference, {
+        fullName: fullName,
+        uid: user.uid,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+        isOnLine: isOnLine,
+      });
+      navigate('/dashboard');
+      localStorage.setItem('userRole', 'student');
       setData({
         fullName: '',
         email: '',
@@ -58,7 +59,7 @@ const SignUpFunction = () => {
         confirmPassword: '',
         error: null,
         loading: false,
-        isOnLine:true,
+        isOnLine: true,
       });
     } catch (err) {
       switch (err.code) {
