@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Fotter from './Students/components/Fotter';
 import NavBar from './Students/components/navBar/NavBar';
 import LandingPage from './Students/pages/LandingPage/LandingPage';
 import './App.css';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CoursePage from './Students/pages/CoursesPage/CoursePage';
 import CourseCategories from './Students/pages/CoursesPage/CourseCategories';
 import CoursePreview from './Students/pages/CoursesPage/CoursePreview';
@@ -41,24 +41,6 @@ function App() {
 }
 
 function AppContent() {
-  const userRole = localStorage.getItem('userRole');
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check if the user's role is admin or student
-    if (
-      userRole === 'admin' &&
-      window.location.pathname.includes('/dashboard')
-    ) {
-      navigate('/admin-dash');
-    } else if (
-      userRole === 'student' &&
-      window.location.pathname.includes('/admin-dash')
-    ) {
-      navigate('/');
-    }
-  }, [userRole, navigate]);
-
   return (
     <>
       <NavBar />
@@ -66,7 +48,7 @@ function AppContent() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/course" element={<CoursePage />} />
         <Route path="/course-category" element={<CourseCategories />} />
-        <Route path="/course-preview" element={<CoursePreview />} />
+        <Route path="/course-preview/:courseId" element={<CoursePreview />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/forget" element={<ForgetPassword />} />
@@ -79,14 +61,7 @@ function AppContent() {
             </ProtectedRoute2>
           }
         />
-        <Route
-          path="/purchase-course"
-          element={
-            <ProtectedRoute2>
-              <PurchaseCourse />
-            </ProtectedRoute2>
-          }
-        />
+        <Route path="/purchase-course/:courseId" element={<PurchaseCourse />} />
         <Route
           path="/purchase-History"
           element={

@@ -146,7 +146,7 @@ const AllCourses = () => {
                 <div className="col-12 col-lg-3 mb-5" key={course.id}>
                   <div className="wsisisi">
                     <Link
-                      to="/course-preview"
+                      to={`/course-preview/${course.courseId}`}
                       style={{ textDecoration: 'none' }}
                     >
                       <div

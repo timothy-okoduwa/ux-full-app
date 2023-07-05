@@ -194,7 +194,9 @@
   background-image: url('../images/course-card.png');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 683px;
+  height: 550px;
+  border-radius: 9px;
+  margin-top: 70px;
 }
 .namee {
   font-family: 'Merriweather';
@@ -272,6 +274,13 @@
   font-size: 24px;
   color: #ffffff;
 }
+.datys {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100%;
+  cursor: not-allowed;
+}
 .por-que {
   font-family: 'Manrope';
   font-style: normal;
@@ -323,6 +332,7 @@
   color: white;
   opacity: 0.5;
   border-radius: 10px;
+  /* margin-bottom: 3px; */
 }
 .introvid {
   font-family: 'Manrope';
@@ -374,6 +384,16 @@
   color: white;
 }
 @media screen and (max-width: 991px) {
+  .por-que {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #ffffff;
+    opacity: 0.5;
+    text-align: center;
+    width: 100% !important;
+  }
   .uxx {
     font-family: 'Manrope';
     font-style: normal;

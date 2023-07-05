@@ -26,7 +26,7 @@
   height: 50px;
   /* justify-content: center; */
   color: #ff4703;
-padding-left: 40px;
+  padding-left: 40px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 600;
@@ -36,10 +36,9 @@ padding-left: 40px;
   background: #682929;
   border: 1px solid #ff4703;
   border-radius: 5px;
-   animation-duration: 0.3s;
+  animation-duration: 0.3s;
   animation-fill-mode: both;
 }
-
 
 .show {
   display: block;
@@ -73,23 +72,23 @@ padding-left: 40px;
   }
 }
 
-.fun2{
-    width: 80%;
+.fun2 {
+  width: 80%;
   height: 50px;
   /* justify-content: center; */
-color: #00AB4F;
-padding-left: 40px;
+  color: #00ab4f;
+  padding-left: 40px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   display: flex;
   align-items: center;
-background: #234F37;
-border: 1px solid #00AB4F;
-border-radius: 5px;
+  background: #234f37;
+  border: 1px solid #00ab4f;
+  border-radius: 5px;
 }
-.ivon{
+.ivon {
   margin-right: 6px;
 }
 .ingame {
@@ -163,7 +162,7 @@ border-radius: 5px;
     font-size: 16px;
     text-align: center;
     color: #ffffff;
-    width: 100% !important;
+    width: 300px !important;
     height: 62px;
     outline: none;
     border: none;
@@ -398,10 +397,11 @@ border-radius: 5px;
   flex-direction: column;
 }
 .gat-u {
-  background-color: #6b4039;
-  border-radius: 4px;
+  background-color: #6b4039 !important;
+  border-radius: 0 4px 4px 0;
   display: flex;
   justify-content: center;
+  height: 100% !important;
 }
 .anita {
   font-family: 'Paytone One';
@@ -475,4 +475,28 @@ border-radius: 5px;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
+}
+.shaking-modal {
+  animation: shake 0.4s linear;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-9px);
+  }
+  40% {
+    transform: translateX(9px);
+  }
+  60% {
+    transform: translateX(-9px);
+  }
+  80% {
+    transform: translateX(9px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

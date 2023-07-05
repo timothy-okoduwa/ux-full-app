@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const CourseRequirement = () => {
+const CourseRequirement = ({ course }) => {
   return (
     <div className="shaws">
       <div className="container">
@@ -11,31 +11,11 @@ const CourseRequirement = () => {
             </div>
             <div>
               <div className="pt-3">
-                <div>
-                  <li className="reqq">Web and mobile design</li>
-                </div>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">
-                  Responsive design for various screen sizes
-                </li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Prototyping</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq"> Layout and grid guides</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Design system creations and use</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Cards, buttons, hireachy and overlay </li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">
-                  Check our "curriculum" to see many more{' '}
-                </li>
+                {course.learn.map((missed) => (
+                  <div>
+                    <li className="reqq mb-3">{missed}</li>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -45,31 +25,11 @@ const CourseRequirement = () => {
             </div>
             <div>
               <div className="pt-3">
-                <div>
-                  <li className="reqq">Web and mobile design</li>
-                </div>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">
-                  Responsive design for various screen sizes
-                </li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Prototyping</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq"> Layout and grid guides</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Design system creations and use</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Cards, buttons, hireachy and overlay </li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">
-                  Check our "curriculum" to see many more{' '}
-                </li>
+                {course.requirement.map((missed) => (
+                  <div>
+                    <li className="reqq mb-3">{missed}</li>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -80,30 +40,14 @@ const CourseRequirement = () => {
             <div>
               <div className="pt-3">
                 <div>
-                  <li className="reqq">Web and mobile design</li>
+                  <li className="reqq mb-3">{course.tutorName}</li>
                 </div>
               </div>
               <div className="pt-3">
-                <li className="reqq">
-                  Responsive design for various screen sizes
-                </li>
+                <li className="reqq">{course.tutorJob}</li>
               </div>
               <div className="pt-3">
-                <li className="reqq">Prototyping</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq"> Layout and grid guides</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Design system creations and use</li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">Cards, buttons, hireachy and overlay </li>
-              </div>
-              <div className="pt-3">
-                <li className="reqq">
-                  Check our "curriculum" to see many more{' '}
-                </li>
+                <li className="reqq mb-3">{course.tutorDescription}</li>
               </div>
             </div>
           </div>
@@ -111,6 +55,6 @@ const CourseRequirement = () => {
       </div>
     </div>
   );
-}
+};
 
-export default CourseRequirement
+export default CourseRequirement;

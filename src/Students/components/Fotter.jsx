@@ -17,6 +17,7 @@ const Fotter = () => {
     location.pathname === '/admin-signin' ||
     location.pathname === '/courses' ||
     location.pathname.startsWith('/edit') ||
+    location.pathname.startsWith('/purchase-course') ||
     location.pathname === '/forget';
   return (
     <>

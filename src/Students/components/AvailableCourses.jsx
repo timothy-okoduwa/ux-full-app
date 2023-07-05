@@ -94,7 +94,10 @@ const AvailableCourses = () => {
             <>
               {courses.slice(0, 4).map((category) =>
                 Object.values(category).map((course) => (
-                  <Link to="/course-preview" style={{ textDecoration: 'none' }}>
+                  <Link
+                    to={`/course-preview/${course.courseId}`}
+                    style={{ textDecoration: 'none' }}
+                  >
                     <div
                       className="linear"
                       style={{ backgroundImage: `url(${course.thumbnailURL})` }}
