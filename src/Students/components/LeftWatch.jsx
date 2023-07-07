@@ -42,7 +42,10 @@ const LeftWatch = ({ course, onSelectSubVideo }) => {
                     <AccordionDetails className="barrien">
                       {section?.segment?.map((segmentt) => (
                         <Typography
-                          onClick={() => onSelectSubVideo(segmentt.subVideo)}
+                          onClick={() => {
+                            onSelectSubVideo(segmentt.subVideo);
+                            toggleSidebar();
+                          }}
                         >
                           <div className="crty">
                             <BsFillPlayCircleFill className="influence" />
