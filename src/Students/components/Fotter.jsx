@@ -12,12 +12,14 @@ const Fotter = () => {
     location.pathname === '/admin-dash' ||
     location.pathname === '/purchase-History' ||
     location.pathname === '/uploads' ||
+    location.pathname === '/dashboard' ||
     location.pathname === '/chh' ||
     location.pathname === '/admin-signup' ||
     location.pathname === '/admin-signin' ||
     location.pathname === '/courses' ||
     location.pathname.startsWith('/edit') ||
     location.pathname.startsWith('/purchase-course') ||
+    location.pathname.startsWith('/start-watching') ||
     location.pathname === '/forget';
   return (
     <>

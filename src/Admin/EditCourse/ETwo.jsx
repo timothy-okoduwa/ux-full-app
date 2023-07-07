@@ -10,7 +10,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Modal from '@mui/material/Modal';
-import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  getDoc,
+  doc,
+  updateDoc,
+  getDocs,
+  collection,
+} from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import { v4 as generateUniqueId } from 'uuid';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -240,6 +246,7 @@ const ETwo = ({ courseId, step, setStep }) => {
               subHeading,
               subDuration,
               subVideo,
+              // Add additional properties or modify existing properties as needed
             };
           });
 
@@ -295,7 +302,11 @@ const ETwo = ({ courseId, step, setStep }) => {
                       segmentId,
                     };
                   } else {
-                    return segment;
+                    // Update the properties of the existing segment
+                    return {
+                      ...segment,
+                      // Add additional properties or modify existing properties as needed
+                    };
                   }
                 });
 
@@ -312,9 +323,54 @@ const ETwo = ({ courseId, step, setStep }) => {
 
         allCourses[courseArrayKey][courseIndex] = updatedCourse;
 
-        await updateDoc(docRef, { Allcourses: allCourses });
-        // show success message
-        // navigate('/')
+        await updateDoc(docRef, {
+          Allcourses: allCourses,
+        });
+
+        // Retrieve the student documents with the matching courseId
+        const studentsRef = collection(db, 'student');
+        const studentsSnapshot = await getDocs(studentsRef);
+
+        const updates = [];
+
+        studentsSnapshot.forEach((doc) => {
+          const studentData = doc.data();
+          const purchasedCourses = studentData.purchasedCourses || [];
+
+          // Find the purchasedCourse object with matching courseId
+          const updatedPurchasedCourses = purchasedCourses.map((coursep) => {
+            if (coursep.courseId === courseId) {
+              console.log('matched course :', coursep);
+              // Update the sections array in the purchasedCourse object
+              const updatedSections = coursep.sections.map((section) => {
+                // Update the properties of the section object as needed
+                // ... Your logic to update sections ...
+                return {
+                  ...section,
+                  // Add additional properties or modify existing properties as needed
+                };
+              });
+
+              return {
+                ...coursep,
+                sections: updatedSections,
+              };
+            }
+
+            return coursep;
+          });
+
+          // Update the student document with the modified purchasedCourses array
+          const studentRef = doc(db, 'student', doc.id);
+          updates.push(
+            updateDoc(studentRef, {
+              purchasedCourses: updatedPurchasedCourses,
+            })
+          );
+        });
+
+        // Execute all the update operations in parallel
+        await Promise.all(updates);
       } else {
         throw new Error('Course not found.');
       }

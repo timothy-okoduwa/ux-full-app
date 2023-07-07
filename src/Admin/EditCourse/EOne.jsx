@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  getDoc,
+  doc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+  collection,
+} from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -23,11 +31,11 @@ const EOne = ({ step, setStep, courseId }) => {
       try {
         const docRef = doc(db, 'Admin', auth?.currentUser?.uid);
         const docSnap = await getDoc(docRef);
-        console.log('docSnap:', docSnap);
+        // console.log('docSnap:', docSnap);
         const adminData = docSnap.data();
-        console.log('adminData:', adminData);
+        // console.log('adminData:', adminData);
         const allCourses = adminData.Allcourses || {};
-        console.log('allcourses :', allCourses);
+        // console.log('allcourses :', allCourses);
         let selectedCourse = null;
 
         // Iterate over each array in allCourses
@@ -93,6 +101,46 @@ const EOne = ({ step, setStep, courseId }) => {
       await updateDoc(docRef, { Allcourses: allCourses });
       // show success message
       // navigate('/dashboard');
+
+      // Search the student collection for documents
+      const studentCollectionRef = collection(db, 'student');
+      const studentQuery = query(studentCollectionRef);
+      const studentDocsSnap = await getDocs(studentQuery);
+
+      // Iterate over the student documents and update purchasedCourses
+      const updates = [];
+      const courseUpdates = {
+        nameOfCourse: course.nameOfCourse,
+        price: course.price,
+        Duration: course.Duration,
+        previewVideo: course.previewVideo,
+        category: course.category,
+        courseDescription: course.courseDescription,
+      };
+
+      studentDocsSnap.forEach((studentDoc) => {
+        const studentData = studentDoc.data();
+        const purchasedCourses = studentData.purchasedCourses;
+
+        // Update the purchasedCourses array if the courseId matches
+        const updatedPurchasedCourses = purchasedCourses.map((courseP) => {
+          if (courseP.courseId === courseId) {
+            // Update the courseP information
+            console.log(courseP);
+            return { ...courseP, ...courseUpdates };
+          }
+          return courseP;
+        });
+
+        updates.push(
+          updateDoc(studentDoc.ref, {
+            purchasedCourses: updatedPurchasedCourses,
+          })
+        );
+      });
+
+      // Update the student documents with the updated purchasedCourses
+      await Promise.all(updates);
     } catch (error) {
       console.error(error);
       // show error message
@@ -105,7 +153,7 @@ const EOne = ({ step, setStep, courseId }) => {
   if (!course) {
     return null;
   }
-  console.log('course:', course);
+  // console.log('course:', course);
 
   return (
     <div>

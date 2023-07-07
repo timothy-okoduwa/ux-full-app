@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  getDoc,
+  doc,
+  updateDoc,
+  getDocs,
+  collection,
+} from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import Typography from '@mui/material/Typography';
 import { MdOutlineCancel } from 'react-icons/md';
@@ -151,6 +157,23 @@ const ETree = ({ courseId }) => {
       await updateDoc(docRef, { Allcourses: allCourses });
       // show success message
       // navigate('/dashboard');
+
+      const studentCollectionRef = collection(db, 'student');
+      const studentQuerySnapshot = await getDocs(studentCollectionRef);
+
+      studentQuerySnapshot.forEach((studentDoc) => {
+        const studentData = studentDoc.data();
+        const purchasedCourses = studentData.purchasedCourses;
+
+        purchasedCourses.forEach((courseP, index) => {
+          if (courseP.courseId === courseId) {
+            const updatedCourseP = { ...courseP, ...course };
+            purchasedCourses[index] = updatedCourseP;
+          }
+        });
+
+        updateDoc(studentDoc.ref, { purchasedCourses });
+      });
     } catch (error) {
       console.error(error);
       // show error message

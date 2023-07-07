@@ -5,11 +5,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import t from '../images/TEXT.png';
 import g from '../images/gyg.png';
-import { Link, useLocation } from 'react-router-dom';
-import { onSnapshot, doc } from 'firebase/firestore';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { onSnapshot, doc, updateDoc } from 'firebase/firestore';
 import { db, auth } from '../../../firebase';
-
+// import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [user, setUser] = useState(null);
   const isAuthenticated = auth.currentUser;
@@ -34,6 +35,19 @@ const NavBar = () => {
       }
     };
   }, [isAuthenticated]);
+
+  const handleLogOut = async () => {
+    if (user) {
+      const studentDocRef = doc(db, 'student', auth?.currentUser?.uid);
+      await updateDoc(studentDocRef, { isOnLine: false });
+    }
+
+    // Clear the userRole from local storage
+    localStorage.setItem('userRole', '');
+
+    auth.signOut();
+    navigate('/');
+  };
 
   const hideAllHeader =
     location.pathname === '/signup' ||
@@ -97,6 +111,11 @@ const NavBar = () => {
                           )}
                         </div>
                       </Link>
+                    )}
+                    {(isAuthenticated || userRole === 'admin') && (
+                      <div className="emb" onClick={handleLogOut}>
+                        Log out
+                      </div>
                     )}
                   </Nav>
                 </div>

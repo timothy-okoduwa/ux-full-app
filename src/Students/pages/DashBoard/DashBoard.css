@@ -13,6 +13,7 @@
   background-color: rgb(232, 232, 232);
   border-radius: 50%;
   margin-right: 30px;
+  object-fit: cover;
 }
 .welcom {
   font-family: 'Manrope';
@@ -39,24 +40,11 @@
   border: none;
   padding-left: 20px;
 }
-@media (max-width: 991px) {
-  .ayh {
-    position: fixed;
-    top: 77px;
-    left: -330px;
-    /* width: 200px; */
-    height: 100vh;
-    background-color: rgb(0, 0, 0);
-    padding-bottom: 20px;
-    transition: left 0.3s ease-in-out;
-  }
-  
-  .ayh.show {
-    left: 0;
-  }
-}
-@media screen and (max-width: 991px) {
 
+@media screen and (max-width: 991px) {
+  .compoiu {
+    display: none !important;
+  }
   .civil {
     width: 100% !important;
     height: 150px;
@@ -206,43 +194,7 @@
   align-items: center;
   cursor: pointer;
 }
-.CoursesCourses {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-margin-left: 10px;
-  color: #ffffff;
-}
-.produces-result {
-  background-color: black !important;
-  color: white !important;
-}
-.barrien {
-  padding-top: 30px !important;
-  background-color: #191919 !important;
-  /* border-radius: 9px !important; */
-}
-.influence {
-  margin-right: 13px;
-  font-size: 22px;
-  color: #ffffff;
-  opacity: 0.5;
-}
-.crty {
-  /* background-color: red; */
-  display: flex;
-  align-items: center;
-  margin-bottom: 18px;
-  cursor: pointer;
-}
-.intto {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  color: #ffffff;
-}
+
 .desde {
   font-family: 'Manrope';
   font-style: normal;
@@ -264,108 +216,83 @@ margin-left: 10px;
 }
 .loinuhy {
   margin-top: 49px;
-padding-top: 40px;
-padding-bottom: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
   background: #191919;
 }
-.cdcd{
+.cdcd {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 800;
-font-size: 24px;
-color: #FFFFFF;
-
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  color: #ffffff;
 }
-.ayh{
-  width: 280px ;
-z-index: 1;
-  padding-bottom: 20px;
+.ayh22 {
+  width: 280px !important;
+  z-index: 1;
+  /* padding-bottom: 20px; */
 }
-.njuyh{
+.njuyh {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-color: #FFFFFF;
-opacity: 0.5;
-margin-top: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  opacity: 0.5;
+  margin-top: 20px;
 }
-.about{
+.about {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 800;
-font-size: 24px;
-margin-top: 22px;
-color: #FFFFFF;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  margin-top: 22px;
+  color: #ffffff;
 }
-.rgnfd{
+.rgnfd {
   display: flex;
   /* background-color:red ; */
   justify-content: center;
 }
-.bubuf{
-  background: #ffffff;
- margin-left: 215px;
- outline: none;
- border: none;
- height: 40px;
- width: 40px;
- border-radius: 50%;
- font-size: 25px;
- display: flex;
- justify-content: center;
- align-items: center;
-}
-.nity{
-  /* background-color: red; */
-  display: flex;
-  justify-content: space-between;
-}
-@media screen and (min-width:992px){
-.bubuf{
 
- display: none;
-}
-}
-
-.whatsde{
+.whatsde {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-color: #FFFFFF;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffffff;
 
-/* display: flex;
+  /* display: flex;
 justify-content: center;
 align-items: center; */
 }
-.flott{
-border-bottom: 2.5px solid #FF4703 !important;
-height: 40px;
-cursor: pointer;
-width: fit-content;
-text-align: center;
+.flott {
+  border-bottom: 2.5px solid #ff4703 !important;
+  height: 40px;
+  cursor: pointer;
+  width: fit-content;
+  text-align: center;
 }
-.flottee{
+.flottee {
   /* border-bottom: 2.5px solid #FF4703 !important; */
-height: 40px;
-cursor: pointer;
-width: fit-content;
-text-align: center;
+  height: 40px;
+  cursor: pointer;
+  width: fit-content;
+  text-align: center;
 }
-.my-own{
-  margin-top: 40px;
-
+.my-own {
+  /* margin-top: 40px; */
+  width: 100%;
 }
-.wiuy{
+.wiuy {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-margin-bottom: 20px;
-color: #FFFFFF;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ffffff;
 
-opacity: 0.5;
+  opacity: 0.5;
 }
 .hiderr {
   display: none;
@@ -373,20 +300,106 @@ opacity: 0.5;
 .hiderr2 {
   display: none;
 }
-.yhyhyh{
+.yhyhyh {
   margin-top: 90px;
 }
-.celeb{
+.celeb {
   display: flex;
   /* background-color: red; */
   margin-top: 20px;
- justify-content: space-between;
+  justify-content: space-between;
 }
-.azul{
-   font-family: 'Manrope';
+.azul {
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   color: #ffffff;
   cursor: pointer;
+}
+.wsisisi2 {
+  /* background-color: red; */
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+}
+.linearr2 {
+  width: 225px;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12.4732px 12.4732px 0 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* margin-right: 24px; */
+}
+.heart_flow {
+  width: 225px;
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 12.4732px 12.4732px !important;
+  align-items: center;
+  background: #191919;
+  height: 50px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+}
+.change22 {
+  padding-bottom: 50px;
+  /* border-radius: 12.4732px; */
+  width: 225px;
+  height: 300px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(55, 55, 55, 0) 46.43%,
+    #2f2f2f 98.33%
+  );
+}
+@media screen and (min-width: 992px) {
+  .vnvnvnf {
+    display: none !important;
+  }
+}
+.whooo {
+  display: flex;
+  /* background-color: blue; */
+  align-items: center;
+}
+.tutor_image {
+  background-color: #191919;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.extara {
+  color: var(--white, #fff);
+  font-family: Manrope;
+  font-size: 14.988px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+}
+.description {
+  opacity: 0.5;
+  color: var(--white, #fff);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  margin-top: 30px;
+  /* background-color: red; */
+  width: 100%;
 }

@@ -116,7 +116,7 @@ function AppContent() {
           }
         />
         <Route
-          path="/start-watching"
+          path="/start-watching/:courseId"
           element={
             <ProtectedRoute>
               <StartWatching />
