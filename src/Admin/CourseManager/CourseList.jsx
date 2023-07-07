@@ -141,16 +141,16 @@ const CourseList = () => {
                           .filter((category) => {
                             if (selectedCategory) {
                               return (
-                                Object.values(category).some((course) =>
+                                Object?.values(category)?.some((course) =>
                                   course.nameOfCourse
                                     .toLowerCase()
-                                    .includes(searchQuery.toLowerCase())
+                                    .includes(searchQuery?.toLowerCase())
                                 ) &&
                                 category[0]?.category?.toLowerCase() ===
-                                  selectedCategory.toLowerCase()
+                                  selectedCategory?.toLowerCase()
                               );
                             } else {
-                              return Object.values(category).some((course) =>
+                              return Object?.values(category)?.some((course) =>
                                 course.nameOfCourse
                                   .toLowerCase()
                                   .includes(searchQuery.toLowerCase())
@@ -158,7 +158,7 @@ const CourseList = () => {
                             }
                           })
                           .map((category) =>
-                            Object.values(category).map((course) => (
+                            Object?.values(category)?.map((course) => (
                               <tr className="mt-3" key={course.courseId}>
                                 <td className="trtr user-name">
                                   {course.nameOfCourse}
@@ -172,8 +172,8 @@ const CourseList = () => {
                                     ?.toLocaleDateString()}
                                 </td>
                                 <td className="trtr prices">
-                                  {course.sections.length}{' '}
-                                  {course.sections.length > 1
+                                  {course?.sections?.length}{' '}
+                                  {course?.sections?.length > 1
                                     ? 'sections'
                                     : 'section'}
                                 </td>

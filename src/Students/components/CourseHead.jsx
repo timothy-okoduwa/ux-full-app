@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+// import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 const CourseHead = () => {
   return (
     <div>
@@ -17,9 +17,7 @@ const CourseHead = () => {
             </div>
             <div>
               <div className="d-flex justify-content-center mt-4">
-                <button className="all">
-                  All categories <MdOutlineKeyboardArrowDown />{' '}
-                </button>
+                {/* <button className="all">All categories </button> */}
               </div>
             </div>
           </div>

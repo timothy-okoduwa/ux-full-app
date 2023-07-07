@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import a from './images/gyg.png';
 import { collection, doc, getDoc, updateDoc } from 'firebase/firestore';
- import { ToastContainer, toast } from 'react-toastify';
- import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   ref,
   uploadBytes,
@@ -28,7 +29,8 @@ const PersonalInfo = () => {
   });
   const { email, loading } = studentInfo;
   const [selectedImage, setSelectedImage] = useState(null);
-   const [avatarURL, setAvatarURL] = useState('');
+  const [avatarURL, setAvatarURL] = useState('');
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchStudentInfo = async () => {
       const studentCollection = collection(db, 'student');
@@ -79,6 +81,7 @@ const PersonalInfo = () => {
     }
 
     setStudentInfo({ ...studentInfo, loading: false });
+    navigate('/dashboard');
   };
   useEffect(() => {
     // Fetch the avatar URL from the document on initial load
@@ -124,25 +127,25 @@ const PersonalInfo = () => {
         });
 
         toast.success('🎊 Image Uploaded ', {
-          position: 'top-left',
+          position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: 0.1,
+          progress: undefined,
           theme: 'light',
-        });;
+        });
         setAvatarURL(downloadURL);
       } catch (error) {
         toast.error(`😞 Error uploading image: ${error}`, {
-          position: 'top-left',
+          position: 'top-center',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: 0.1,
+          progress: undefined,
           theme: 'light',
         });
       }

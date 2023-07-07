@@ -418,6 +418,20 @@
   color: #ffffff;
   text-align: center !important;
 }
+.oops-message2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 90px;
+  margin-top: 20px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  color: #ffffff;
+  text-align: center !important;
+}
 .bvhvbh {
   height: 200px;
   width: 200px;
