@@ -12,7 +12,7 @@ const MyPurchasedCourse = ({ user, searchQuery, filteredCourses }) => {
         </div>
         <div>
           <div className="row mt-5">
-            {courses.length === 0 ? (
+            {courses?.length === 0 ? (
               <div className="col-12">
                 <div className="oops-message2">
                   <div className="bvhvbh">
@@ -22,23 +22,23 @@ const MyPurchasedCourse = ({ user, searchQuery, filteredCourses }) => {
                 </div>
               </div>
             ) : (
-              courses.map((course) => (
+              courses?.map((course) => (
                 <div className="col-12 col-lg-3 mb-5">
                   <div className="wsisisi2">
                     <div
                       className="linearr2"
                       style={{
-                        backgroundImage: `url(${course.thumbnailURL})`,
+                        backgroundImage: `url(${course?.thumbnailURL})`,
                       }}
                     >
                       <div className="change22">
-                        <div className="anita">{course.tutorName}</div>
-                        <div className="ux">{course.nameOfCourse}</div>
-                        <div className="hour">{course.Duration}</div>
+                        <div className="anita">{course?.tutorName}</div>
+                        <div className="ux">{course?.nameOfCourse}</div>
+                        <div className="hour">{course?.Duration}</div>
                       </div>
                     </div>
                     <Link
-                      to={`/start-watching/${course.courseId}`}
+                      to={`/start-watching/${course?.courseId}`}
                       style={{ textDecoration: 'none' }}
                     >
                       <div className="heart_flow">Continue Learning</div>

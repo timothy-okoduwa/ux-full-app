@@ -25,7 +25,7 @@ const AvailableCourses = () => {
         }, []);
 
         // Set the courses state with the retrieved array
-        setCourses(allCourses);
+        setCourses(allCourses.slice(0, 2));
       }
     };
 
@@ -92,7 +92,7 @@ const AvailableCourses = () => {
 
           <div className="flex-up" ref={scrl} onScroll={scrollCheck}>
             <>
-              {courses.slice(0, 4).map((category) =>
+              {courses?.map((category) =>
                 Object.values(category).map((course) => (
                   <Link
                     to={`/course-preview/${course.courseId}`}
