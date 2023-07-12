@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Alert from '@mui/material/Alert';
+import { IoIosWarning } from 'react-icons/io';
 import CircularProgress from '@mui/material/CircularProgress';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../firebase';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 const SignUpFunction = () => {
   const navigate = useNavigate();
+  const [showError, setShowError] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [data, setData] = useState({
     fullName: '',
     email: '',
@@ -31,8 +34,13 @@ const SignUpFunction = () => {
   };
   const createUserAccount = async () => {
     setData({ ...data, error: null, loading: true });
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword) {
       setData({ ...data, error: 'All fields are required' });
+      return;
+    }
+    if (password !== confirmPassword) {
+      setData({ ...data, error: 'Password and confirm password do not match' });
+      return;
     }
     try {
       const { user } = await createUserWithEmailAndPassword(
@@ -50,6 +58,7 @@ const SignUpFunction = () => {
         confirmPassword: confirmPassword,
         isOnLine: isOnLine,
       });
+      setShowSuccessMessage(true);
       navigate('/dashboard');
       localStorage.setItem('userRole', 'student');
       setData({
@@ -89,7 +98,7 @@ const SignUpFunction = () => {
         case 'auth/email-already-in-use':
           setData({
             ...data,
-            error: 'This email is already used by an admin. ',
+            error: 'This email is already used by a student. ',
             loading: false,
           });
           break;
@@ -115,16 +124,47 @@ const SignUpFunction = () => {
       }
     }
   };
+  useEffect(() => {
+    // Show the error message
+    setShowError(true);
+
+    // Set a timer to hide the error message after 5 seconds
+    const timer = setTimeout(() => {
+      setShowError(false);
+    }, 6000);
+
+    if (error) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (showSuccessMessage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Clean up the timer when the component is unmounted or when the error changes
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [error, showSuccessMessage]);
   return (
     <div>
       <div className="create">Create an account</div>
       <div className="mt-4">
         {error ? (
-          <Alert severity="error" className="fun">
+          <div className={`fun ${showError ? 'show' : 'hide'}`}>
+            <span className="ivon">
+              <IoIosWarning />
+            </span>{' '}
             {error}
-          </Alert>
+          </div>
         ) : null}
-
+        {showSuccessMessage && (
+          <div className="fun2">
+            <span className="ivon">
+              <BsFillCheckCircleFill />
+            </span>{' '}
+            You have successfully signed up.
+          </div>
+        )}
         <div className="mt-5">
           <div className="full">Fullname</div>
           <input
@@ -182,7 +222,9 @@ const SignUpFunction = () => {
             <button
               className="ssif"
               onClick={createUserAccount}
-              disabled={loading || !fullName || !email || !password}
+              disabled={
+                loading || !fullName || !email || !password || !confirmPassword
+              }
             >
               {' '}
               {loading ? (
@@ -190,7 +232,7 @@ const SignUpFunction = () => {
                   style={{ color: 'white', height: '27px', width: '27px' }}
                 />
               ) : (
-                'sign up'
+                'Sign up'
               )}
             </button>
           </div>

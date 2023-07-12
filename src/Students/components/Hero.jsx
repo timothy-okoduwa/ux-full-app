@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -16,7 +17,9 @@ const Hero = () => {
                 <br /> serves businesses from experts
               </div>
               <div className="anoy">
-                <button className="Browse">Browse Courses</button>
+                <Link to="/course" style={{ textDecoration: 'none' }}>
+                  <button className="Browse">Browse Courses</button>
+                </Link>
               </div>
             </div>
             <div className="col-12 col-lg-4">

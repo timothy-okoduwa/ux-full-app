@@ -25,7 +25,7 @@ const AvailableCourses = () => {
         }, []);
 
         // Set the courses state with the retrieved array
-        setCourses(allCourses.slice(0, 2));
+        setCourses(allCourses);
       }
     };
 
@@ -92,24 +92,28 @@ const AvailableCourses = () => {
 
           <div className="flex-up" ref={scrl} onScroll={scrollCheck}>
             <>
-              {courses?.map((category) =>
-                Object.values(category).map((course) => (
-                  <Link
-                    to={`/course-preview/${course.courseId}`}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <div
-                      className="linear"
-                      style={{ backgroundImage: `url(${course.thumbnailURL})` }}
+              {courses.slice(0, 5).map((category) =>
+                Object.values(category)
+                  .slice(0, 3)
+                  .map((course) => (
+                    <Link
+                      to={`/course-preview/${course.courseId}`}
+                      style={{ textDecoration: 'none' }}
                     >
-                      <div className="change">
-                        <div className="anita">{course.tutorName}</div>
-                        <div className="ux">{course.nameOfCourse}</div>
-                        <div className="hour">{course.Duration}</div>
-                      </div>
-                    </div>{' '}
-                  </Link>
-                ))
+                      <div
+                        className="linear"
+                        style={{
+                          backgroundImage: `url(${course.thumbnailURL})`,
+                        }}
+                      >
+                        <div className="change">
+                          <div className="anita">{course.tutorName}</div>
+                          <div className="ux">{course.nameOfCourse}</div>
+                          <div className="hour">{course.Duration}</div>
+                        </div>
+                      </div>{' '}
+                    </Link>
+                  ))
               )}
             </>
           </div>

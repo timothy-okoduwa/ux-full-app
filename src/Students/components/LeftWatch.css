@@ -76,15 +76,17 @@
   /* width: 100vw !important; */
 }
 .barrien {
-  padding-top: 30px !important;
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
   background-color: #191919 !important;
   /* border-radius: 9px !important; */
+  /* margin-top: 20px; */
 }
 .crty {
-  /* background-color: red; */
+  /* background-color: rgb(0, 255, 4); */
   display: flex;
   align-items: center;
-  margin-bottom: 18px;
+  width: 100%;
   cursor: pointer;
 }
 .influence {
@@ -100,4 +102,19 @@
   font-weight: 400;
   font-size: 18px;
   color: #ffffff;
+}
+.helloe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+  cursor: pointer;
+}
+.lady {
+  font-size: 20px !important;
+  color: #ffffff !important;
+}
+.watched {
+  color: var(--dark-grey, #737373);
 }

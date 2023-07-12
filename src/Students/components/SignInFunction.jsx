@@ -108,12 +108,18 @@ const SignInFunction = () => {
     const timer = setTimeout(() => {
       setShowError(false);
     }, 5000);
+    if (error) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (showSuccessMessage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     // Clean up the timer when the component is unmounted or when the error changes
     return () => {
       clearTimeout(timer);
     };
-  }, [error]);
+  }, [error, showSuccessMessage]);
   const move = () => {
     navigate('/forget');
   };

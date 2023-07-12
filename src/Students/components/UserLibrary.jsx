@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import f from './images/gyg.png';
-import { CiSearch } from 'react-icons/ci';
+
 import { RiAwardFill } from 'react-icons/ri';
 import { CgNotes } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import MyPurchasedCourse from './MyPurchasedCourse';
 const UserLibrary = ({ user, handleLogOut }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCourses, setFilteredCourses] = useState([]);
-  const purchasedCourseRef = useRef(null);
+  // const purchasedCourseRef = useRef(null);
   const handleSearch = () => {
     // Filter the purchased courses based on the search query
     const filteredCourses = user?.purchasedCourses?.filter((course) =>
@@ -17,11 +17,6 @@ const UserLibrary = ({ user, handleLogOut }) => {
 
     // Update the filtered courses state
     setFilteredCourses(filteredCourses);
-    purchasedCourseRef.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    });
   };
 
   const navigate = useNavigate();
@@ -34,7 +29,7 @@ const UserLibrary = ({ user, handleLogOut }) => {
       <div>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-5 mb-5">
+            <div className="col-12 col-lg-5  mt-4">
               <div className="round">
                 <div>
                   <div className="fav">
@@ -54,24 +49,7 @@ const UserLibrary = ({ user, handleLogOut }) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-7">
-              <div className="literally">
-                <input
-                  type="text"
-                  className="d-shoes"
-                  placeholder="Search Courses"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <div
-                  className="nows"
-                  onClick={() => handleSearch()}
-                  disabled={!searchQuery}
-                >
-                  <CiSearch />
-                </div>
-              </div>
-            </div>
+            <div className="col-12 col-lg-7"></div>
           </div>
           <div className="menn">
             <div className="badgess">Badges</div>
@@ -84,7 +62,7 @@ const UserLibrary = ({ user, handleLogOut }) => {
                         <div>
                           <div className="coursesd">Course Completed</div>
                           <div className="numbers">
-                            0/{user?.purchasedCourses?.length}
+                            0/{user?.purchasedCourses?.length || 0}
                           </div>
                         </div>
                         <div>
@@ -103,7 +81,7 @@ const UserLibrary = ({ user, handleLogOut }) => {
                         <div>
                           <div className="coursesd">Course Purchased</div>
                           <div className="numbers">
-                            {user?.purchasedCourses?.length}
+                            {user?.purchasedCourses?.length || 0}
                           </div>
                         </div>
                         <div>
@@ -118,11 +96,13 @@ const UserLibrary = ({ user, handleLogOut }) => {
           </div>
         </div>
       </div>
-      <div ref={purchasedCourseRef}>
+      <div>
         <MyPurchasedCourse
           user={user}
           searchQuery={searchQuery}
           filteredCourses={filteredCourses}
+          setSearchQuery={setSearchQuery}
+          handleSearch={handleSearch}
         />
       </div>
     </>

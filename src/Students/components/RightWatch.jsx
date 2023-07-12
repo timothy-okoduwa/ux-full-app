@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import a from '../pages/images/pexels.mp4';
 import PropTypes from 'prop-types';
 // import CourseRequirement from './CourseRequirement';
-const RightWatch = ({ course, selectedSubVideo }) => {
+const RightWatch = ({ course, selectedSubVideo, updateIsWatched }) => {
   const [isMyOwnVisible, setIsMyOwnVisible] = useState(true);
   const [isInstructorVisible, setIsInstructorVisible] = useState(false);
   const [isRequirementVisible, setIsRequirementVisible] = useState(false);
@@ -24,7 +24,22 @@ const RightWatch = ({ course, selectedSubVideo }) => {
     setIsInstructorVisible(false);
     setIsRequirementVisible(!isRequirementVisible);
   };
+  const videoRef = useRef(null);
 
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    const handleVideoEnded = () => {
+      updateIsWatched();
+    };
+
+    videoElement.addEventListener('ended', handleVideoEnded);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      videoElement.removeEventListener('ended', handleVideoEnded);
+    };
+  }, [updateIsWatched]);
   return (
     <div>
       <div className="container mt-4">
@@ -33,6 +48,7 @@ const RightWatch = ({ course, selectedSubVideo }) => {
         <div>
           <div className="for-vidd">
             <video
+              ref={videoRef}
               src={selectedSubVideo}
               controls
               className="for-vidd"
@@ -232,5 +248,6 @@ const RightWatch = ({ course, selectedSubVideo }) => {
 RightWatch.propTypes = {
   course: PropTypes.object.isRequired,
   selectedSubVideo: PropTypes.string.isRequired,
+  updateIsWatched: PropTypes.func.isRequired,
 };
 export default RightWatch;

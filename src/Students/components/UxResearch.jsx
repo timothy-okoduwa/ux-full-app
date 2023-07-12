@@ -37,7 +37,7 @@ const UxResearch = () => {
             <div key={categoryName}>
               <div className="uxx">{categoryName}</div>
               <div className="row mt-5">
-                {categoryCourses?.map((course) => (
+                {categoryCourses?.slice(0, 8).map((course) => (
                   <div className="col-12 col-lg-3 mb-5" key={course.id}>
                     <div className="wsisisi">
                       <Link

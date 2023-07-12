@@ -1,102 +1,165 @@
-.hfhfhfh{
-    background-color: rgb(0, 0, 0);
-    padding-top: 100px;
-    padding-bottom: 70px;
+.hfhfhfh {
+  background-color: rgb(0, 0, 0);
+  padding-top: 100px;
+  padding-bottom: 70px;
 }
-.Settings{
-    font-family: 'Manrope';
-font-style: normal;
-font-weight: 800;
-font-size: 32px;
-color: #FFFFFF;
-margin-top: 47px;
+.Settings {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  color: #ffffff;
+  margin-top: 47px;
 }
-.upopo{
-    display: flex;
-    align-items: center;
+.upopo {
+  display: flex;
+  align-items: center;
 }
-.round-cheese{
-background-color: rgb(255, 255, 255);
-height: 70px;
-width: 70px;
-border-radius: 50%;
-object-fit: cover;
-margin-right: 30px;
+.round-cheese {
+  background-color: rgb(255, 255, 255);
+  height: 87px;
+  width: 87px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 30px;
 }
-.welcome{
-
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 23px;
-color: #FFFFFF;
+.welcome {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 23px;
+  color: #ffffff;
 }
-.pinfo{
-    font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-color: #FFFFFF;
-margin-top: 83px;
+.pinfo {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: #ffffff;
+  margin-top: 83px;
 }
-.ph{
-    font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-color: #FFFFFF;
+.ph {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffffff;
 }
-.alertd{
+.alertd {
+  background: #191919;
+  border-radius: 5px;
+  height: 60px;
+  width: 80%;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+  color: white;
+}
+.fhfhfhfh {
+  width: 165px;
+  height: 50px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+  background: #ff4703;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 991px) {
+  .alertd {
     background: #191919;
-border-radius: 5px;
-height: 60px;
-width: 80%;
-outline: none;
-border: none;
-padding-left: 20px;
-color: white;
-}
-.fhfhfhfh{
-    width: 165px;
-height: 50px;
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-text-align: center;
-color: #FFFFFF;
-background: #FF4703;
-border-radius: 5px;
-outline: none;
-border: none;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-@media screen and (max-width:991px){
-.alertd{
-    background: #191919;
-border-radius: 5px;
-height: 60px;
-width: 100%;
-outline: none;
-border: none;
-padding-left: 20px;
-color: white;
-}
-}
-.upim{
+    border-radius: 5px;
+    height: 60px;
+    width: 100%;
     outline: none;
     border: none;
-    height: 30px;
-    margin-top: 10px;
-    border-radius: 4px;
-    width: 140px;
-    font-family: 'Manrope';
+    padding-left: 20px;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color:#FF4703 ;
+  }
+}
+.upim {
+  outline: none;
+  border: none;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 4px;
+  width: 140px;
+  font-family: 'Manrope';
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #ff4703;
+}
+.Pers {
+  color: var(--white, #fff);
+
+  cursor: pointer;
+  font-family: Lato;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: fit-content;
+}
+.hands {
+  margin-right: 13px;
+}
+.Purr {
+  color: #fff;
+  font-family: Manrope;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.forever22 {
+  /* height: 509px; */
+  background: #000000;
+  border-radius: 10px;
+  border: 1px solid var(--text-colour, #333) !important;
+}
+.fanta22 {
+  /* margin-top: 30px; */
+  overflow-x: auto;
+}
+.trtr22 {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  white-space: nowrap;
+}
+.parana22 {
+  background: #191919;
+  color: #ffffff;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.suka {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+.nhyu {
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
+  height: 70px;
+}
+.jola {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }

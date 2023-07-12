@@ -6,12 +6,16 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { IoMdCheckmarkCircle } from 'react-icons/io';
 import '../components/LeftWatch.css';
 const LeftWatch = ({ course, onSelectSubVideo }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
-
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
+  };
+  const handleSubHeadingClick = (subHeading) => {
+    onSelectSubVideo(subHeading.subVideo);
+    toggleSidebar();
   };
 
   return (
@@ -30,28 +34,40 @@ const LeftWatch = ({ course, onSelectSubVideo }) => {
           <div className="mt-4">
             <div>
               {course?.sections?.map((section) => (
-                <div className="nvfhd">
+                <div className="nvfhd" key={section.heading}>
                   <Accordion className="produces-result">
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
-                      <Typography> {section.heading}</Typography>
+                      <Typography>{section.heading}</Typography>
                     </AccordionSummary>
                     <AccordionDetails className="barrien">
                       {section?.segment?.map((segmentt) => (
                         <Typography
-                          onClick={() => {
-                            onSelectSubVideo(segmentt.subVideo);
-                            toggleSidebar();
-                          }}
+                          onClick={() => handleSubHeadingClick(segmentt)}
+                          className="helloe"
+                          key={segmentt.subHeading}
                         >
-                          <div className="crty">
-                            <BsFillPlayCircleFill className="influence" />
-                            <span className="intto">
-                              {segmentt.subHeading}{' '}
+                          <div>
+                            <BsFillPlayCircleFill
+                              className={`influence ${
+                                segmentt.isWatched ? 'watched' : ''
+                              }`}
+                            />
+                            <span
+                              className={`intoo ${
+                                segmentt.isWatched ? 'watched' : ''
+                              }`}
+                            >
+                              {segmentt.subHeading}
                             </span>
+                          </div>
+                          <div>
+                            {segmentt.isWatched && (
+                              <IoMdCheckmarkCircle className="lady" />
+                            )}
                           </div>
                         </Typography>
                       ))}

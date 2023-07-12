@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
+import ReactPaginate from 'react-paginate';
 import { db } from '../../firebase';
 import o from './images/opps.png';
 const AllCourses = () => {
@@ -9,6 +10,7 @@ const AllCourses = () => {
   const initialCategoryName = searchParams.get('category');
   const [categoryName, setCategoryName] = useState(initialCategoryName);
   const [courses, setCourses] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryName);
   useEffect(() => {
     const fetchCourses = async () => {
@@ -46,6 +48,16 @@ const AllCourses = () => {
   };
 
   console.log('Courses:', courses);
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+  const itemsPerPage = 16;
+  const pageCount = Math.ceil((courses.length || 0) / itemsPerPage);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = courses?.slice(startIndex, endIndex) || [];
   return (
     <>
       <div className="linkee">
@@ -142,7 +154,7 @@ const AllCourses = () => {
                 </div>
               </div>
             ) : (
-              courses.map((course) => (
+              currentData.map((course) => (
                 <div className="col-12 col-lg-3 mb-5" key={course.id}>
                   <div className="wsisisi">
                     <Link
@@ -167,6 +179,23 @@ const AllCourses = () => {
               ))
             )}
           </div>
+        </div>
+        <div className="brobernard mt-3">
+          <ReactPaginate
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            containerClassName="pagination"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            activeClassName="active"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            previousLabel="<"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            nextLabel=">"
+            disabledClassName="disabledd"
+          />
         </div>
       </div>
     </>

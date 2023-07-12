@@ -82,7 +82,6 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
     setOpen2(false);
   };
 
-  
   const uploadAllLocicToFirebase = async () => {
     try {
       const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
@@ -100,6 +99,8 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
                 subHeading: content.subHeading,
                 subDuration: content.subDuration,
                 subVideo: content.subVideo,
+                isWatched: false,
+                isCompleted: false,
                 // Add other properties as needed
               };
             }
@@ -192,7 +193,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
                   {content.subVideo && (
                     <div className="video_tag">
                       <div className="video-player-wrapper">
-                        <div >
+                        <div>
                           <video
                             src={content.subVideo}
                             controls

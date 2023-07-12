@@ -3,7 +3,7 @@ import '../pages/SignPage/Sign.css';
 import p from '../pages/images/perdor.png';
 import { BsCheckAll } from 'react-icons/bs';
 import { usePaystackPayment } from 'react-paystack';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   collection,
   query,
@@ -13,6 +13,7 @@ import {
   updateDoc,
   getDoc,
   setDoc,
+  Timestamp,
 } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import Box from '@mui/material/Box';
@@ -33,7 +34,7 @@ const style = {
 const PurchaseCourse = () => {
   const { courseId } = useParams();
   const [course, setCourse] = useState(null);
-
+  const navigate = useNavigate();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
@@ -115,7 +116,10 @@ const PurchaseCourse = () => {
 
   const handleSuccessfulPayment = async (reference) => {
     // console.log(reference);
-    const purchasedCourse = { ...course };
+    const purchasedCourse = {
+      ...course,
+      datePurchased: Timestamp.fromDate(new Date()),
+    };
 
     try {
       // Get the student document reference
@@ -147,6 +151,7 @@ const PurchaseCourse = () => {
 
   const onSuccess = (reference) => {
     handleSuccessfulPayment(reference);
+    navigate('/dashboard');
   };
 
   const onClose = () => {
