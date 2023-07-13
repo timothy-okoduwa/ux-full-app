@@ -43,11 +43,14 @@ const PersTwo = () => {
                   <th scope="col" className="trtr22">
                     Course Name
                   </th>
-                  <th scope="col" className="trtr22">
+                  {/* <th scope="col" className="trtr22">
                     Tutor Name
-                  </th>
+                  </th> */}
                   <th scope="col" className="trtr22">
                     Date Purchased
+                  </th>
+                  <th scope="col" className="trtr22">
+                    Price
                   </th>
                   <th scope="col" className="trtr22">
                     Status
@@ -103,13 +106,19 @@ const PersTwo = () => {
                             : paid.nameOfCourse}
                         </div>
                       </td>
-                      <td className="trtr22 user-name">
+                      {/* <td className="trtr22 user-name">
                         <div className="nhyu">{paid.tutorName}</div>
-                      </td>
+                      </td> */}
                       <td className="trtr22 prices">
                         <div className="nhyu">
                           {' '}
                           {paid.datePurchased?.toDate()?.toLocaleDateString()}
+                        </div>
+                      </td>
+                      <td className="trtr22 prices">
+                        <div className="nhyu">
+                          {' '}
+                          ₦ {parseFloat(paid.price).toLocaleString()}
                         </div>
                       </td>
                       <td className="trtr22 prices">

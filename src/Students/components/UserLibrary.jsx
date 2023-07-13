@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import f from './images/gyg.png';
 
 import { RiAwardFill } from 'react-icons/ri';
 import { CgNotes } from 'react-icons/cg';
-import { useNavigate } from 'react-router-dom';
+
 import MyPurchasedCourse from './MyPurchasedCourse';
 const UserLibrary = ({ user, handleLogOut }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredCourses, setFilteredCourses] = useState([]);
+  const [completedCourseCount, setCompletedCourseCount] = useState(0);
   // const purchasedCourseRef = useRef(null);
+
+  useEffect(() => {
+    // Count the completed courses
+    const countCompletedCourses = () => {
+      const count = user?.purchasedCourses?.reduce((accumulator, course) => {
+        const allWatched = course.sections.every((section) =>
+          section.segment.every((segment) => segment.isWatched)
+        );
+        return accumulator + (allWatched ? 1 : 0);
+      }, 0);
+      setCompletedCourseCount(count);
+    };
+
+    countCompletedCourses();
+  }, [user?.purchasedCourses]);
+
   const handleSearch = () => {
     // Filter the purchased courses based on the search query
     const filteredCourses = user?.purchasedCourses?.filter((course) =>
@@ -17,11 +34,6 @@ const UserLibrary = ({ user, handleLogOut }) => {
 
     // Update the filtered courses state
     setFilteredCourses(filteredCourses);
-  };
-
-  const navigate = useNavigate();
-  const moce = () => {
-    navigate('/setting');
   };
 
   return user ? (
@@ -39,9 +51,9 @@ const UserLibrary = ({ user, handleLogOut }) => {
                 <div>
                   <div className="welcom">Welcome, {user?.fullName}</div>
                   <div className="celeb">
-                    <div className="edit" onClick={moce}>
+                    {/* <div className="edit" onClick={moce}>
                       Edit Profile
-                    </div>
+                    </div> */}
                     <div className="azul" onClick={handleLogOut}>
                       {/* Log Out */}
                     </div>
@@ -62,7 +74,8 @@ const UserLibrary = ({ user, handleLogOut }) => {
                         <div>
                           <div className="coursesd">Course Completed</div>
                           <div className="numbers">
-                            0/{user?.purchasedCourses?.length || 0}
+                            {completedCourseCount}/
+                            {user?.purchasedCourses?.length || 0}
                           </div>
                         </div>
                         <div>

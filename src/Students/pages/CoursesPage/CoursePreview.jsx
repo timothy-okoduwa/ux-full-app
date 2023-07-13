@@ -7,6 +7,7 @@ import RecommendedCourse from '../../components/RecomendedCourse';
 import { useParams } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';
+import AvailableCourses from '../../components/AvailableCourses';
 const CoursePreview = () => {
   const { courseId } = useParams();
   const [course, setCourse] = useState(null);
@@ -56,7 +57,7 @@ const CoursePreview = () => {
       <CourseDescriptionAndContent course={course} />
       <CourseRequirement course={course} />
       <DesignToFit />
-      <RecommendedCourse />
+      <AvailableCourses />
     </div>
   );
 };
