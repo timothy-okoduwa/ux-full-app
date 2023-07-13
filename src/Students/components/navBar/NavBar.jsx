@@ -190,7 +190,12 @@ const NavBar = () => {
 
                     {(!isAuthenticated || userRole === 'admin') && (
                       <Link to="/signin" style={{ textDecoration: 'none' }}>
-                        <div className="emb red">Login</div>
+                        <div className="emb33 ">Login</div>
+                      </Link>
+                    )}
+                    {(!isAuthenticated || userRole === 'admin') && (
+                      <Link to="/signup" style={{ textDecoration: 'none' }}>
+                        <div className="niboo22">Get Started</div>
                       </Link>
                     )}
 
