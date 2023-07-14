@@ -1,11 +1,11 @@
 .header-jam {
-  background:#000000;
+  background: #000000;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   width: 100vw;
-    z-index: 9999;
+  z-index: 9999;
 }
 .text-holder-header {
   display: flex;
@@ -18,26 +18,26 @@
   display: flex;
   justify-content: center;
   width: 275px;
-  border-right:  1px solid #514E4E;
+  border-right: 1px solid #514e4e;
 }
 
-
-.for-admin{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 15px;
-    font-family: 'Manrope';
+.for-admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   cursor: pointer;
   color: #e2dcdc;
+  width: 200px;
+  /* background-color: red; */
 }
 
 @media screen and (max-width: 966px) {
-
-  .juvinal{
+  .juvinal {
     display: flex !important;
     justify-content: center !important;
   }
@@ -56,7 +56,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100vw;
-      z-index: 999 !important;
+    z-index: 999 !important;
   }
   .sososos {
     margin-bottom: 110px;
@@ -84,15 +84,15 @@
   margin-top: 30px;
 }
 .link-name {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  color: #6D6D6D;
+  color: #6d6d6d;
   margin-left: 13px;
 }
 .color {
-  color: #6D6D6D;
+  color: #6d6d6d;
   font-size: 20px;
 }
 
@@ -103,11 +103,10 @@ font-family: 'Manrope';
   margin-left: 7px;
   cursor: pointer;
   width: 267px;
-
 }
 .active .height {
   background-color: #000000;
-  border-left: 2.10289px solid #FF4702;
+  border-left: 2.10289px solid #ff4702;
 }
 .active .link-name {
   color: #ffffff;
@@ -170,7 +169,7 @@ font-family: 'Manrope';
   /* width: 200px; */
 }
 .setup-guide-button {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -185,7 +184,7 @@ font-family: 'Manrope';
   margin-left: 40px;
 }
 .initials {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 13.3583px;
@@ -201,10 +200,10 @@ font-family: 'Manrope';
   margin-right: 10px;
 }
 .name-itself {
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
   color: #ffffff;
 }
 .Link {
@@ -219,7 +218,7 @@ font-size: 18px;
   flex-wrap: wrap;
 }
 .store-name {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -230,89 +229,88 @@ font-family: 'Manrope';
   text-decoration: none;
   outline: none !important;
   border: none !important;
-  font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 
 .pagination .active a {
   color: white;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 
 .pagination .disabledd a {
   color: gray;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 
 .pagination .active {
   color: #000000 !important;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 .pagination .active a {
   color: #ffffff;
   background: #000000;
   border-radius: 5px;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 .pagination .active a :hover {
   color: #ffffff;
   background: #000000;
   border-radius: 5px;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 .pagination .page-item:first-child .page-link {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
   margin-left: 10px;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 
 .pagination .page-item:last-child .page-link {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   margin-left: 10px;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
 
 .pagination .page-link:focus,
 .pagination .page-link:hover {
   margin-left: 10px;
-    font-family: 'Lexend'!important;
-font-style: normal !important;
-font-weight: 500 !important;
-font-size: 16px !important;
+  font-family: 'Lexend' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
 }
-
 
 .page-link {
   margin-left: 20px !important;
 }
 
 .preview-store-button {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -326,7 +324,7 @@ font-family: 'Manrope';
   border: none;
 }
 .preview-store-button2 {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -349,7 +347,7 @@ font-family: 'Manrope';
 }
 
 .download-folder {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -372,7 +370,7 @@ font-family: 'Manrope';
   margin-bottom: 15px;
 }
 .no-of-product {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16.8231px;
@@ -392,7 +390,7 @@ font-family: 'Manrope';
   color: #000000;
 }
 .number {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 25.2346px;
@@ -408,7 +406,7 @@ font-family: 'Manrope';
 }
 
 .percent {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 13.6693px;
@@ -425,21 +423,21 @@ font-family: 'Manrope';
   border-bottom: 1.05144px solid #e8e8e8;
 }
 .bold-name-setup {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   color: #000000;
 }
 .guide-line-talks {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   color: #777777;
 }
 .steps-to-guide {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -457,7 +455,7 @@ font-family: 'Manrope';
   margin-right: 10px;
 }
 .skip-guideline-button {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 300;
   font-size: 16.8231px;
@@ -496,7 +494,7 @@ font-family: 'Manrope';
   width: 10%;
 }
 .product-list-empty {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -504,7 +502,7 @@ font-family: 'Manrope';
   margin-top: 10px;
 }
 .product-list-guide {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -512,7 +510,7 @@ font-family: 'Manrope';
   margin-top: 10px;
 }
 .add-product-button {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -526,7 +524,7 @@ font-family: 'Manrope';
   border: none;
 }
 .add-product-button2 {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -545,7 +543,7 @@ font-family: 'Manrope';
   opacity: 0.4;
 }
 .see-all {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -575,7 +573,7 @@ font-family: 'Manrope';
 }
 .mover {
   margin-right: 30px;
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14.4397px;
@@ -604,21 +602,21 @@ font-family: 'Manrope';
 }
 
 .too-many {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14.6347px;
   color: #000000;
 }
 .too-manyll {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   color: #000000;
 }
 .too-many2 {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 12.6347px;
@@ -644,7 +642,7 @@ font-family: 'Manrope';
   margin-left: 20px;
   /* white-space: nowrap; */
   cursor: pointer;
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -668,7 +666,7 @@ font-family: 'Manrope';
   margin-left: 20px;
   /* white-space: nowrap; */
   cursor: pointer;
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -685,7 +683,7 @@ font-family: 'Manrope';
   /* white-space: nowrap; */
   padding: 10px;
   cursor: pointer;
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -699,24 +697,24 @@ font-family: 'Manrope';
   border-radius: 4.5124px;
   transition: all 0.3s ease;
 }
-.poshdk{
-    background-color: red;
-    width: 100%;
+.poshdk {
+  background-color: red;
+  width: 100%;
 }
 
 @media screen and (min-width: 967px) {
-       .for-admin{
+  .for-admin {
     display: none !important;
     justify-content: center;
     align-items: center;
     margin-right: 15px;
     font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  cursor: pointer;
-  color: #e2dcdc;
-}
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    color: #e2dcdc;
+  }
   .dont-min-show {
     display: none;
   }
@@ -741,7 +739,7 @@ font-family: 'Manrope';
   padding-bottom: 30px;
 }
 .textd {
-  color:#6D6D6D;
+  color: #6d6d6d;
   font-size: 12px;
 }
 .truss {
@@ -750,7 +748,7 @@ font-family: 'Manrope';
 }
 
 .color22 {
-  color: #6D6D6D;
+  color: #6d6d6d;
   font-size: 20px;
 }
 .active .color22 {
@@ -775,7 +773,7 @@ font-family: 'Manrope';
 }
 
 .link-name11 {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -818,7 +816,7 @@ font-family: 'Manrope';
   justify-content: space-between;
   padding-top: 19px;
 }
-.smth{
+.smth {
   cursor: pointer;
 }
 .fliptot {
@@ -826,93 +824,92 @@ font-family: 'Manrope';
   justify-content: space-between;
 }
 .name-ed {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 17px;
   color: #000000;
 }
 .currency {
-font-family: 'Manrope';
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-size: 19px;
   color: #000000;
 }
-.letsse{
+.letsse {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
-.letsse2{
+.letsse2 {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
-.alert{
- margin-left: 10px;
- margin-right: 10px;
-height: 56px;
-margin-top: 13px !important;
-background: #FFF5EA !important;
-border: 1px solid #FFC972 !important;
-border-radius: 5px !important;
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #302F2F;
+.alert {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 56px;
+  margin-top: 13px !important;
+  background: #fff5ea !important;
+  border: 1px solid #ffc972 !important;
+  border-radius: 5px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #302f2f;
 }
-.alert2{
-
-/* height: 56px; */
-padding: 9px;
-margin-top: 13px !important;
-background: #FFF5EA !important;
-border: 1px solid #FFC972 !important;
-border-radius: 5px !important;
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #302F2F;
+.alert2 {
+  /* height: 56px; */
+  padding: 9px;
+  margin-top: 13px !important;
+  background: #fff5ea !important;
+  border: 1px solid #ffc972 !important;
+  border-radius: 5px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #302f2f;
 }
-.alert33{
-margin-left: 9px;
-margin-right: 9px;
-/* height: 56px; */
-padding: 9px;
-margin-top: 13px !important;
-background: #eaffef !important;
-border: 1px solid #72ff93 !important;
-border-radius: 5px !important;
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-family: 'Lexend';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #302F2F;
+.alert33 {
+  margin-left: 9px;
+  margin-right: 9px;
+  /* height: 56px; */
+  padding: 9px;
+  margin-top: 13px !important;
+  background: #eaffef !important;
+  border: 1px solid #72ff93 !important;
+  border-radius: 5px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #302f2f;
 }
-.cann{
+.cann {
   cursor: pointer;
-  color: #A7A7A7;
+  color: #a7a7a7;
   font-size: 25px;
 }
-.loik{
-color: #25D366;
- font-size: 25px;
+.loik {
+  color: #25d366;
+  font-size: 25px;
 }
-.loik2{
-color: #FFAA2B;
- font-size: 25px;
+.loik2 {
+  color: #ffaa2b;
+  font-size: 25px;
 }

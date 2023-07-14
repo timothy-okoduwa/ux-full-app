@@ -31,7 +31,7 @@ const AvailableCourses = () => {
 
     fetchCourses();
   }, []);
-  console.log(courses);
+  // console.log(courses);
   //Slide click
   const slide = (shift) => {
     scrl.current.scrollLeft += shift;

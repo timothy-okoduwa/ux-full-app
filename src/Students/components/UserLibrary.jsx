@@ -74,7 +74,7 @@ const UserLibrary = ({ user, handleLogOut }) => {
                         <div>
                           <div className="coursesd">Course Completed</div>
                           <div className="numbers">
-                            {completedCourseCount}/
+                            {completedCourseCount || 0}/
                             {user?.purchasedCourses?.length || 0}
                           </div>
                         </div>

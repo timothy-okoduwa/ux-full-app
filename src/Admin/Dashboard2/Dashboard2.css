@@ -45,66 +45,67 @@
     background-color: rgb(0, 0, 0);
   }
 }
-.table{
-    border-bottom: 1px solid rgba(135, 135, 135, 0.091) !important;
+.table {
+  border-bottom: 1px solid rgba(135, 135, 135, 0.091) !important;
 }
 .forever {
   /* height: 509px; */
   background: #181818;
   border-radius: 10px;
-
 }
-.rec{
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-color: #FFFFFF;
+.rec {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
 }
-.seeall{
-    font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-color: #777777;
+.seeall {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #777777;
+  cursor: pointer;
 }
-.grew-up{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 55px;
-      padding-left: 20px !important;
+.grew-up {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 55px;
+  padding-left: 20px !important;
   padding-right: 20px !important;
 }
-.fanta{
-    margin-top: 30px;
-      overflow-x: auto;
+.fanta {
+  margin-top: 30px;
+  overflow-x: auto;
 }
-.parana{
-background: #262626;
-border-bottom: 0.962517px solid #464343;
-color: white;
+.parana {
+  background: #262626;
+  border-bottom: 0.962517px solid #464343;
+  color: white;
 
-font-family: 'Manrope';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
 }
-.trtr{
-    padding-top: 18px !important;
-    padding-bottom: 18px !important;
-padding-left: 35px !important;
+.trtr {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+  padding-left: 35px !important;
+  white-space: nowrap;
 }
-.user-name{
-    font-family: 'Manrope';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-color: #FFFFFF;
+.user-name {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
 }
-.prices{
- font-family: 'Manrope';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-color: #FFFFFF;
+.prices {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
 }

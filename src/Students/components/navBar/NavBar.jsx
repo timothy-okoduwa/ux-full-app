@@ -148,6 +148,7 @@ const NavBar = () => {
     location.pathname === '/uploads' ||
     location.pathname === '/chh' ||
     location.pathname === '/admin-signup' ||
+    location.pathname === '/coming-soon' ||
     location.pathname === '/admin-signin' ||
     location.pathname === '/courses' ||
     location.pathname.startsWith('/edit') ||

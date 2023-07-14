@@ -3,7 +3,6 @@ import CourseCard from '../../components/CourseCard';
 import CourseDescriptionAndContent from '../../components/CourseDescriptionAndContent';
 import CourseRequirement from '../../components/CourseRequirement';
 import DesignToFit from '../../components/DesignToFit';
-import RecommendedCourse from '../../components/RecomendedCourse';
 import { useParams } from 'react-router-dom';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';

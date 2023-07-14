@@ -30,6 +30,7 @@ import ProtectedRoute2 from './Admin/Pro/ProtectedRoute2';
 import CourseAll from './Admin/CourseManager/CourseAll';
 import EditCourse from './Admin/EditCourse/EditCourse';
 import Nothing from './Admin/Nothing/Nothing';
+import ComingSoon from './Admin/CourseManager/ComingSoon';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -75,6 +76,14 @@ function AppContent() {
           element={
             <ProtectedRoute2>
               <CourseAll />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/coming-soon"
+          element={
+            <ProtectedRoute2>
+              <ComingSoon />
             </ProtectedRoute2>
           }
         />

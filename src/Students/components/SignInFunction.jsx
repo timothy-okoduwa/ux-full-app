@@ -43,10 +43,9 @@ const SignInFunction = () => {
       }
       setShowSuccessMessage(true);
 
-      setTimeout(() => {
-        navigate('/dashboard');
-        localStorage.setItem('userRole', 'student');
-      }, 2000);
+      navigate('/dashboard');
+      localStorage.setItem('userRole', 'student');
+
       setData({
         email: '',
         password: '',
@@ -105,9 +104,6 @@ const SignInFunction = () => {
     setShowError(true);
 
     // Set a timer to hide the error message after 5 seconds
-    const timer = setTimeout(() => {
-      setShowError(false);
-    }, 5000);
     if (error) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -116,9 +112,6 @@ const SignInFunction = () => {
     }
 
     // Clean up the timer when the component is unmounted or when the error changes
-    return () => {
-      clearTimeout(timer);
-    };
   }, [error, showSuccessMessage]);
   const move = () => {
     navigate('/forget');
@@ -157,7 +150,7 @@ const SignInFunction = () => {
             />
           </div>
           <div className="mt-5">
-            <div className="full">Create Password</div>
+            <div className="full">Enter Password</div>
             <input
               type="password"
               className="ingame"

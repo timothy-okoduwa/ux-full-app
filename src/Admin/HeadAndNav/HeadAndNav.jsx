@@ -57,8 +57,9 @@ const HeadAndNav = () => {
                 className="Link"
                 style={{ textDecoration: 'none', color: 'white' }}
               >
-                <RiLogoutBoxLine />
-                <span> Logout</span>
+                <span>
+                  <RiLogoutBoxLine /> Logout
+                </span>
               </NavLink>
             </div>
           </div>

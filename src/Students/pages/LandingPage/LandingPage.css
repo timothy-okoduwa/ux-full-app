@@ -63,14 +63,16 @@
   background-size: cover;
   width: 100%;
   height: 503px;
+  border-radius: 8px;
 }
 .dt {
   /* width: 330px; */
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 800;
-  font-size: 55px;
+  font-size: 45px;
   color: #ffffff;
+  text-align: start !important;
 }
 .forget {
   /* width: 390px; */
@@ -84,6 +86,7 @@
   color: #ffffff;
   opacity: 0.5;
   margin-top: 20px;
+  text-align: start !important;
 }
 .enroll {
   font-family: 'Lato';
@@ -598,3 +601,19 @@
 /* .tablee{
   background: linear-gradient(90.27deg, #000000 0.85%, rgba(2, 2, 2, 0.927585) 34.97%, rgba(25, 25, 25, 0) 66.82%);
 } */
+
+.selected {
+  border-bottom: 5px solid #ff460300 !important;
+}
+.carousel .carousel-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 10px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
+  color: #ffffff00 !important;
+}
+.carousel.carousel-slider .control-arrow {
+  display: none !important;
+}

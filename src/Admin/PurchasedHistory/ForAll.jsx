@@ -1,149 +1,42 @@
-import React, { useState } from 'react';
-import './PurHist.css';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import { RiSearchLine } from 'react-icons/ri';
 import FullTable from './FullTable';
-// import ReactPaginate from 'react-paginate';
-const tableData = [
-  {
-    email: 'aeronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'beronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'ceronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'deronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'eeronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'feronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'geronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'heronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'eronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'venicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'heronicde@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'keronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'meronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'qeronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'zeronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'peronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-  {
-    email: 'veronicajade@gmailcom',
-    courseName: 'UX Design 101 by Anita Gift',
-    dateOfPurchase: '1/10/2023',
-    price: '₦12,000',
-  },
-];
+
 const ForAll = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [students, setStudents] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [filteredData, setFilteredData] = useState(tableData);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  const fetchStudents = async () => {
+    const studentQuerySnapshot = await getDocs(collection(db, 'student'));
+    const studentData = studentQuerySnapshot.docs.map((doc) => {
+      const student = doc.data();
+      const purchasedCourses = student.purchasedCourses || [];
+      const coursesData = purchasedCourses.map((course) => {
+        return {
+          email: student.email,
+          nameOfCourse: course.nameOfCourse,
+          datePurchased: course.datePurchased,
+          price: course.price,
+        };
+      });
+      return coursesData;
+    });
+    const flattenedData = studentData.flat();
+    setStudents(flattenedData);
+    setFilteredData(flattenedData);
+  };
+
   const handleSearch = () => {
-    const filteredData = tableData.filter((item) =>
-      item.email.includes(searchValue)
+    const filteredData = students.filter((student) =>
+      student.email.includes(searchValue)
     );
     setFilteredData(filteredData);
   };
@@ -160,7 +53,7 @@ const ForAll = () => {
   const currentData = filteredData.slice(startIndex, endIndex);
 
   return (
-    <div className="bgi ">
+    <div className="bgi">
       <div className="container">
         <div className="budg">
           <div className="dashname mb-3">Purchase History</div>
