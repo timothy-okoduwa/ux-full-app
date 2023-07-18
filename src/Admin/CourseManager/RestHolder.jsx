@@ -9,6 +9,9 @@ const RestHolder = () => {
   const movec = () => {
     navigate('/coming-soon');
   };
+  const movew = () => {
+    navigate('/seeall');
+  };
   return (
     <div className="bgi">
       <div className="container">
@@ -25,7 +28,12 @@ const RestHolder = () => {
               {' '}
               + Create Coming Soon courses
             </div>
-            <div className="corses_added"></div>
+            <div className="corses_added">
+              <div className="create_new_course" onClick={movew}>
+                {' '}
+                view all coming soon
+              </div>
+            </div>
           </div>
         </div>
         <CourseList />

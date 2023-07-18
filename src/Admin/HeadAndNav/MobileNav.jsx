@@ -37,13 +37,13 @@ function MobileNav() {
           </NavLink>
         </div>
         <div className="truss">
-          <NavLink to="/settings" className="Link">
+          {/* <NavLink to="/settings" className="Link">
             {' '}
             <div>
               <RiSettings4Fill className="color22 mb-2" />
             </div>
             <div className="textd">Settings</div>
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
     </div>

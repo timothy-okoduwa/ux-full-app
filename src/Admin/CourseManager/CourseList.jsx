@@ -8,6 +8,8 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import { FiEdit3 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import e from './empty.svg';
+
 const CourseList = () => {
   const top100Films = [
     { label: 'UI Design' },
@@ -19,6 +21,7 @@ const CourseList = () => {
     { label: 'High Fidelity' },
     { label: 'UX Research' },
     { label: 'Colour Theory' },
+    { label: 'Graphics Design' },
   ];
   const [currentPage, setCurrentPage] = useState(0);
   const [courses, setCourses] = useState([]);
@@ -47,22 +50,38 @@ const CourseList = () => {
 
     fetchCourses();
   }, []);
-  console.log(courses);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
+
   const itemsPerPage = 6;
   const pageCount = Math.ceil(courses?.length / itemsPerPage);
-
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = courses?.slice(startIndex, endIndex);
+
+  const filteredData = currentData.filter((category) => {
+    if (selectedCategory) {
+      return (
+        Object?.values(category)?.some((course) =>
+          course.nameOfCourse.toLowerCase().includes(searchQuery?.toLowerCase())
+        ) &&
+        category[0]?.category?.toLowerCase() === selectedCategory?.toLowerCase()
+      );
+    } else {
+      return Object?.values(category)?.some((course) =>
+        course.nameOfCourse.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+  });
+
+  const showPagination = filteredData.length > 0;
+
   return (
     <div className="mt-5">
       <div className="course_list_tab">
         <div className="corses_added">COURSE LIST</div>
-
         <div className="select_and_button_holder">
           <div className="row">
             <div className="col-12 col-lg-6 mb-4 ">
@@ -85,15 +104,7 @@ const CourseList = () => {
                 }}
               />
             </div>
-            {/* <div className="col-12 col-lg-6 mb-4">
-              <div className="filter_button_holder">
-                <Button variant="contained" className="filter_button">
-                  Filter
-                </Button>
-              </div>
-            </div> */}
           </div>
-
           <div className="searchBar_holder">
             <div className="search_and_name_holder">
               <div className="search_label">Search</div>{' '}
@@ -105,59 +116,47 @@ const CourseList = () => {
               />
             </div>
           </div>
-
           <hr />
-
           <div>
             <div className="mt-5">
               <div>
                 <div className="forever container">
                   <div className="fanta">
-                    <table className="table">
-                      <thead className="parana">
-                        <tr>
-                          <th scope="col" className="trtr">
-                            Course Name
-                          </th>
-                          <th scope="col" className="trtr">
-                            Category
-                          </th>
-                          <th scope="col" className="trtr">
-                            Date created
-                          </th>
-                          <th scope="col" className="trtr">
-                            Sections
-                          </th>
-                          <th scope="col" className="trtr">
-                            Price
-                          </th>
-                          <th scope="col" className="trtr">
-                            Edit
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {currentData
-                          .filter((category) => {
-                            if (selectedCategory) {
-                              return (
-                                Object?.values(category)?.some((course) =>
-                                  course.nameOfCourse
-                                    .toLowerCase()
-                                    .includes(searchQuery?.toLowerCase())
-                                ) &&
-                                category[0]?.category?.toLowerCase() ===
-                                  selectedCategory?.toLowerCase()
-                              );
-                            } else {
-                              return Object?.values(category)?.some((course) =>
-                                course.nameOfCourse
-                                  .toLowerCase()
-                                  .includes(searchQuery.toLowerCase())
-                              );
-                            }
-                          })
-                          .map((category) =>
+                    {filteredData.length === 0 ? (
+                      <div className="no-course-message">
+                        <div className="w-100 d-flex justify-content-center">
+                          <img src={e} alt="" className="empty" />
+                        </div>
+                        <p className="mt-3">
+                          Sorry, no course in this category.
+                        </p>
+                      </div>
+                    ) : (
+                      <table className="table">
+                        <thead className="parana">
+                          <tr>
+                            <th scope="col" className="trtr">
+                              Course Name
+                            </th>
+                            <th scope="col" className="trtr">
+                              Category
+                            </th>
+                            <th scope="col" className="trtr">
+                              Date created
+                            </th>
+                            <th scope="col" className="trtr">
+                              Sections
+                            </th>
+                            <th scope="col" className="trtr">
+                              Price
+                            </th>
+                            <th scope="col" className="trtr">
+                              Edit
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredData.map((category) =>
                             Object?.values(category)?.map((course) => (
                               <tr className="mt-3" key={course.courseId}>
                                 <td className="trtr user-name">
@@ -195,27 +194,30 @@ const CourseList = () => {
                               </tr>
                             ))
                           )}
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
+                    )}
                   </div>
 
-                  <div className="brobernard">
-                    <ReactPaginate
-                      pageCount={pageCount}
-                      onPageChange={handlePageChange}
-                      containerClassName="pagination"
-                      pageClassName="page-item"
-                      pageLinkClassName="page-link"
-                      activeClassName="active"
-                      previousClassName="page-item"
-                      previousLinkClassName="page-link"
-                      previousLabel="<"
-                      nextClassName="page-item"
-                      nextLinkClassName="page-link"
-                      nextLabel=">"
-                      disabledClassName="disabledd"
-                    />
-                  </div>
+                  {showPagination && (
+                    <div className="brobernard">
+                      <ReactPaginate
+                        pageCount={pageCount}
+                        onPageChange={handlePageChange}
+                        containerClassName="pagination"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        activeClassName="active"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        previousLabel="<"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        nextLabel=">"
+                        disabledClassName="disabledd"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

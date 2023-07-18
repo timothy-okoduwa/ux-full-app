@@ -326,7 +326,7 @@
   background-image: url('../images/image.png');
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 12.4732px;
+  border-radius: 12.4732px !important;
   margin-right: 30px;
 }
 .cs {

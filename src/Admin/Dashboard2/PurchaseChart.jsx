@@ -116,7 +116,7 @@ const PurchaseChart = () => {
   };
 
   return (
-    <div className="chart container mb-4">
+    <div className="chart container mb-4 p-4">
       <canvas ref={chartRef} width={800} height={400} />
     </div>
   );

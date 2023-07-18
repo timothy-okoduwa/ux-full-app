@@ -112,14 +112,14 @@ const HeadAndNav = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit">
-                <NavLink to="/settings" className="Link">
+                {/* <NavLink to="/settings" className="Link">
                   <div className=" height">
                     <div className=" wko">
                       <RiSettings4Fill className="color" />
                       <span className="link-name"> Settings</span>
                     </div>
                   </div>
-                </NavLink>
+                </NavLink> */}
               </div>
               <div className="push-down-a-bit" style={{ marginTop: '120px' }}>
                 <NavLink to="/" className="Link">

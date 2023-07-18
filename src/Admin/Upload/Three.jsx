@@ -12,6 +12,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { courseId } from './One';
 import { useNavigate } from 'react-router-dom';
 import Accordion from '@mui/material/Accordion';
+import CircularProgress from '@mui/material/CircularProgress';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -37,11 +38,19 @@ const Three = ({ category }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [tutorName, setTutorName] = useState('');
   const [tutorJob, setTutorJob] = useState('');
+  const [loading, setLoading] = useState(false);
   const handleAddUrl = (e) => {
     e.preventDefault();
     setLearn([...learn, '']);
   };
-
+  const disabled =
+    !learn ||
+    !requirement ||
+    loading ||
+    !tutorDescription ||
+    !selectedImage ||
+    !tutorName ||
+    !tutorJob;
   const handleUrlChange = (index, value) => {
     const urls = [...learn];
     urls[index] = value;
@@ -134,68 +143,69 @@ const Three = ({ category }) => {
   //     console.log(error);
   //   }
   // };
-  
-const finish = async () => {
-  try {
-    const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
 
-    // Upload the image to Firebase Storage if a selected image exists
-    let thumbnailURL = '';
-    if (selectedImage) {
-      const storageRef = ref(
-        storage,
-        `tutorImage/${auth.currentUser.uid}/${Date.now()}`
-      );
-      const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
-      const downloadURL = await getDownloadURL(uploadSnapshot.ref);
-      thumbnailURL = downloadURL;
+  const finish = async () => {
+    setLoading(true);
+    try {
+      const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
+
+      // Upload the image to Firebase Storage if a selected image exists
+      let thumbnailURL = '';
+      if (selectedImage) {
+        const storageRef = ref(
+          storage,
+          `tutorImage/${auth.currentUser.uid}/${Date.now()}`
+        );
+        const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
+        const downloadURL = await getDownloadURL(uploadSnapshot.ref);
+        thumbnailURL = downloadURL;
+      }
+
+      // Get the existing course info from the category document
+      const categoryDoc = await getDoc(categoryRef);
+      if (categoryDoc.exists()) {
+        const categoryData = categoryDoc.data();
+        const existingCourses = categoryData.Allcourses?.[category] || []; // Get the existing courses array within Allcourses
+
+        // Update the specific course within the existing courses array
+        const updatedCourses = existingCourses.map((course) => {
+          // Find the course to update by comparing some unique identifier (e.g., course ID)
+          if (course.courseId === courseIdToUpdate) {
+            // Update the specific course with the additional fields
+            return {
+              ...course,
+              learn: learn,
+              requirement: requirement,
+              tutorDescription: tutorDescription,
+              tutorName: tutorName,
+              tutorJob: tutorJob,
+              InstructorImage: thumbnailURL,
+            };
+          }
+          return course;
+        });
+
+        // Update the category document in Firestore with the updated courses array
+        await updateDoc(categoryRef, {
+          Allcourses: {
+            ...categoryData.Allcourses,
+            [category]: updatedCourses,
+          },
+        });
+      } else {
+        console.log('Category not found.');
+      }
+      // console.log(courseIdToUpdate);
+      resetStateAndStorage();
+
+      // Move to the next step
+      courseIdToUpdate = null;
+    } catch (error) {
+      // Handle any errors
+      console.log(error);
     }
-
-    // Get the existing course info from the category document
-    const categoryDoc = await getDoc(categoryRef);
-    if (categoryDoc.exists()) {
-      const categoryData = categoryDoc.data();
-      const existingCourses = categoryData.Allcourses?.[category] || []; // Get the existing courses array within Allcourses
-
-      // Update the specific course within the existing courses array
-      const updatedCourses = existingCourses.map((course) => {
-        // Find the course to update by comparing some unique identifier (e.g., course ID)
-        if (course.courseId === courseIdToUpdate) {
-          // Update the specific course with the additional fields
-          return {
-            ...course,
-            learn: learn,
-            requirement: requirement,
-            tutorDescription: tutorDescription,
-            tutorName: tutorName,
-            tutorJob: tutorJob,
-            InstructorImage: thumbnailURL,
-          };
-        }
-        return course;
-      });
-
-      // Update the category document in Firestore with the updated courses array
-      await updateDoc(categoryRef, {
-        Allcourses: {
-          ...categoryData.Allcourses,
-          [category]: updatedCourses,
-        },
-      });
-    } else {
-      console.log('Category not found.');
-    }
-    // console.log(courseIdToUpdate);
-    resetStateAndStorage();
-
-    // Move to the next step
-    courseIdToUpdate = null;
-  } catch (error) {
-    // Handle any errors
-    console.log(error);
-  }
-};
-
+    setLoading(true);
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -437,8 +447,18 @@ const finish = async () => {
           </div>
 
           <div className="mt-4">
-            <button className="next-button" onClick={finish}>
-              Save
+            <button
+              className="next-button"
+              onClick={finish}
+              disabled={disabled}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{ color: 'white', height: '30px', width: '30px' }}
+                />
+              ) : (
+                'Save'
+              )}
             </button>
           </div>
         </div>

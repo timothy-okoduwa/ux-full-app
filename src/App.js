@@ -31,6 +31,7 @@ import CourseAll from './Admin/CourseManager/CourseAll';
 import EditCourse from './Admin/EditCourse/EditCourse';
 import Nothing from './Admin/Nothing/Nothing';
 import ComingSoon from './Admin/CourseManager/ComingSoon';
+import SeeAllComingSoon from './Admin/CourseManager/SeeAllComingSoon';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -76,6 +77,14 @@ function AppContent() {
           element={
             <ProtectedRoute2>
               <CourseAll />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/seeall"
+          element={
+            <ProtectedRoute2>
+              <SeeAllComingSoon />
             </ProtectedRoute2>
           }
         />

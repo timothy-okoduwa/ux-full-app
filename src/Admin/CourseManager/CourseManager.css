@@ -27,7 +27,7 @@
   cursor: pointer;
   padding: 10px;
   font-family: 'Manrope';
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
 }
 .course_list_tab {
@@ -82,4 +82,16 @@
     font-weight: 500;
     display: none;
   }
+}
+.no-course-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Manrope';
+  font-size: 18px;
+  font-weight: 500;
+}
+.empty {
+  width: 20%;
 }

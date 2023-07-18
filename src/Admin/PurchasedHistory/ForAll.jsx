@@ -34,7 +34,10 @@ const ForAll = () => {
     setFilteredData(flattenedData);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    const searchValue = e.target.value;
+    setSearchValue(searchValue);
+
     const filteredData = students.filter((student) =>
       student.email.includes(searchValue)
     );
@@ -68,13 +71,9 @@ const ForAll = () => {
                   className="search_input"
                   placeholder="Search by Email"
                   value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
+                  onChange={handleSearch}
                 />
               </div>
-
-              <button className="search-button" onClick={handleSearch}>
-                search
-              </button>
             </div>
           </div>
         </div>

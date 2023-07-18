@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
-
+import e from './cancle.svg';
 const RecentPurchase = () => {
   const [students, setStudents] = useState([]);
 
@@ -45,42 +45,53 @@ const RecentPurchase = () => {
             See All
           </div>
         </div>
-        <div className="fanta">
-          <table className="table">
-            <thead className="parana">
-              <tr>
-                <th scope="col" className="trtr">
-                  Full Name
-                </th>
-                <th scope="col" className="trtr">
-                  Email
-                </th>
-                <th scope="col" className="trtr">
-                  Course Name
-                </th>
-                <th scope="col" className="trtr">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentPurchases.map((purchase) => (
-                <tr className="mt-3" key={purchase.courseId}>
-                  <td className="trtr user-name">{purchase.fullName}</td>
-                  <td className="trtr user-name">{purchase.email}</td>
-                  <td className="trtr user-name">
-                    {purchase.nameOfCourse.length > 23
-                      ? `${purchase.nameOfCourse.slice(0, 23)}...`
-                      : purchase.nameOfCourse}
-                  </td>
-                  <td className="trtr prices">
-                    ₦{parseFloat(purchase.price).toLocaleString()}
-                  </td>
+        {recentPurchases.length === 0 ? (
+          <div className="no-course-message mt-3 mb-5">
+            <div className="w-100 d-flex justify-content-center">
+              <img src={e} alt="" className="empty" />
+            </div>
+            <p className="mt-3" style={{ color: 'white' }}>
+              Sorry, no purchase to display.
+            </p>
+          </div>
+        ) : (
+          <div className="fanta">
+            <table className="table">
+              <thead className="parana">
+                <tr>
+                  <th scope="col" className="trtr">
+                    Full Name
+                  </th>
+                  <th scope="col" className="trtr">
+                    Email
+                  </th>
+                  <th scope="col" className="trtr">
+                    Course Name
+                  </th>
+                  <th scope="col" className="trtr">
+                    Price
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {recentPurchases.map((purchase) => (
+                  <tr className="mt-3" key={purchase.courseId}>
+                    <td className="trtr user-name">{purchase.fullName}</td>
+                    <td className="trtr user-name">{purchase.email}</td>
+                    <td className="trtr user-name">
+                      {purchase.nameOfCourse.length > 23
+                        ? `${purchase.nameOfCourse.slice(0, 23)}...`
+                        : purchase.nameOfCourse}
+                    </td>
+                    <td className="trtr prices">
+                      ₦{parseFloat(purchase.price).toLocaleString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

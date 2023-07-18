@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { doc, collection, addDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, Timestamp, updateDoc, setDoc } from 'firebase/firestore';
 import { RiUploadCloudFill } from 'react-icons/ri';
 import { TiTimes } from 'react-icons/ti';
 import { db, auth, storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from 'react-router-dom';
 const CMInput = () => {
   const [courseName, setCourseName] = useState('');
   const [price, setPrice] = useState('');
@@ -13,15 +14,48 @@ const CMInput = () => {
   const [description, setDescription] = useState('');
   const [tutorName, setTutorName] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState('');
+  const uploads = [
+    { courseName: 'choose a category', category: 'choose a category' },
+    { courseName: 'UI Design', category: 'UI Design' },
+    { courseName: 'UX Design', category: 'UX Design' },
+    { courseName: 'Wireframe', category: 'Wireframe' },
+    { courseName: 'Typography', category: 'Typography' },
+    { courseName: 'Prototyping', category: 'Prototyping' },
+    { courseName: 'UX Writing', category: 'UX Writing' },
+    { courseName: 'High Fidelity', category: 'High Fidelity' },
+    { courseName: 'UX Research', category: 'UX Research' },
+    { courseName: 'Colour Theory', category: 'Colour Theory' },
+    { courseName: 'Graphics Design', category: 'Graphics Design' },
+  ];
 
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+
+    setCategory(selectedCategory);
+  };
+  const navigate = useNavigate();
+  const disabled =
+    !courseName ||
+    !price ||
+    !duration ||
+    !description ||
+    !tutorName ||
+    loading ||
+    !category ||
+    !selectedImage;
+  const allId = uuidv4();
   const move = async () => {
+    setLoading(true);
     try {
       const adminRef = doc(db, 'Admin', auth.currentUser.uid);
+      const adminSnapshot = await getDoc(adminRef);
       let comingImage = '';
       if (selectedImage) {
         const storageRef = ref(
           storage,
-          `comingSoon/${auth.currentUser.uid}/${Date.now()}`
+          `comingSoon/${auth.currentUser.uid}/${allId}`
         );
         const uploadSnapshot = await uploadBytes(storageRef, selectedImage);
         const downloadURL = await getDownloadURL(uploadSnapshot.ref);
@@ -34,14 +68,24 @@ const CMInput = () => {
         duration,
         description,
         tutorName,
-        upComingId: uuidv4(),
+        category,
+        upComingId: allId,
         selectedImage: comingImage,
         createdAt: Timestamp.fromDate(new Date()),
       };
 
-      await addDoc(adminRef, {
-        comingSoon: [postObject],
-      });
+      if (adminSnapshot.exists()) {
+        // Update the existing document
+        const currentComingSoon = adminSnapshot.data().comingSoon || [];
+        await updateDoc(adminRef, {
+          comingSoon: [...currentComingSoon, postObject],
+        });
+      } else {
+        // Create a new document
+        await setDoc(adminRef, {
+          comingSoon: [postObject],
+        });
+      }
 
       // Clear the form
       setCourseName('');
@@ -53,6 +97,8 @@ const CMInput = () => {
     } catch (error) {
       console.log('Error uploading the post:', error);
     }
+    navigate('/seeall');
+    setLoading(false);
   };
 
   const handleImageUpload = (e) => {
@@ -116,6 +162,20 @@ const CMInput = () => {
                   value={tutorName}
                   onChange={(e) => setTutorName(e.target.value)}
                 />
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-lg-6 mb-4">
+            <div>
+              <div className="cacus">Category</div>
+              <div>
+                <select className="feeelz" onChange={handleCategoryChange}>
+                  {uploads.map((upload, index) => (
+                    <option key={index} value={upload.category}>
+                      {upload.courseName}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
@@ -183,8 +243,14 @@ const CMInput = () => {
             </div>
           </div>
           <div className="mt-4">
-            <button className="next-button" onClick={move}>
-              Upload
+            <button className="next-button" onClick={move} disabled={disabled}>
+              {loading ? (
+                <CircularProgress
+                  style={{ color: 'white', height: '30px', width: '30px' }}
+                />
+              ) : (
+                'Upload'
+              )}
             </button>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { CourseContext } from './CourseContext';
 import { db, auth, storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
+import CircularProgress from '@mui/material/CircularProgress';
 export let courseInfo = [];
 export let courseId = uuidv4();
 const One = ({ step, setStep, category }) => {
@@ -15,6 +16,15 @@ const One = ({ step, setStep, category }) => {
   const [courseDuration, setCourseDuration] = useState('');
   const [previewVideoLink, setPreviewVideoLink] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const disabled =
+    !courseName ||
+    !courseDescription ||
+    !price ||
+    loading ||
+    !courseDuration ||
+    !previewVideoLink ||
+    !selectedImage;
   const uploads = [
     { courseName: 'choose a category', category: 'choose a category' },
     { courseName: 'UI Design', category: 'UI Design' },
@@ -26,6 +36,7 @@ const One = ({ step, setStep, category }) => {
     { courseName: 'High Fidelity', category: 'High Fidelity' },
     { courseName: 'UX Research', category: 'UX Research' },
     { courseName: 'Colour Theory', category: 'Colour Theory' },
+    { courseName: 'Graphics Design', category: 'Graphics Design' },
   ];
 
   const { setCourseName1, setCategory } = useContext(CourseContext);
@@ -36,6 +47,7 @@ const One = ({ step, setStep, category }) => {
   };
 
   const move = async () => {
+    setLoading(true);
     try {
       const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
 
@@ -94,6 +106,7 @@ const One = ({ step, setStep, category }) => {
     if (file) {
       setSelectedImage(file);
     }
+    setLoading(false);
   };
 
   return (
@@ -230,8 +243,14 @@ const One = ({ step, setStep, category }) => {
             </div>
           </div>
           <div className="mt-4">
-            <button className="next-button" onClick={move}>
-              Next
+            <button className="next-button" onClick={move} disabled={disabled}>
+              {loading ? (
+                <CircularProgress
+                  style={{ color: 'white', height: '30px', width: '30px' }}
+                />
+              ) : (
+                'Next'
+              )}
             </button>
           </div>
         </div>

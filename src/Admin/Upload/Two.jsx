@@ -13,6 +13,7 @@ import Modal from '@mui/material/Modal';
 // import { RiUploadCloudFill } from 'react-icons/ri';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
+import CircularProgress from '@mui/material/CircularProgress';
 // import { Player, ControlBar, PlaybackRateMenuButton } from 'video-react';
 import 'video-react/dist/video-react.css';
 // import a from '../image/ux.svg';
@@ -39,6 +40,7 @@ const style2 = {
 
 const Two = ({ category, step, setStep, sections, setSections }) => {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const handleOpen = () => setOpen(true);
@@ -46,7 +48,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
   const handleInputChange = (e) => setInputValue(e.target.value);
-
+  const disable = !inputValue || loading;
   const handleSave = () => {
     const newSection = {
       heading: inputValue,
@@ -83,6 +85,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
   };
 
   const uploadAllLocicToFirebase = async () => {
+    setLoading(true);
     try {
       const categoryRef = doc(db, 'Admin', auth.currentUser.uid);
       const existingCourse = await getDoc(categoryRef);
@@ -122,6 +125,7 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
     } catch (error) {
       console.log(error.message);
     }
+    setLoading(false);
   };
 
   const renderSegments = (sectionIndex) => {
@@ -376,8 +380,18 @@ const Two = ({ category, step, setStep, sections, setSections }) => {
           </Accordion>
         ))}
       </div>
-      <button className="next-button" onClick={uploadAllLocicToFirebase}>
-        Next
+      <button
+        className="next-button"
+        onClick={uploadAllLocicToFirebase}
+        disabled={disable}
+      >
+        {loading ? (
+          <CircularProgress
+            style={{ color: 'white', height: '30px', width: '30px' }}
+          />
+        ) : (
+          'Next'
+        )}
       </button>
     </div>
   );
