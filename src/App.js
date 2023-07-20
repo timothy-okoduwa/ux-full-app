@@ -15,7 +15,6 @@ import AdminSignUp from './Admin/Logs/SignUp';
 import AdminSignIn from './Admin/Logs/SignIn';
 import Confirm from './Students/components/Confirm';
 import PurchaseCourse from './Students/components/PurchaseCourse';
-// import DashNav from './components/navBar/DashNav';
 import DashBoard from './Students/pages/DashBoard/DashBoard';
 import StartWatching from './Students/pages/DashBoard/StartWatching';
 import { UserAuthContextProvider } from './Students/components/context/UserAuthContext';
@@ -32,6 +31,13 @@ import EditCourse from './Admin/EditCourse/EditCourse';
 import Nothing from './Admin/Nothing/Nothing';
 import ComingSoon from './Admin/CourseManager/ComingSoon';
 import SeeAllComingSoon from './Admin/CourseManager/SeeAllComingSoon';
+import Webinars from './Students/pages/Webinars/Webinars';
+import UpComingWebinarDetails from './Students/components/UpComingWebinarDetails';
+import Webinarr from './Admin/Webinarr/Webinarr';
+import UploadUpcomingWebinar from './Admin/Webinarr/UploadUpcomingWebinar';
+import PastWebinar from './Admin/Webinarr/PastWebinar';
+import PastWebinarDetails from './Students/components/PastWebinarDetails';
+import AllPastWebinar from './Students/components/AllPastWebinar';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -49,7 +55,17 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/course" element={<CoursePage />} />
+        <Route
+          path="/webinar-details/:upComingId"
+          element={<UpComingWebinarDetails />}
+        />
+        <Route
+          path="/PastWebinarDetails/:upComingId"
+          element={<PastWebinarDetails />}
+        />
+        <Route path="/webinars" element={<Webinars />} />
         <Route path="/course-category" element={<CourseCategories />} />
+        <Route path="/allpastwebinar" element={<AllPastWebinar />} />
         <Route path="/course-preview/:courseId" element={<CoursePreview />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
@@ -69,6 +85,30 @@ function AppContent() {
           element={
             <ProtectedRoute2>
               <PurHist />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/webinarr"
+          element={
+            <ProtectedRoute2>
+              <Webinarr />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/upcomingwebinar"
+          element={
+            <ProtectedRoute2>
+              <UploadUpcomingWebinar />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/uploadpast"
+          element={
+            <ProtectedRoute2>
+              <PastWebinar />
             </ProtectedRoute2>
           }
         />

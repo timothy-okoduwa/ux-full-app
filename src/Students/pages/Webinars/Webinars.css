@@ -1,0 +1,342 @@
+.dance {
+  background-image: url('../images/chance.png');
+  height: 699px !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.webinarsTopic {
+  color: #fff;
+  font-family: Manrope;
+  font-size: 58px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 70px; /* 120.69% */
+  margin-top: -100px !important;
+}
+.upcomingHolder {
+  background-color: rgba(255, 0, 0, 0);
+  /* margin-top: -200px; */
+}
+.cname33 {
+  font-family: 'Paytone One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  color: #fdefde;
+  width: 170px;
+}
+.live {
+  border-radius: 7.824px;
+  background: var(--white, #fff);
+  width: 130px;
+  margin-top: 10px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.liveWeb {
+  color: var(--text-colour, #333);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 15.648px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  /* padding-left: 20px; */
+}
+.circledd {
+  margin-right: 8px;
+  color: #ff4703;
+}
+.tiemsdd {
+  min-width: 400px;
+  min-height: 200px;
+  background-image: url('../images/image.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12.4732px !important;
+  margin-right: 30px;
+  padding-top: 1px;
+}
+.hood {
+  margin-top: 22px;
+  /* background-color: red; */
+}
+.yemi {
+  display: flex;
+  align-items: center;
+}
+.cirue {
+  background-color: rgba(255, 255, 255, 0.082);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.left {
+  margin-left: 30px;
+}
+.sly {
+  color: var(--white, #fff) !important;
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.pot {
+  color: var(--grey-text, #808080) !important;
+  font-family: Manrope;
+  font-size: 14.988px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.hfugy {
+  margin-top: 20px;
+  display: flex;
+}
+.hfugy2 {
+  margin-right: 35px;
+  margin-top: 20px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.calender {
+  color: white;
+  margin-right: 13px;
+}
+.dates {
+  color: #fff;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%; /* 25.6px */
+}
+.conf {
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.cov {
+  object-fit: cover;
+  height: 220px;
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.what11 {
+  color: var(--white, #fff);
+  font-family: Manrope;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.sdr {
+  color: var(--grey-text, #808080);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 5px;
+}
+.firstName {
+  min-width: 400px;
+  min-height: 500px;
+  background-image: url('./card\ 1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 110px;
+  /* display: flex;
+  align-items: center; */
+}
+.firstName222 {
+  min-width: 400px;
+  min-height: 500px;
+  background-image: url('./card\ 1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 110px;
+  border-radius: 41.139px;
+}
+.what {
+  color: #fdefde;
+  font-family: Paytone One;
+  font-size: 90px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 112.1%; /* 100.89px */
+  width: 535px;
+}
+@media screen and (max-width: 991px) {
+  .hgutd {
+    justify-content: center;
+    width: 100% !important;
+  }
+  .what {
+    color: #fdefde;
+    font-family: Paytone One;
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 112.1%; /* 100.89px */
+    width: 100%;
+  }
+}
+.livebig {
+  border-radius: 7.824px;
+  background: var(--white, #fff);
+  width: 230px;
+  margin-top: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circledd2 {
+  margin-right: 8px;
+  color: #ff4703;
+  font-size: 30px;
+}
+.liveWeb2 {
+  color: var(--text-colour, #333);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  /* padding-left: 20px; */
+}
+.smugh {
+  padding-left: 40px;
+}
+.hayze {
+  margin-top: 65px;
+}
+.webDesc {
+  color: var(--white, #fff);
+  font-family: Manrope;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+.qurd {
+  color: var(--white, #fff);
+  font-family: Manrope;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 28.8px */
+  opacity: 0.5;
+  width: 90%;
+}
+.dotnet {
+  width: 80%;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #191919;
+  outline: none;
+  border: none;
+  padding-left: 10px;
+  color: white;
+}
+.rsvp_button {
+  border-radius: 5px;
+  background: var(--red, #ff4703);
+  outline: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 180px;
+  color: var(--white, #fff);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 25.2px */
+}
+.ewhat {
+  color: var(--white, #fff);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 22.4px */
+  margin-bottom: 15px;
+}
+.diued {
+  margin-top: 150px;
+}
+.whayst {
+  color: #fdefde;
+  font-family: Paytone One;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+}
+.uxdesigncv {
+  color: var(--grey-text, #808080);
+  font-family: Manrope;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.liveddsa {
+  color: var(--grey-text, #808080);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.comin {
+  margin-top: 80px;
+}
+.loyall {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.exploreour {
+  color: #fff;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 70px; /* 120.69% */
+}
+.startDes {
+  color: var(--white, #fff);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 30px */
+}
+.hgutd {
+  justify-content: center;
+  width: 70%;
+}
+.disabledcvf {
+  cursor: not-allowed;
+}

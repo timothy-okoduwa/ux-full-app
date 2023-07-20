@@ -2,7 +2,7 @@ import React from 'react';
 // import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 const CourseHead = () => {
   return (
-    <div>
+    <div className="mt-5">
       <div className="dance "></div>
       <div className="">
         <div className=" exppd">

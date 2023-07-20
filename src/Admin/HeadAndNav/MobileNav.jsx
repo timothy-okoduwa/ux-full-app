@@ -2,7 +2,11 @@ import React from 'react';
 import './HeadAndNav.css';
 import { MdDashboard } from 'react-icons/md';
 import { RiSettings4Fill, RiUploadCloudFill } from 'react-icons/ri';
-import { BsCreditCardFill, BsFillFolderFill } from 'react-icons/bs';
+import {
+  BsCreditCardFill,
+  BsFillFolderFill,
+  BsFillCameraVideoFill,
+} from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 function MobileNav() {
   return (
@@ -37,13 +41,13 @@ function MobileNav() {
           </NavLink>
         </div>
         <div className="truss">
-          {/* <NavLink to="/settings" className="Link">
+          <NavLink to="/webinarr" className="Link">
             {' '}
             <div>
-              <RiSettings4Fill className="color22 mb-2" />
+              <BsFillCameraVideoFill className="color22 mb-2" />
             </div>
-            <div className="textd">Settings</div>
-          </NavLink> */}
+            <div className="textd">Webinar Post</div>
+          </NavLink>
         </div>
       </div>
     </div>

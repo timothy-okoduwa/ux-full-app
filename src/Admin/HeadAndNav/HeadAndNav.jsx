@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './HeadAndNav.css';
 import b from '../image/ux.svg';
 import { MdDashboard } from 'react-icons/md';
-import { BsCreditCardFill, BsFillFolderFill } from 'react-icons/bs';
+import {
+  BsCreditCardFill,
+  BsFillFolderFill,
+  BsFillCameraVideoFill,
+} from 'react-icons/bs';
 
 import {
   RiSettings4Fill,
@@ -112,14 +116,14 @@ const HeadAndNav = () => {
                 </NavLink>
               </div>
               <div className="push-down-a-bit">
-                {/* <NavLink to="/settings" className="Link">
+                <NavLink to="/webinarr" className="Link">
                   <div className=" height">
                     <div className=" wko">
-                      <RiSettings4Fill className="color" />
-                      <span className="link-name"> Settings</span>
+                      <BsFillCameraVideoFill className="color" />
+                      <span className="link-name"> Webinar Post</span>
                     </div>
                   </div>
-                </NavLink> */}
+                </NavLink>
               </div>
               <div className="push-down-a-bit" style={{ marginTop: '120px' }}>
                 <NavLink to="/" className="Link">

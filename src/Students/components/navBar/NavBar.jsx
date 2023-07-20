@@ -151,6 +151,9 @@ const NavBar = () => {
     location.pathname === '/coming-soon' ||
     location.pathname === '/admin-signin' ||
     location.pathname === '/courses' ||
+    location.pathname === '/upcomingwebinar' ||
+    location.pathname === '/uploadpast' ||
+    location.pathname === '/webinarr' ||
     location.pathname === '/seeall' ||
     location.pathname.startsWith('/edit') ||
     location.pathname === '/forget';
@@ -181,8 +184,9 @@ const NavBar = () => {
                     <Link to="/course" style={{ textDecoration: 'none' }}>
                       <div className="emb33 ">Courses</div>
                     </Link>
-
-                    <div className="emb33">Webinar</div>
+                    <Link to="/webinars" style={{ textDecoration: 'none' }}>
+                      <div className="emb33">Webinars</div>
+                    </Link>
 
                     {isAuthenticated && userRole !== 'admin' && (
                       <Link to="/dashboard" style={{ textDecoration: 'none' }}>
