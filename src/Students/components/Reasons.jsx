@@ -1,10 +1,11 @@
-import React from 'react'
-import t from '../pages/images/time.png'
-import l from '../pages/images/learn.png'
-import m from '../pages/images/mentor.png'
-import cc from '../pages/images/career.png'
-import s from '../pages/images/student.png'
-import q from '../pages/images/questio.png'
+import React from 'react';
+import t from '../pages/images/time.png';
+import l from '../pages/images/learn.png';
+import m from '../pages/images/mentor.png';
+import cc from '../pages/images/career.png';
+import s from '../pages/images/student.png';
+import q from '../pages/images/questio.png';
+import { Link } from 'react-router-dom';
 const Reasons = () => {
   return (
     <div className="going">
@@ -110,7 +111,9 @@ const Reasons = () => {
                     </div>
                   </div>
                   <div>
-                    <button className="brow">Browse Courses</button>
+                    <Link to="/course" style={{ textDecoration: 'none' }}>
+                      <button className="brow">Browse Courses</button>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-12 col-lg-8"></div>
@@ -121,6 +124,6 @@ const Reasons = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Reasons
+export default Reasons;
