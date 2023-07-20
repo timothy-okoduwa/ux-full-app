@@ -1,6 +1,7 @@
 import React from 'react';
 import t from './images/TEXT.png';
 import { useLocation, Link } from 'react-router-dom';
+import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 const Fotter = () => {
   const location = useLocation();
 
@@ -86,11 +87,28 @@ const Fotter = () => {
               </div>
             </div>
           </div>
-          <div className="mt-5">
+          <div className="mt-4">
             <hr style={{ color: 'white' }} />
           </div>
-          <div className="twenty">
-            2022 Copyright | Email: enquires@uxdesignmaster.com
+          <div className="container cioieie">
+            <div className="row">
+              <div className="col-12 col-md-3">
+                <div className="mader">Made With ❤️ by VestarPlus</div>
+              </div>
+              <div className="col-12 col-md-6">
+                {' '}
+                <div className="twenty">
+                  2022 Copyright | Email: enquires@uxdesignmaster.com
+                </div>
+              </div>
+              <div className="col-12 col-md-3  swiede">
+                <div>
+                  <BsInstagram className="apolo" />
+                  <BsFacebook className="apolo" />
+                  <BsTwitter className="apolo" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

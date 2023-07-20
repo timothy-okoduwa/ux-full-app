@@ -1,64 +1,95 @@
-.nogodey{
+.nogodey {
   background-color: black;
   padding-top: 55px;
   padding-bottom: 20px;
 }
-.body{
+.body {
   font-family: 'Lato';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-color: #FFFFFF;
-opacity: 0.5;
-margin-bottom: 20px;
-cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+  opacity: 0.5;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
-.wantes{
+.wantes {
   font-family: 'Manrope';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-margin-top: 25px;
-color: #FFFFFF;
-
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  margin-top: 25px;
+  color: #ffffff;
 }
-.inini{
-  background: #FFFFFF;
-border: none;
-outline: none;
-border: 0.8117px solid #D3D4D6;
-border-radius: 4.0585px;
-height: 53.56px;
-width: 100%;
-margin-top: 15px;
-padding-left: 12px;
+.inini {
+  background: #ffffff;
+  border: none;
+  outline: none;
+  border: 0.8117px solid #d3d4d6;
+  border-radius: 4.0585px;
+  height: 53.56px;
+  width: 100%;
+  margin-top: 15px;
+  padding-left: 12px;
 }
-.seb{
+.seb {
   font-family: 'Lato';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-text-align: center;
-text-transform: uppercase;
-color: #FFFFFF;
-background: #FF4703;
-border-radius: 5px;
-height: 55px;
-width: 178px;
-outline: none;
-border: none;
-margin-top: 15px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #ff4703;
+  border-radius: 5px;
+  height: 55px;
+  width: 178px;
+  outline: none;
+  border: none;
+  margin-top: 15px;
 }
 
-.twenty{
+.twenty {
   font-family: 'Lato';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-text-align: center;
-color: #FFFFFF;
-margin-top: 15px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+  /* margin-top: 15px; */
 }
-body{
-    background-color: black !important;
+body {
+  background-color: black !important;
+}
+
+.mader {
+  color: #fff;
+  text-align: center;
+
+  /* body-text 2 */
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 28.8px */
+}
+.apolo {
+  margin-right: 25px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.swiede {
+  display: flex;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 768px) {
+  .twenty {
+    margin-top: 10px !important;
+  }
+  .swiede {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px !important;
+  }
 }
