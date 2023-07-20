@@ -180,23 +180,25 @@ const AllCourses = () => {
             )}
           </div>
         </div>
-        <div className="brobernard mt-3">
-          <ReactPaginate
-            pageCount={pageCount}
-            onPageChange={handlePageChange}
-            containerClassName="pagination"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            activeClassName="active"
-            previousClassName="page-item"
-            previousLinkClassName="page-link"
-            previousLabel="<"
-            nextClassName="page-item"
-            nextLinkClassName="page-link"
-            nextLabel=">"
-            disabledClassName="disabledd"
-          />
-        </div>
+        {courses.length > 0 && (
+          <div className="brobernard mt-3">
+            <ReactPaginate
+              pageCount={pageCount}
+              onPageChange={handlePageChange}
+              containerClassName="pagination"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              activeClassName="active"
+              previousClassName="page-item"
+              previousLinkClassName="page-link"
+              previousLabel="<"
+              nextClassName="page-item"
+              nextLinkClassName="page-link"
+              nextLabel=">"
+              disabledClassName="disabledd"
+            />
+          </div>
+        )}
       </div>
     </>
   );

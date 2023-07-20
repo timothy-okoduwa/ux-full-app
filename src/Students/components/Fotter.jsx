@@ -1,6 +1,6 @@
 import React from 'react';
 import t from './images/TEXT.png';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 const Fotter = () => {
   const location = useLocation();
 
@@ -38,11 +38,23 @@ const Fotter = () => {
                   <img src={t} alt="" />
                 </div>
               </div>
+              {/* course-category?category=UI%20Design */}
               <div className="col-12 col-lg-3 mb-5">
                 <div>
-                  <div className="body">Courses</div>
-                  <div className="body">Categories</div>
-                  <div className="body">Podcast</div>
+                  <Link to="/course" style={{ textDecoration: 'none' }}>
+                    <div className="body">Courses</div>
+                  </Link>
+                  <Link
+                    to="/course-category?category=UI Design"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div className="body">Categories</div>
+                  </Link>
+
+                  <Link to="/webinars" style={{ textDecoration: 'none' }}>
+                    <div className="body">Webinar</div>
+                  </Link>
+
                   <div className="body">About us</div>
                   <div className="body">Contact</div>
                 </div>
