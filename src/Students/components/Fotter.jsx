@@ -93,10 +93,24 @@ const Fotter = () => {
           </div>
           <div className="container cioieie">
             <div className="row">
-              <div className="col-12 col-md-3">
-                <div className="mader">Made With ❤️ by VestarPlus</div>
+              <div className="col-12 col-md-4">
+                <div className="mader">
+                  Made With ❤️ In Nigeria |{' '}
+                  <a
+                    href="https://vestarplus.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      textDecoration: 'none',
+                      color: 'white',
+                      fontWeight: '500',
+                    }}
+                  >
+                    A Product Of VestarPlus
+                  </a>
+                </div>
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12 col-md-5">
                 {' '}
                 <div className="twenty">
                   2022 Copyright | Email: enquires@uxdesignmaster.com
