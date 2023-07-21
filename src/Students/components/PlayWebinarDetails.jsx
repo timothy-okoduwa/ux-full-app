@@ -1,6 +1,6 @@
 import React from 'react';
 import y from '../pages/Webinars/yng.png';
-import UpcomingWebinar from './UpcomingWebinar';
+// import UpcomingWebinar from './UpcomingWebinar';
 import PastWebinarSlider from './PastWebinarSlider';
 const PlayWebinarDetails = ({ course }) => {
   return (

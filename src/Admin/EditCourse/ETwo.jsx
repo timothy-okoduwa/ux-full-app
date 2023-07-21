@@ -31,21 +31,21 @@ const style = {
   borderRadius: '20px',
   boxShadow: 24,
 };
-const style2 = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  borderRadius: '9px',
-  p: 4,
-};
+// const style2 = {
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   width: 400,
+//   bgcolor: 'background.paper',
+//   borderRadius: '9px',
+//   p: 4,
+// };
 
 const ETwo = ({ courseId, step, setStep }) => {
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const [sections, setSections] = useState([]);
+  // const [inputValue, setInputValue] = useState('');
+  // const [sections, setSections] = useState([]);
   const [newSectionHeading, setNewSectionHeading] = useState('');
   const handleOpen = () => {
     setOpen(true);

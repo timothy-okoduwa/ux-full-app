@@ -1,7 +1,7 @@
 import React from 'react';
 import PersOne from '../../components/PersOne';
 import PersTwo from '../../components/PersTwo';
-import PersThree from '../../components/PersThree';
+// import PersThree from '../../components/PersThree';
 
 const MultiSetting = ({ step, setStep }) => {
   const renderEditScreans = () => {

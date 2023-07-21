@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import a from '../pages/images/pexels.mp4';
+// import a from '../pages/images/pexels.mp4';
 import PropTypes from 'prop-types';
 // import CourseRequirement from './CourseRequirement';
 const RightWatch = ({ course, selectedSubVideo, updateIsWatched }) => {

@@ -154,6 +154,7 @@ const NavBar = () => {
     location.pathname === '/upcomingwebinar' ||
     location.pathname === '/uploadpast' ||
     location.pathname === '/webinarr' ||
+    location.pathname === '/rsvpwaitlist' ||
     location.pathname === '/seeall' ||
     location.pathname.startsWith('/edit') ||
     location.pathname === '/forget';

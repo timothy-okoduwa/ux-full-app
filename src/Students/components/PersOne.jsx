@@ -17,7 +17,7 @@ import {
   reauthenticateWithCredential,
   updateEmail,
 } from 'firebase/auth';
-import LeftSettings from './LeftSettings';
+// import LeftSettings from './LeftSettings';
 
 const PersOne = () => {
   const [studentInfo, setStudentInfo] = useState({

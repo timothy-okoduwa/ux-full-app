@@ -27,62 +27,6 @@ const ManageUpComing = () => {
       console.error('Error fetching coming soon webinar:', error);
     }
   };
-
-  // const handleDelete = async (item, upComingId) => {
-  //   try {
-  //     const adminDocRef = doc(db, 'Admin', auth.currentUser.uid);
-  //     const adminDocSnapshot = await getDoc(adminDocRef);
-  //     const adminData = adminDocSnapshot.data();
-
-  //     if (adminData) {
-  //       const updatedComingSoon = adminData.upcomingWebinar.filter(
-  //         (course) => course.upComingId !== item.upComingId
-  //       );
-  //       const updatedAdminData = {
-  //         ...adminData,
-  //         upcomingWebinar: updatedComingSoon,
-  //       };
-
-  //       // Get the download URL of the file for webinarImages
-  //       const webinarStorageRef = ref(
-  //         storage,
-  //         `webinarImages/${auth.currentUser.uid}/${upComingId}`
-  //       );
-  //       const webinarDownloadURL = await getDownloadURL(webinarStorageRef);
-
-  //       // Delete the specific file for webinarImages
-  //       try {
-  //         const webinarFileRef = ref(storage, webinarDownloadURL);
-  //         await deleteObject(webinarFileRef);
-  //         console.log('Webinar file deleted successfully.');
-  //       } catch (error) {
-  //         console.log('Error deleting webinar file:', error);
-  //       }
-
-  //       // Get the download URL of the file for WebinartutorImages
-  //       const tutorStorageRef = ref(
-  //         storage,
-  //         `WebinartutorImages/${auth.currentUser.uid}/${upComingId}`
-  //       );
-  //       const tutorDownloadURL = await getDownloadURL(tutorStorageRef);
-
-  //       // Delete the specific file for WebinartutorImages
-  //       try {
-  //         const tutorFileRef = ref(storage, tutorDownloadURL);
-  //         await deleteObject(tutorFileRef);
-  //         console.log('Tutor file deleted successfully.');
-  //       } catch (error) {
-  //         console.log('Error deleting tutor file:', error);
-  //       }
-
-  //       // Update the Admin document in Firestore
-  //       await updateDoc(adminDocRef, updatedAdminData);
-  //       setComingSoonData(updatedComingSoon);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error deleting the object:', error);
-  //   }
-  // };
   const handleDelete = async (item, upComingId, allId) => {
     try {
       const adminDocRef = doc(db, 'Admin', auth.currentUser.uid);
@@ -145,7 +89,7 @@ const ManageUpComing = () => {
                   <img src={e} alt="" className="empty" />
                 </div>
                 <p className="mt-3" style={{ color: 'white' }}>
-                  Sorry, no upcoming courses yet.
+                  Sorry, no upcoming Webinar yet.
                 </p>
               </div>
             ) : (

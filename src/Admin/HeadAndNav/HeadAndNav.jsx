@@ -9,7 +9,7 @@ import {
 } from 'react-icons/bs';
 
 import {
-  RiSettings4Fill,
+  // RiSettings4Fill,
   RiLogoutBoxLine,
   // RiUploadCloudFill,
 } from 'react-icons/ri';

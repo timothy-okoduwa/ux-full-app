@@ -49,7 +49,7 @@ const WebinarHead = () => {
   const currentItem = comingSoonData[currentItemIndex];
 
   return (
-    <div>
+    <div className="blimet">
       <div
         className="firstName"
         style={{

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
-import { BsFillCircleFill, BsCalendar3, BsClock } from 'react-icons/bs';
+// import { BsFillCircleFill, BsCalendar3, BsClock } from 'react-icons/bs';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 import Skeleton from '@mui/material/Skeleton';

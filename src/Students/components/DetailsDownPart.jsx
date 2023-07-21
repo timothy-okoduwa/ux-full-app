@@ -1,56 +1,147 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import y from '../pages/Webinars/yng.png';
 import UpcomingWebinar from './UpcomingWebinar';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import CircularProgress from '@mui/material/CircularProgress';
+import { db, auth } from '../../firebase';
+// import { useNavigate } from 'react-router-dom';
+import {
+  collection,
+  query,
+  getDocs,
+  getDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+} from 'firebase/firestore';
+
 const DetailsDownPart = ({ course }) => {
+  // const navigate = useNavigate();
   const [emaill, setEmaill] = useState('');
   const [loading, setLoading] = useState(false);
   const form = useRef();
+  // Fetch the user's email if they are logged in
+  useEffect(() => {
+    const fetchUserEmail = async () => {
+      if (auth.currentUser) {
+        const userDocRef = doc(db, 'student', auth.currentUser.uid);
+        const userDocSnapshot = await getDoc(userDocRef);
+        if (userDocSnapshot.exists()) {
+          const userData = userDocSnapshot.data();
+          setEmaill(userData.email);
+        }
+      }
+    };
+
+    fetchUserEmail();
+  }, []);
+  // const sendEmail = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   await sendConfirmationEmail();
+  //   emailjs
+  //     .sendForm(
+  //       'service_y5895d8',
+  //       'template_4zjam5h',
+  //       form.current,
+  //       'bcyUUGHEE-8frwK2g'
+  //     )
+  //     .then(
+  //       (result) => {
+  //         toast.success(`🎊 RSVP Sucessful please check you mail`, {
+  //           position: 'top-center',
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: 'light',
+  //         });
+  //         setEmaill('');
+  //         setLoading(false);
+  //       },
+  //       (error) => {
+  //         toast.error(`😞 Error RSVPing`, {
+  //           position: 'top-center',
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: 'light',
+  //         });
+  //         setEmaill('');
+  //         setLoading(false);
+  //       }
+  //     );
+  // };
 
   const sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
     await sendConfirmationEmail();
-    emailjs
-      .sendForm(
-        'service_y5895d8',
-        'template_4zjam5h',
-        form.current,
-        'bcyUUGHEE-8frwK2g'
-      )
-      .then(
-        (result) => {
-          toast.success(`🎊 RSVP Sucessful please check you mail`, {
-            position: 'top-center',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-          });
-          setEmaill('');
-          setLoading(false);
-        },
-        (error) => {
-          toast.error(`😞 Error RSVPing`, {
-            position: 'top-center',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-          });
-          setEmaill('');
-          setLoading(false);
-        }
-      );
+
+    try {
+      const webinarName = course?.courseName;
+
+      // Create a reference to the Admin collection
+      const adminCollectionRef = collection(db, 'Admin');
+
+      // Query for the admin document where the webinarRSVP array should be updated
+      const adminQuery = query(adminCollectionRef);
+
+      // Get the snapshot of the admin documents that match the query
+      const adminSnapshot = await getDocs(adminQuery);
+
+      // If there are no admin documents, create a new one with the webinarRSVP field
+      if (adminSnapshot.empty) {
+        const newAdminDocRef = doc(adminCollectionRef);
+        await setDoc(newAdminDocRef, {
+          webinarRSVP: {
+            [webinarName]: [emaill], // Create a new array with the user's email
+          },
+        });
+      } else {
+        // If there are admin documents, update the webinarRSVP field for the first document
+        const firstAdminDocRef = adminSnapshot.docs[0].ref;
+        await updateDoc(firstAdminDocRef, {
+          [`webinarRSVP.${webinarName}`]: arrayUnion(emaill), // Add the user's email to the webinarRSVP array
+        });
+      }
+
+      toast.success(`🎊 RSVP Successful, please check your mail`, {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setEmaill('');
+      setLoading(false);
+      // navigate('/webinars');
+    } catch (error) {
+      toast.error(`😞 Error RSVPing`, {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setEmaill('');
+      setLoading(false);
+    }
   };
+
   const isButtonDisabled = !emaill;
   const sendConfirmationEmail = async () => {
     try {

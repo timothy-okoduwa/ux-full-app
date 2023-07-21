@@ -38,6 +38,7 @@ import UploadUpcomingWebinar from './Admin/Webinarr/UploadUpcomingWebinar';
 import PastWebinar from './Admin/Webinarr/PastWebinar';
 import PastWebinarDetails from './Students/components/PastWebinarDetails';
 import AllPastWebinar from './Students/components/AllPastWebinar';
+import RSVPWaitlistHolder from './Admin/Webinarr/RSVPWaitlistHolder';
 function App() {
   return (
     <UserAuthContextProvider>
@@ -93,6 +94,14 @@ function AppContent() {
           element={
             <ProtectedRoute2>
               <Webinarr />
+            </ProtectedRoute2>
+          }
+        />
+        <Route
+          path="/rsvpwaitlist"
+          element={
+            <ProtectedRoute2>
+              <RSVPWaitlistHolder />
             </ProtectedRoute2>
           }
         />

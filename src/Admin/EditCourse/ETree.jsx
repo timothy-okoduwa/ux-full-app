@@ -17,8 +17,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 const ETree = ({ courseId }) => {
-  const [learn, setLearn] = useState(['']);
-  const [requirement, setRequirement] = useState(['']);
+  // const [learn, setLearn] = useState(['']);
+  // const [requirement, setRequirement] = useState(['']);
   const [course, setCourse] = useState({});
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);

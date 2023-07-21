@@ -90,7 +90,7 @@ const ManagePast = () => {
                   <img src={e} alt="" className="empty" />
                 </div>
                 <p className="mt-3" style={{ color: 'white' }}>
-                  Sorry, no upcoming courses yet.
+                  Sorry, no Past Webinar yet.
                 </p>
               </div>
             ) : (

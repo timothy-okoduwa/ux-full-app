@@ -8,6 +8,9 @@ const PostingWeb = () => {
   const nav2 = () => {
     navigate('/uploadpast');
   };
+  const nav3 = () => {
+    navigate('/rsvpwaitlist');
+  };
   return (
     <div className="bgi">
       <div className="container">
@@ -19,10 +22,18 @@ const PostingWeb = () => {
               + Create upcoming webinar
             </div>
           </div>
-          <div className="toba">
-            <div className="create_new_course" onClick={nav2}>
-              {' '}
-              + Create Past Webinars
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className="toba">
+              <div className="create_new_course" onClick={nav2}>
+                {' '}
+                + Create Past Webinars
+              </div>
+            </div>
+            <div className="toba">
+              <div className="create_new_course" onClick={nav3}>
+                {' '}
+                RSVP WaitList
+              </div>
             </div>
           </div>
         </div>

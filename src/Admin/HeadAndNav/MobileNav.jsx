@@ -1,7 +1,7 @@
 import React from 'react';
 import './HeadAndNav.css';
 import { MdDashboard } from 'react-icons/md';
-import { RiSettings4Fill, RiUploadCloudFill } from 'react-icons/ri';
+// import { RiSettings4Fill, RiUploadCloudFill } from 'react-icons/ri';
 import {
   BsCreditCardFill,
   BsFillFolderFill,

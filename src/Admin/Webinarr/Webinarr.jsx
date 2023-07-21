@@ -12,10 +12,10 @@ const Webinarr = () => {
       <MobileNav />
       <PostingWeb />
 
-      <div style={{ marginTop: '-30px' }}>
+      <div style={{ marginTop: '-80px' }}>
         <ManageUpComing />
       </div>
-      <div style={{ marginTop: '-30px' }}>
+      <div style={{ marginTop: '-70px' }}>
         <ManagePast />
       </div>
     </div>
